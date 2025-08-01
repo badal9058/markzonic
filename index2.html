@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkZonic - Up to Infinity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+
+        .hero-bg {
+            background:  url("./assets/BG2.jpg") no-repeat center center/cover;
+            padding-bottom: 80px;
+            margin-top: 70px;
+        }
+        
+        .btn-primary {
+            
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+            border: 2px solid #29abff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 132, 255, 0.5);
+            background: linear-gradient(90deg, #00A6FF, #0062FF);
+        }
+        
+        .service-card {
+            background-color: #1a1a1a;
+            border: 1px solid #29abff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 5px 5px 5px rgba(0, 132, 255, 0.5);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 5px 5px 50px rgba(0, 132, 255, 0.5);
+
+            
+        }
+
+        .section-title-ad {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: rgba(0, 166, 255, 0.1);
+            border: 1px solid rgba(0, 166, 255, 0.3);
+            border-radius: 9999px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .stat-item {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item img {
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #typedtext {
+      font-size: 30px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid black;
+      width: fit-content;
+      animation: blink 0.7s infinite;
+    }
+    .mark {
+    color: white;
+  }
+
+  .zonic {
+    color: #29abff;
+  }
+  @keyframes pulse-grow {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  .custom-pulse {
+    animation: pulse-grow 2s ease-in-out infinite;
+  }
+    
+  /* Section Styling */
+.trusted-by-section {
+    background-color: #f8f9fa; /* Light gray background like the demo */
+    width: 100%;
+    padding: 3rem 0; /* More vertical space */
+    text-align: center;
+}
+
+.trusted-by-section h2 {
+    font-size: 1.5rem;
+    margin-top: -30px;
+    color: #29abff; /* Muted text color */
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Scroller Animation */
+.scroller {
+    max-width: 1500px; /* Wider scroller */
+    margin: auto;
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 95%, transparent);
+    mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+}
+
+.scroller__inner {
+    display: flex;
+    gap: 2.5rem; /* Space between logos */
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+
+/* Pause animation on hover */
+.scroller:hover .scroller__inner {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* --- Logo Styling & Hover Effect (The Magic Happens Here) --- */
+
+.scroller__inner img {
+    height: 120px; /* Adjust height as needed */
+    width: auto;
+    object-fit: contain;
+    
+    /* 1. Start with grayscale */
+    
+  
+    
+    /* 2. Add a smooth transition */
+    transition: all 0.3s ease-in-out;
+}
+
+/* 3. On hover, remove grayscale and add effects */
+.scroller__inner img:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Slightly enlarge the logo on hover */
+}
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background-color: black;  border-bottom-left-radius: 55px;
+  border-bottom-right-radius: 55px;
+  box-shadow: 0 10px 20px rgba(41, 171, 255, 0.4);">
+        <div class="container mx-auto px-6 py-1">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center">
+                     <img src="./assets/Logo GIF.gif" alt="MarkZonic Logo" class=" w-auto"  style="height: 80px"/>
+                     <div id="typedtext" style="margin-left: 10px;"></div>
+                        <script>
+                            const typedText = document.getElementById('typedtext');
+                            const markSpan = document.createElement('span');
+                            markSpan.className = 'mark';
+                            const zonicSpan = document.createElement('span');
+                            zonicSpan.className = 'zonic';
+                            typedText.appendChild(markSpan);
+                            typedText.appendChild(zonicSpan);
+                            const text = "MARKZONIC";
+                            let index = 0;
+                            function type() {
+                                if (index < text.length) {
+                                const char = text.charAt(index);
+                                if (index < 4) {
+                                    markSpan.textContent += char; // "MARK"
+                                } else {
+                                    zonicSpan.textContent += char; // "ZONIC"
+                                }
+                                index++;
+                                setTimeout(type, 100);
+                                }
+                            }
+                            type();
+                        </script>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition">About Us</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-white transition">Portfolio</a>
+                    <a href="#contact" class="btn-primary text-white font-semibold px-5 py-2 rounded-full">Contact Us</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90">
+            <a href="#home" class="block text-center text-gray-300 hover:text-white py-3 transition">Home</a>
+            <a href="#services" class="block text-center text-gray-300 hover:text-white py-3 transition">Services</a>
+            <a href="#about" class="block text-center text-gray-300 hover:text-white py-3 transition">About Us</a>
+            <a href="#portfolio" class="block text-center text-gray-300 hover:text-white py-3 transition">Portfolio</a>
+            <a href="#contact" class="block text-center text-gray-300 hover:text-white py-3 transition">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center">
+        <div class="container mx-auto  text-center">
+            <h1 style="margin-top:30px;">
+                    <span style="color: white; font-size: 50px; margin-top: 0px;">Creative Solutions to<br>Digital Challenges.</span><br class="hidden md:block"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
+                </h1>
+            <div class="max-w-4xl mx-auto">
+                
+                <p>3+ years | 100+ Campaigns | 10+ Crore Ad Spent</p>
+                <div style="margin: 0 auto; margin-top: 10px;"><img src="./assets/funnicon.svg" style="width: 240px; margin: 0 auto"; class="custom-pulse  transform -translate-x-1/2 -translate-y-1/2"/></div>
+                <a href="#contact" class="btn-primary text-white font-bold py-2 -mt-2 px-8 rounded-full text-lg inline-block reveal" style="transition-delay: 0.4s;">
+                    Unleash Your Potential
+                </a><br><br>
+                <p >
+                    Confused about Digital Marketing?🤔<br>
+                    Don't worry, your next customer is just a click away! we'll get you there.<br>
+                    At Markzonic, we don't just run ads - we build digital engine that drives real business growth.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="trusted-by-section">
+    <h2>Trusted by the world's best companies</h2>
+    <div class="scroller">
+        <div class="scroller__inner">
+            <img src="./assets/image/b1.JPG" alt="Google Cloud">
+            <img src="./assets/image/b2.JPG" alt="Microsoft">
+            <img src="./assets/image/b3.JPG" alt="Amazon">
+            <img src="./assets/image/b4.JPG" alt="Notion">
+            <img src="./assets/image/b5.JPG" alt="Slack">
+            <img src="./assets/image/b6.JPG" alt="Spotify">
+            
+            <img src="./assets/image/b7.JPG" alt="Google Cloud">
+            <img src="./assets/image/b8.JPG" alt="Microsoft">
+            <img src="./assets/image/b3.JPG" alt="Amazon">
+            <img src="./assets/image/b4.JPG" alt="Notion">
+            <img src="./assets/image/b5.JPG" alt="Slack">
+            <img src="./assets/image/b6.JPG" alt="Spotify">
+            
+            <img src="./assets/image/b7.JPG" alt="Google Cloud">
+            <img src="./assets/image/b8.JPG" alt="Microsoft">
+            <img src="./assets/image/b3.JPG" alt="Amazon">
+            <img src="./assets/image/b4.JPG" alt="Notion">
+            <img src="./assets/image/b5.JPG" alt="Slack">
+            <img src="./assets/image/b6.JPG" alt="Spotify">
+            
+            <img src="./assets/image/b7.JPG" alt="Google Cloud">
+            <img src="./assets/image/b8.JPG" alt="Microsoft">
+        </div>
+    </div>
+</section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 md:py-32" style="background-image: url(./assets/Galaxy\ X.svg);background-repeat: no-repeat;background-size: cover;">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">Our Arsenal</h2>
+                 <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Services Designed for Dominance</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card p-8 rounded-lg text-center reveal">
+                    <div class="mb-4">
+                        <svg class="w-16 h-16 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">SEO Mastery</h3>
+                    <p class="text-gray-400">Claim the top spot. We make you the first and only choice on search engines.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="service-card p-8 rounded-lg text-center reveal">
+                    <div class="mb-4 flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#29abff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone-icon"> <rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>
+                        </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Social Media Buzz</h3>
+                    <p class="text-gray-400">We don't just post. We start movements and build tribes around your brand.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="service-card p-8 rounded-lg text-center reveal" style="transition-delay: 0.2s;">
+                     <div class="mb-4">
+                        <svg class="w-16 h-16 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">PPC Precision</h3>
+                    <p class="text-gray-400">Every click counts. We turn your ad spend into a revenue-generating machine.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="service-card p-8 rounded-lg text-center reveal" style="transition-delay: 0.3s;">
+                    <div class="mb-4">
+                       <svg class="w-16 h-16 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Content that Converts</h3>
+                    <p class="text-gray-400">We craft stories and visuals so compelling, your audience can't help but act.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us / Stats Section -->
+    <section id="about" class="py-20 md:py-32 bg-black" style="background-image: url(./assets/Galaxy\ Y.svg); background-repeat: no-repeat; background-size: cover;">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="section-title-ad text-blue-400 mb-4 reveal">The MarkZonic Advantage</h2>
+                <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Numbers Don't Lie. Neither Do We.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
+                <div class="stat-item reveal">
+                    <p class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2 counter" data-target="450">0</p>
+                    <p class="text-lg text-gray-300">Campaigns Launched</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.1s;">
+                    <p class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2 counter" data-target="320">0</p>
+                    <p class="text-lg text-gray-300">% Average ROI Increase</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.2s;">
+                    <p class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2 counter" data-target="150">0</p>
+                    <p class="text-lg text-gray-300">Happy Clients</p>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto text-center reveal" style="transition-delay: 0.3s;">
+                <p class="text-lg text-gray-400">We are a collective of digital strategists, creative minds, and tech wizards obsessed with one thing: your growth. We believe in challenging the status quo and turning ambitious goals into market realities. Your success is our masterpiece.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 md:py-32" style="background-image: url(./assets/Galaxy\ X.svg); background-repeat: no-repeat; background-size: cover;">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="section-title-ad text-blue-400 mb-4 reveal">Proof in Pixels</h2>
+                <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Results That Speak For Themselves</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item reveal">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop" alt="Project 1" class="w-full h-80 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white">Fintech Growth</h3>
+                        <p class="text-gray-300">Increased user acquisition by 250%.</p>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item reveal" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop" alt="Project 2" class="w-full h-80 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white">E-commerce Sales</h3>
+                        <p class="text-gray-300">Boosted online sales by 400% in 6 months.</p>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item reveal" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop" alt="Project 3" class="w-full h-80 object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold text-white">SaaS Domination</h3>
+                        <p class="text-gray-300">Achieved #1 market share through targeted campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 bg-black" style="background-image: url(./assets/Galaxy\ Y.svg); background-repeat: no-repeat; background-size: cover;">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title-ad text-blue-400 mb-4 reveal">Let's Talk</h2>
+                <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Ready to Start Your Ascent?</p>
+                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto reveal" style="transition-delay: 0.2s;">Your competition won't wait. Neither should you. Fill out the form below or email us directly.</p>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <form action="#" method="POST" class="space-y-6">
+                    <div class="reveal" style="transition-delay: 0.3s;">
+                        <input type="text" name="name" placeholder="Your Name" class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                    <div class="reveal" style="transition-delay: 0.4s;">
+                        <input type="email" name="email" placeholder="Your Email" class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                     <div class="reveal" style="transition-delay: 0.5s;">
+                        <textarea name="message" rows="5" placeholder="Tell us about your project..." class="w-full bg-gray-900 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"></textarea>
+                    </div>
+                    <div class="text-center reveal" style="transition-delay: 0.6s;">
+                        <button type="submit" class="btn-primary text-white font-bold py-3 px-10 rounded-full text-lg w-full md:w-auto">
+                            Send Mission Brief
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-5">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <a href="#" class="inline-block mb-6">
+                 <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="h-40 w-auto ">
+                 <P style="color: white; font-family: 'montserrt', sans-serif; font-weight: bold; font-size: 30px;">MARK<span style="color: #29abff;">ZONIC</span></P>
+                 <p style="color: white;">Up to Infinity</p>
+            </a>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white transition">Facebook</a>
+                <a href="#" class="hover:text-white transition">Twitter</a>
+                <a href="#" class="hover:text-white transition">LinkedIn</a>
+                <a href="#" class="hover:text-white transition">Instagram</a>
+            </div>
+            <p>&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // --- Sticky Header on Scroll ---
+        
+
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // --- Animated Counter ---
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // The lower the slower
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = Math.ceil(target / speed);
+
+                    if (count < target) {
+                        counter.innerText = count + inc;
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+        
+        // --- Intersection Observer for counter animation ---
+        const aboutSection = document.getElementById('about');
+        let hasAnimated = false;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    animateCounters();
+                    hasAnimated = true; // Ensure it only runs once
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+        observer.observe(aboutSection);
+
+    </script>   
+</body>
+</html>
