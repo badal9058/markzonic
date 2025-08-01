@@ -23,7 +23,7 @@
         .hero-bg {
             background:  url("./assets/BG2.jpg") no-repeat center center/cover;
             padding-bottom: 80px;
-            margin-top: 70px;
+            margin-top: 50px;
         }
         
         .btn-primary {
@@ -210,6 +210,37 @@
     opacity: 1;
     transform: scale(1.1); /* Slightly enlarge the logo on hover */
 }
+    @keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-logo {
+  animation: fadeInUp 3s ease forwards;
+}
+@keyframes glow-logo {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: drop-shadow(0 0 5px #29abff);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    filter: drop-shadow(0 0 25px #29abff);
+    opacity: 1;
+  }
+}
+
+.animate-glow-logo {
+  animation: glow-logo 5s ease-in-out infinite;
+}
+
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -218,10 +249,10 @@
     <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background-color: black;  border-bottom-left-radius: 55px;
   border-bottom-right-radius: 55px;
   box-shadow: 0 10px 20px rgba(41, 171, 255, 0.4);">
-        <div class="container mx-auto px-6 py-1">
+        <div class="container mx-auto px-6 py-">
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center">
-                     <img src="./assets/Logo GIF.gif" alt="MarkZonic Logo" class=" w-auto"  style="height: 80px"/>
+                     <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class=" w-auto animate-logo"  style="height: 80px"/>
                      <div id="typedtext" style="margin-left: 10px;"></div>
                         <script>
                             const typedText = document.getElementById('typedtext');
@@ -229,8 +260,8 @@
                             markSpan.className = 'mark';
                             const zonicSpan = document.createElement('span');
                             zonicSpan.className = 'zonic';
-                            typedText.appendChild(markSpan);
-                            typedText.appendChild(zonicSpan);
+                            typedtext.appendChild(markSpan);
+                            typedtext.appendChild(zonicSpan);
                             const text = "MARKZONIC";
                             let index = 0;
                             function type() {
@@ -271,11 +302,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center">
-        <div class="container mx-auto  text-center">
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+         <img src="./assets/MarkZonic Logo Icon.svg"
+       alt="Glowing MarkZonic Logo"
+       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[1000px] animate-glow-logo  pointer-events-none z-0"/>
+        <div class="container mx-auto  text-center relative z-10">
             <h1 style="margin-top:30px;">
-                    <span style="color: white; font-size: 50px; margin-top: 0px;">Creative Solutions to<br>Digital Challenges.</span><br class="hidden md:block"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
+                    <span style="color: white; font-size: 50px; margin-top: 0px;">Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden md:block"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
                 </h1>
+                
             <div class="max-w-4xl mx-auto">
                 
                 <p>3+ years | 100+ Campaigns | 10+ Crore Ad Spent</p>
@@ -283,7 +318,7 @@
                 <a href="#contact" class="btn-primary text-white font-bold py-2 -mt-2 px-8 rounded-full text-lg inline-block reveal" style="transition-delay: 0.4s;">
                     Unleash Your Potential
                 </a><br><br>
-                <p >
+                <p style="font-size: small;">
                     Confused about Digital Marketing?🤔<br>
                     Don't worry, your next customer is just a click away! we'll get you there.<br>
                     At Markzonic, we don't just run ads - we build digital engine that drives real business growth.
@@ -293,7 +328,6 @@
     </section>
 
     <section class="trusted-by-section">
-    <h2>Trusted by the world's best companies</h2>
     <div class="scroller">
         <div class="scroller__inner">
             <img src="./assets/image/b1.JPG" alt="Google Cloud">
@@ -460,10 +494,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 py-5">
+    <footer class="bg-gray-900 py-2">
         <div class="container mx-auto px-6 text-center text-gray-400">
             <a href="#" class="inline-block mb-6">
-                 <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="h-40 w-auto ">
+                 <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="h-40 w-auto -mb-8 animate-logo ">
                  <P style="color: white; font-family: 'montserrt', sans-serif; font-weight: bold; font-size: 30px;">MARK<span style="color: #29abff;">ZONIC</span></P>
                  <p style="color: white;">Up to Infinity</p>
             </a>
@@ -540,5 +574,20 @@
         observer.observe(aboutSection);
 
     </script>   
+                <script>
+                    function typeEffect(elementId, text, speed = 100) {
+                        let i = 0;
+                        function typeChar() {
+                            if (i < text.length) {
+                            document.getElementById(elementId).innerHTML += text.charAt(i);
+                            i++;
+                            setTimeout(typeChar, speed);
+                            }
+                        }
+                        typeChar();
+                        }
+
+                        typeEffect("typed-text-2", "Digital Challenges");
+                </script>
 </body>
 </html>
