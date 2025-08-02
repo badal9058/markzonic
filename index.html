@@ -21,9 +21,9 @@
         }
 
         .hero-bg {
-            background:  url("./assets/BG2.jpg") no-repeat center center/cover;
+            background:  url("./assets/BG 2.svg") no-repeat center center/cover;
             padding-bottom: 80px;
-            margin-top: 50px;
+            margin-top: 0px;
         }
         
         .btn-primary {
@@ -34,7 +34,7 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
+           
             box-shadow: 0 8px 25px rgba(0, 132, 255, 0.5);
             background: linear-gradient(90deg, #00A6FF, #0062FF);
         }
@@ -149,7 +149,7 @@
     
   /* Section Styling */
 .trusted-by-section {
-    background-color: #f8f9fa; /* Light gray background like the demo */
+    background-color: gray; /* Light gray background like the demo */
     width: 100%;
     padding: 3rem 0; /* More vertical space */
     text-align: center;
@@ -159,7 +159,7 @@
     font-size: 1.5rem;
     margin-top: -30px;
     color: #29abff; /* Muted text color */
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     font-weight: 500;
 }
 
@@ -208,8 +208,9 @@
 /* 3. On hover, remove grayscale and add effects */
 .scroller__inner img:hover {
     opacity: 1;
-    transform: scale(1.1); /* Slightly enlarge the logo on hover */
+    transform: scale(1.8); /* Slightly enlarge the logo on hover */
 }
+/* header and footer logo */
     @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -224,35 +225,262 @@
 .animate-logo {
   animation: fadeInUp 3s ease forwards;
 }
+/* header and footer logo end*/
+/*background glowing logo */
 @keyframes glow-logo {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+    
     filter: drop-shadow(0 0 5px #29abff);
-    opacity: 0.6;
+    opacity: 0.1;
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.1);
+    
     filter: drop-shadow(0 0 25px #29abff);
-    opacity: 1;
+    opacity: 0.1;
   }
 }
 
 .animate-glow-logo {
   animation: glow-logo 5s ease-in-out infinite;
 }
+/*background glowing logo end*/
+/* service section*/
+.services-section {
+    padding: 50px 20px;
+    text-align: center;
+    overflow: hidden; /* To contain the carousel */
+}
 
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1500px; /* Adjust as needed */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Prevent text selection */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.services-carousel {
+    display: flex;
+    overflow-x: hidden; /* Hide default scrollbar */
+    scroll-behavior: smooth; /* Smooth scrolling for navigation */
+    padding: 50px 0; /* Add some padding if logos might hit edges */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    gap: 30px; /* Space between boxes */
+}
+
+.service-box {
+    flex: 0 0 auto; /* Do not grow or shrink, maintain content width */
+    width: 280px; /* Adjust box width as needed */
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f); /* Example gradient */
+    border-radius: 30px;
+    /* Increased top padding to ensure logo is not cut off */
+    padding: 80px 10px 20px; /* Increased from 60px to 80px */
+    margin: 0 15px; /* Adjust margin if gap isn't enough */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative; /* For logo positioning */
+    min-height: 280px; /* Ensure a minimum height for consistency */
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: space-between;
+}
+.service-box:hover{
+     box-shadow: 0 0 10px 10px rgba(0, 132, 255, 0.5);
+    transform: translateY(-10px);
+    border: 3px solid #29abff;
+}
+.service-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+  border-radius: 26px 26px 0 0;
+  z-index: 1;
+  pointer-events: none; /* allow clicks through this overlay */
+}
+.service-logo {
+    position: absolute;
+    /* Adjust top value based on logo height. If logo is 100px, -50px makes it half-above. */
+    /* If you want more of the logo visible above, you might set it to -40px or -30px. */
+    top: -70px; /* Example for a 100px tall logo (half above) */
+    left: 50%;
+    z-index: 2;
+    transform: translateX(-50%);
+    width: 150px; /* Adjust logo size */
+    height: 150px; /* Adjust logo size */
+    /* REMOVED: border-radius: 50%; (if your SVG isn't circular or you don't want it forced) */
+    /* REMOVED: background-color: #fff; (to allow transparency) */
+    /* REMOVED: padding: 5px; (to remove any background padding) */
+    /* REMOVED: box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); (to remove shadow on logo) */
+    display: block; /* Ensure it behaves as a block element */
+    object-fit: contain; /* Ensures SVG scales down without cropping inside its bounds */
+}
+
+.service-box h3 {
+    margin-top: 15px; /* Adjust space below logo */
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.service-box p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: #ddd;
+    flex-grow: 1; /* Allow paragraph to take available space */
+}
+
+.learn-more {
+  position: absolute;
+  bottom: 0%;   /* adjust as per need */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  padding: 10px 0px;
+  
+  background-color: #29abff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more:hover {
+    background-color: #0056b3;
+}
+
+/* Carousel Buttons */
+.carousel-button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 2em;
+    z-index: 10;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s ease;
+    outline: none; /* Remove focus outline */
+}
+
+.carousel-button:hover {
+    
+}
+
+.carousel-button.prev {
+    left: 0;
+}
+
+.carousel-button.next {
+    right: 0;
+}
+
+/* Make sure images are not draggable */
+img {
+    -webkit-user-drag: none; /* Safari */
+    -khtml-user-drag: none; /* Konqueror HTML */
+    -moz-user-drag: none; /* Old versions of Firefox */
+    -o-user-drag: none; /* Opera */
+    /* Removed: user-drag: none; (not a standard property) */
+}
+
+/*header logo click animation*/
+@keyframes spinAndZoomOut {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(20) rotate(360deg); /* 50% पर थोड़ा बड़ा और आधा चक्कर */
+    opacity: 1; /* अभी भी पूरी तरह से दिखाई दे रहा है */
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(50) rotate(360deg); /* फुल स्क्रीन तक बड़ा और एक पूरा चक्कर */
+    opacity: 0; /* पूरी तरह से गायब हो जाए */
+  }
+}
+
+/* एनिमेशन क्लास */
+.logo-animated {
+  position: fixed; /* एनिमेशन के दौरान लोगो को फिक्स करें */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); /* यह transform keyframes द्वारा संभाला जाएगा */
+  z-index: 9999; /* सुनिश्चित करें कि यह अन्य सभी तत्वों के ऊपर है */
+  pointer-events: none; /* एनिमेशन के दौरान क्लिक इवेंट को अक्षम करें */
+  animation: spinAndZoomOut 2s ease-out forwards; /* 2 सेकंड की अवधि */
+  transform-origin: center center; /* सुनिश्चित करें कि यह केंद्र से घूमता है */
+}
+/* Hero Section responsiveness */
+        @media (max-width: 768px) {
+            .hero-bg {
+                padding-top: 100px; /* Adjust padding for mobile */
+                padding-bottom: 50px;
+            }
+            .hero-bg h1 {
+                margin-top: 50px !important;
+                /* font-weight will be controlled by HTML classes or global Poppins default */
+            }
+            /* Original h1 had no font-bold class, so removing 'font-bold' from HTML to revert */
+            .hero-bg h1 span.text-6xl { /* Target the specific span for main heading font size */
+                font-size: 30px !important; /* Smaller font for main heading */
+            }
+            /* The text "Our Dedicated teams..." is directly inside h1, so this targets it */
+            .hero-bg h1 span.text-lg.md\:text-xl { /* Target the second span for font size */
+                font-size: 0.9em !important; /* Smaller font for the second line of text */
+            }
+            #typed-text-2 {
+                font-size: 25px !important; /* Smaller font for typed text in hero */
+            }
+            .hero-bg p { /* For the "3+ years..." paragraph */
+                font-size: 0.9em; /* Smaller font for paragraphs */
+            }
+            .hero-bg .custom-pulse {
+                width: 180px; /* Smaller funnicon on mobile */
+                margin-top: 40px !important;
+            }
+            .hero-bg .btn-primary {
+                padding: 10px 20px; /* Smaller button padding */
+                font-size: 1em;
+            }
+            /* Background glowing logo adjustment for mobile */
+            .hero-bg .animate-glow-logo {
+                height: 800px; /* Smaller background logo */
+                left: 50%; /* Center it */
+                transform: translate(-50%, -50%);
+            }
+        }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden" style="background-image: url(./assets/Galaxy\ X.svg); background-repeat:no-repeat ; background-size: cover;">
 
     <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background-color: black;  border-bottom-left-radius: 55px;
-  border-bottom-right-radius: 55px; height:75px;
-  box-shadow: 0 10px 20px rgba(41, 171, 255, 0.4);">
-        <div class="container mx-auto px-6 py-">
+     <div class="w-full flex justify-center relative">
+    <header id="header" class="fixed top-3 z-50 transition-all duration-300" style="background-color: black;
+  border-radius: 50px; height: 55px; width: 95%; border: 3px solid #29abff;
+  box-shadow: 0px 0px 50px rgba(41, 171, 255, 0.4);">
+        <div class="container mx-auto px-6" >
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center">
-                     <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class=" w-auto animate-logo"  style="height: 80px"/>
+                     <img src="./assets/MarkZonic Logo Icon.svg" id="animatedLogoImg" alt="MarkZonic Logo" class=" w-auto animate-logo"  style="height: 50px"/>
                      <div id="typedtext" style="margin-left: 10px;"></div>
                         <script>
                             const typedText = document.getElementById('typedtext');
@@ -278,13 +506,37 @@
                             }
                             type();
                         </script>
+                        <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                            const logoImg = document.getElementById('animatedLogoImg'); // सीधे img टैग को टारगेट करें
+
+                            if (logoImg) { // सुनिश्चित करें कि तत्व मौजूद है
+                                logoImg.addEventListener('click', function(event) {
+                                // यदि लोगो पहले से एनिमेट हो रहा है तो कुछ न करें
+                                if (logoImg.classList.contains('logo-animated')) {
+                                    return;
+                                }
+
+                                // एनिमेशन क्लास जोड़ें
+                                logoImg.classList.add('logo-animated');
+
+                                // एनिमेशन खत्म होने के बाद क्लास को हटा दें
+                                logoImg.addEventListener('animationend', function() {
+                                    logoImg.classList.remove('logo-animated');
+                                    // यदि आप एनिमेशन के बाद लोगो को पूरी तरह से गायब करना चाहते हैं, तो आप यहां display: none भी सेट कर सकते हैं
+                                    // logoImg.style.display = 'none';
+                                }, { once: true }); // सुनिश्चित करें कि इवेंट लिसनर एक बार ही चलता है
+                                });
+                            }
+                            });
+                            </script>
                 </a>
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
                     <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
                     <a href="#about" class="text-gray-300 hover:text-white transition">About Us</a>
                     <a href="#portfolio" class="text-gray-300 hover:text-white transition">Portfolio</a>
-                    <a href="#contact" class="btn-primary text-white font-semibold px-5 py-2 rounded-full">Contact Us</a>
+                    <a href="#contact" class="btn-primary text-white font-semibold px-4 py-1 rounded-full">Contact Us</a>
                 </nav>
                 <button id="mobile-menu-button" class="md:hidden text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -300,21 +552,22 @@
             <a href="#contact" class="block text-center text-gray-300 hover:text-white py-3 transition">Contact Us</a>
         </div>
     </header>
+    </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
-         <img src="./assets/MarkZonic Logo Icon.svg"
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden"> 
+        <img src="./assets/MarkZonic Logo Icon.svg"
        alt="Glowing MarkZonic Logo"
-       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-[1000px] animate-glow-logo  pointer-events-none z-0"/>
-        <div class="container mx-auto  text-center relative z-10">
-            <h1 style="margin-top:30px;">
-                    <span style="color: white; font-size: 50px; margin-top: 0px;">Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden md:block"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
+       class="absolute top-1/2 left-0.9/3 transform -translate-x-0.9/3 -translate-y-1/2 h-[1450px] mt-9 animate-glow-logo  pointer-events-none z-0"/> 
+       <div class="container mx-auto  text-center relative z-10">
+            <h1 style="margin-top:70px;">
+                    <span style="color: white; font-size: 60px; margin-top: 0px;">Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden md:block"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
                 </h1>
                 
             <div class="max-w-4xl mx-auto">
                 
                 <p>3+ years | 100+ Campaigns | 10+ Crore Ad Spent</p>
-                <div style="margin: 0 auto; margin-top: 10px;"><img src="./assets/funnicon.svg" style="width: 240px; margin: 0 auto"; class="custom-pulse  transform -translate-x-1/2 -translate-y-1/2"/></div>
+                <div style="margin: 0 auto; margin-top: 70px;"><img src="./assets/funnicon.svg" style="width: 240px; margin: 0 auto"; class="custom-pulse  transform -translate-x-1/2 -translate-y-1/2"/></div>
                 <a href="#contact" class="btn-primary text-white font-bold py-2 -mt-2 px-8 rounded-full text-lg inline-block reveal" style="transition-delay: 0.4s;">
                     Unleash Your Potential
                 </a><br><br>
@@ -326,94 +579,181 @@
             </div>
         </div>
     </section>
-
     <section class="trusted-by-section">
     <div class="scroller">
         <div class="scroller__inner">
-            <img src="./assets/image/b1.JPG" alt="Google Cloud">
-            <img src="./assets/image/b2.JPG" alt="Microsoft">
-            <img src="./assets/image/b3.JPG" alt="Amazon">
-            <img src="./assets/image/b4.JPG" alt="Notion">
-            <img src="./assets/image/b5.JPG" alt="Slack">
-            <img src="./assets/image/b6.JPG" alt="Spotify">
+            <img src="./assets/image/b1.jpg" alt="Google Cloud" loading="lazy">
+            <img src="./assets/image/b2.jpg" alt="Microsoft" loading="lazy">
+            <img src="./assets/image/b3.JPG" alt="Amazon" loading="lazy">
+            <img src="./assets/image/b4.png" alt="Notion" loading="lazy">
+            <img src="./assets/image/b5.png" alt="Slack" loading="lazy">
+            <img src="./assets/image/b6.png" alt="Spotify" loading="lazy">
             
-            <img src="./assets/image/b7.JPG" alt="Google Cloud">
-            <img src="./assets/image/b8.JPG" alt="Microsoft">
-            <img src="./assets/image/b3.JPG" alt="Amazon">
-            <img src="./assets/image/b4.JPG" alt="Notion">
-            <img src="./assets/image/b5.JPG" alt="Slack">
-            <img src="./assets/image/b6.JPG" alt="Spotify">
+            <img src="./assets/image/b7.png" alt="Google Cloud" loading="lazy">
+            <img src="./assets/image/b1.jpg" alt="Microsoft" loading="lazy">
+            <img src="./assets/image/b1.jpg" alt="Amazon" loading="lazy">
+            <img src="./assets/image/b2.jpg" alt="Notion" loading="lazy">
+            <img src="./assets/image/b3.JPG" alt="Slack" loading="lazy">
+            <img src="./assets/image/b4.png" alt="Spotify" loading="lazy">
             
-            <img src="./assets/image/b7.JPG" alt="Google Cloud">
-            <img src="./assets/image/b8.JPG" alt="Microsoft">
-            <img src="./assets/image/b3.JPG" alt="Amazon">
-            <img src="./assets/image/b4.JPG" alt="Notion">
-            <img src="./assets/image/b5.JPG" alt="Slack">
-            <img src="./assets/image/b6.JPG" alt="Spotify">
+            <img src="./assets/image/b5.png" alt="Google Cloud" loading="lazy">
+            <img src="./assets/image/b6.png" alt="Microsoft" loading="lazy">
+            <img src="./assets/image/b7.png" alt="Amazon" loading="lazy">
+            <img src="./assets/image/b1.jpg" alt="Notion" loading="lazy">
+            <img src="./assets/image/b1.jpg" alt="Slack" loading="lazy">
+            <img src="./assets/image/b2.jpg" alt="Spotify" loading="lazy">
             
-            <img src="./assets/image/b7.JPG" alt="Google Cloud">
-            <img src="./assets/image/b8.JPG" alt="Microsoft">
+            <img src="./assets/image/b3.JPG" alt="Google Cloud" loading="lazy">
+            <img src="./assets/image/b4.png" alt="Microsoft" loading="lazy">
         </div>
     </div>
 </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 md:py-32" style="background-image: url(./assets/Galaxy\ X.svg);background-repeat: no-repeat;background-size: cover;">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">Our Arsenal</h2>
-                 <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Services Designed for Dominance</p>
+    <!-- About Us and service / Stats Section -->
+    <section id="about" class="section-bg py-20 md:py-32 " >
+       <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="section-title">Services</h2>
+
+        <div class="carousel-container">
+            <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="services-carousel">
+                <div class="service-box" >
+                    <img src="./assets/MarkZonic Logo Icon.svg" alt="ADS Logo" class="service-logo">
+                    <h3>Meta Ads</h3>
+                    <p>Facebook & Instagram Advertising. Reach your target audience with effective ad campaigns.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/funnicon.svg" alt="SEO Logo" class="service-logo">
+                    <h3>SEO</h3>
+                    <p>Search Engine Optimization. Improve your search rankings and drive organic traffic.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/MarkZonic Logo Icon.svg" alt="Content Logo" class="service-logo">
+                    <h3>Creative Designing</h3>
+                    <p>Ad Creatives + Motion Graphics. Engage your audience with Attractive and valuable content.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/funnicon.svg" alt="Social Media Logo" class="service-logo">
+                    <h3>Google Ads</h3>
+                    <p>Build your brand and connect with customers on Google platforms.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/MarkZonic Logo Icon.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Web Dev</h3>
+                    <p>Create stunning and functional websites for your business.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/MarkZonic Logo Icon.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Android Dev</h3>
+                    <p>Create stunning and functional websites for your business.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/MarkZonic Logo Icon.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Social Media </h3>
+                    <p>Social Media Account Management Create stunning connections for your Social Media.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card p-8 rounded-lg text-center reveal">
-                    <div class="mb-4">
-                        <svg class="w-16 h-16 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">SEO Mastery</h3>
-                    <p class="text-gray-400">Claim the top spot. We make you the first and only choice on search engines.</p>
-                </div>
-                <!-- Service Card 2 -->
-                <div class="service-card p-8 rounded-lg text-center reveal">
-                    <div class="mb-4 flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#29abff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone-icon"> <rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>
-                        </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Social Media Buzz</h3>
-                    <p class="text-gray-400">We don't just post. We start movements and build tribes around your brand.</p>
-                </div>
-                <!-- Service Card 3 -->
-                <div class="service-card p-8 rounded-lg text-center reveal" style="transition-delay: 0.2s;">
-                     <div class="mb-4">
-                        <svg class="w-16 h-16 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">PPC Precision</h3>
-                    <p class="text-gray-400">Every click counts. We turn your ad spend into a revenue-generating machine.</p>
-                </div>
-                <!-- Service Card 4 -->
-                <div class="service-card p-8 rounded-lg text-center reveal" style="transition-delay: 0.3s;">
-                    <div class="mb-4">
-                       <svg class="w-16 h-16 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Content that Converts</h3>
-                    <p class="text-gray-400">We craft stories and visuals so compelling, your audience can't help but act.</p>
-                </div>
-            </div>
+            <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
-    <!-- About Us / Stats Section -->
-    <section id="about" class="py-20 md:py-32 bg-black" style="background-image: url(./assets/Galaxy\ Y.svg); background-repeat: no-repeat; background-size: cover;">
+            <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                    const carousel = document.querySelector('.services-carousel');
+                    const prevButton = document.querySelector('.carousel-button.prev');
+                    const nextButton = document.querySelector('.carousel-button.next');
+
+                    // Function to scroll the carousel
+                    const scrollCarousel = (direction) => {
+                        const scrollAmount = carousel.clientWidth / 2; // Scroll half the width of the visible area
+                        if (direction === 'next') {
+                            carousel.scrollBy({
+                                left: scrollAmount,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            carousel.scrollBy({
+                                left: -scrollAmount,
+                                behavior: 'smooth'
+                            });
+                        }
+                    };
+
+                    // Event listeners for buttons
+                    prevButton.addEventListener('click', () => scrollCarousel('prev'));
+                    nextButton.addEventListener('click', () => scrollCarousel('next'));
+
+                    // Optional: Add drag/swipe functionality for touch devices
+                    let isDown = false;
+                    let startX;
+                    let scrollLeft;
+
+                    carousel.addEventListener('mousedown', (e) => {
+                        isDown = true;
+                        carousel.classList.add('active');
+                        startX = e.pageX - carousel.offsetLeft;
+                        scrollLeft = carousel.scrollLeft;
+                    });
+                    carousel.addEventListener('mouseleave', () => {
+                        isDown = false;
+                        carousel.classList.remove('active');
+                    });
+                    carousel.addEventListener('mouseup', () => {
+                        isDown = false;
+                        carousel.classList.remove('active');
+                    });
+                    carousel.addEventListener('mousemove', (e) => {
+                        if (!isDown) return;
+                        e.preventDefault();
+                        const x = e.pageX - carousel.offsetLeft;
+                        const walk = (x - startX) * 2; // Adjust scroll speed
+                        carousel.scrollLeft = scrollLeft - walk;
+                    });
+
+                    // For touch devices (mobile)
+                    carousel.addEventListener('touchstart', (e) => {
+                        isDown = true;
+                        startX = e.touches[0].pageX - carousel.offsetLeft;
+                        scrollLeft = carousel.scrollLeft;
+                    });
+                    carousel.addEventListener('touchend', () => {
+                        isDown = false;
+                    });
+                    carousel.addEventListener('touchmove', (e) => {
+                        if (!isDown) return;
+                        const x = e.touches[0].pageX - carousel.offsetLeft;
+                        const walk = (x - startX) * 2;
+                        carousel.scrollLeft = scrollLeft - walk;
+                    });
+                });
+                    </script>
+    <!--service end-->
+
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">The MarkZonic Advantage</h2>
                 <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Numbers Don't Lie. Neither Do We.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
-                <div class="stat-item reveal">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
+            <div class="stat-item reveal">
                     <p class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2 counter" data-target="450">0</p>
                     <p class="text-lg text-gray-300">Campaigns Launched</p>
-                </div>
-                <div class="stat-item reveal" style="transition-delay: 0.1s;">
+            </div>
+        <div class="stat-item reveal" style="transition-delay: 0.1s;">  
                     <p class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-2 counter" data-target="320">0</p>
                     <p class="text-lg text-gray-300">% Average ROI Increase</p>
                 </div>
@@ -429,7 +769,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 md:py-32" style="background-image: url(./assets/Galaxy\ X.svg); background-repeat: no-repeat; background-size: cover;">
+    <section id="portfolio" class="section-bg py-20 md:py-32 ">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">Proof in Pixels</h2>
@@ -462,10 +802,9 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 md:py-32 bg-black" style="background-image: url(./assets/Galaxy\ Y.svg); background-repeat: no-repeat; background-size: cover;">
+        
+        <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">Let's Talk</h2>
@@ -492,7 +831,9 @@
             </div>
         </div>
     </section>
+    </section>
 
+    
     <!-- Footer -->
     <footer class="bg-gray-900 py-2">
         <div class="container mx-auto px-6 text-center text-gray-400">
