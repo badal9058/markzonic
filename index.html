@@ -23,7 +23,6 @@
         .hero-bg {
             background:  url("./assets/BG 2.svg") no-repeat center center/cover;
             padding-bottom: 80px;
-            margin-top: 0px;
         }
         
         .btn-primary {
@@ -367,26 +366,27 @@
 /* Carousel Buttons */
 .carousel-button {
     background: white;
-    color: black;
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    font-size: 2em;
-    z-index: 10;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: background-color 0.3s ease;
-    outline: none; /* Remove focus outline */
+            color: black;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 2em;
+            z-index: 10;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background-color 0.3s ease;
+            outline: none; /* Remove focus outline */
 }
 
 .carousel-button:hover {
-    
+    background-color: white;
 }
 
 .carousel-button.prev {
     left: 0;
+
 }
 
 .carousel-button.next {
@@ -854,13 +854,40 @@ img {
 
     <script>
         
-        // --- Mobile Menu Toggle ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // 1. मेन्यू बटन से मेन्यू को खोलने/बंद करने का कोड
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- यहाँ से नया कोड जोड़ा गया है ---
+
+    // 2. मेन्यू के किसी भी लिंक पर क्लिक करने पर मेन्यू को बंद करना
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden'); // 'hidden' क्लास जोड़कर मेन्यू को बंद करें
         });
+    });
+
+    // 3. मेन्यू के बाहर कहीं भी क्लिक करने पर मेन्यू को बंद करना
+    document.addEventListener('click', (event) => {
+        // जाँचें कि क्या मेन्यू खुला है
+        const isMenuOpen = !mobileMenu.classList.contains('hidden');
         
+        // जाँचें कि क्लिक मेन्यू के अंदर या मेन्यू बटन पर तो नहीं हुआ
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickOnButton = mobileMenuButton.contains(event.target);
+
+        if (isMenuOpen && !isClickInsideMenu && !isClickOnButton) {
+            mobileMenu.classList.add('hidden'); // मेन्यू को बंद करें
+        }
+    });
+});
         // --- Sticky Header on Scroll ---
         
 
