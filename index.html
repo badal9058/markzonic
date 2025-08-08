@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarkZonic - Up to Infinity</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="./assets/image/b1.jpg" as="image">
+    <link rel="preload" href="./assets/image/b2.jpg" as="image">
+    <link rel="preload" href="./assets/image/b3.JPG" as="image">
+    <link rel="preload" href="./assets/image/b4.png" as="image">
+    <link rel="preload" href="./assets/image/b5.png" as="image">
+    <link rel="preload" href="./assets/image/b6.png" as="image">
+    <link rel="preload" href="./assets/image/b7.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
@@ -146,7 +153,7 @@
     animation: pulse-grow 2s ease-in-out infinite;
   }
     
-  /* Section Styling */
+  /*brand Section Styling */
 .trusted-by-section {
     background-color: gray; /* Light gray background like the demo */
     width: 100%;
@@ -195,13 +202,7 @@
     height: 120px; /* Adjust height as needed */
     width: auto;
     object-fit: contain;
-    
-    /* 1. Start with grayscale */
-    
-  
-    
-    /* 2. Add a smooth transition */
-    transition: all 0.3s ease-in-out;
+
 }
 
 /* 3. On hover, remove grayscale and add effects */
@@ -473,10 +474,10 @@ img {
 <body class="overflow-x-hidden">
 
     <!-- Header -->
-     <div class="w-full flex justify-center relative">
+     <div class="w-full flex justify-center relative" class="animate-me">
     <header id="header" class="fixed top-3 z-50 transition-all duration-300" style="background-color: black;
   border-radius: 50px; height: 55px; width: 95%; border: 3px solid #29abff;
-  box-shadow: 0px 0px 50px rgba(41, 171, 255, 0.4); gap">
+  box-shadow: 0px 0px 50px rgba(41, 171, 255, 0.4); ">
         <div class="container mx-auto px-6" >
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center">
@@ -531,7 +532,7 @@ img {
                             });
                             </script>
                 </a>
-                <nav class="hidden md:flex items-center space-x-6 ml-100px">
+                <nav class="hidden md:flex items-center space-x-6 ml-10">
                     <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
                     <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
                     <a href="#about" class="text-gray-300 hover:text-white transition">About Us</a>
@@ -555,7 +556,7 @@ img {
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden"> 
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden" class="animate-me"> 
         <img src="./assets/MarkZonic Logo Icon.svg"
        alt="Glowing MarkZonic Logo"
        class="absolute top-1/2 left-0.9/3 transform -translate-x-0.9/3 -translate-y-1/2 h-[1450px] mt-9 animate-glow-logo  pointer-events-none z-0"/> 
@@ -582,29 +583,27 @@ img {
     <section class="trusted-by-section">
     <div class="scroller">
         <div class="scroller__inner">
-            <img src="./assets/image/b1.jpg" alt="Google Cloud" loading="lazy">
-            <img src="./assets/image/b2.jpg" alt="Microsoft" loading="lazy">
-            <img src="./assets/image/b3.JPG" alt="Amazon" loading="lazy">
-            <img src="./assets/image/b4.png" alt="Notion" loading="lazy">
-            <img src="./assets/image/b5.png" alt="Slack" loading="lazy">
-            <img src="./assets/image/b6.png" alt="Spotify" loading="lazy">
+            <img src="./assets/MarkZonic Logo Icon.svg" alt="Google Cloud" >
+            <img src="./assets/MarkZonic Logo Icon.svg" alt="Microsoft" >
+            <img src="./assets/MarkZonic Logo Icon.svg" alt="Amazon">
+            <img src="./assets/MarkZonic Logo Icon.svg" alt="Notion">
+            <img src="./assets/image/#" alt="Slack">
+            <img src="./assets/image/#" alt="Spotify">
             
-            <img src="./assets/image/b7.png" alt="Google Cloud" loading="lazy">
-            <img src="./assets/image/b1.jpg" alt="Microsoft" loading="lazy">
-            <img src="./assets/image/b1.jpg" alt="Amazon" loading="lazy">
-            <img src="./assets/image/b2.jpg" alt="Notion" loading="lazy">
-            <img src="./assets/image/b3.JPG" alt="Slack" loading="lazy">
-            <img src="./assets/image/b4.png" alt="Spotify" loading="lazy">
+            <img src="./assets/image/#" alt="Google Cloud">
+            <img src="./assets/image/#" alt="Microsoft">
+            <img src="./assets/image/#" alt="Amazon">
+            <img src="./assets/image/#" alt="Notion">
+            <img src="./assets/image/#" alt="Slack">
+            <img src="./assets/image/#" alt="Spotify">
             
-            <img src="./assets/image/b5.png" alt="Google Cloud" loading="lazy">
-            <img src="./assets/image/b6.png" alt="Microsoft" loading="lazy">
-            <img src="./assets/image/b7.png" alt="Amazon" loading="lazy">
-            <img src="./assets/image/b1.jpg" alt="Notion" loading="lazy">
-            <img src="./assets/image/b1.jpg" alt="Slack" loading="lazy">
-            <img src="./assets/image/b2.jpg" alt="Spotify" loading="lazy">
+            <img src="./assets/image/#" alt="Google Cloud">
+            <img src="./assets/image/#" alt="Microsoft">
+            <img src="./assets/image/#" alt="Amazon">
+            <img src="./assets/image/#" alt="Notion">
+            <img src="./assets/image/#" alt="Slack">
+            <img src="./assets/image/#" alt="Spotify">
             
-            <img src="./assets/image/b3.JPG" alt="Google Cloud" loading="lazy">
-            <img src="./assets/image/b4.png" alt="Microsoft" loading="lazy">
         </div>
     </div>
 </section>
@@ -958,8 +957,6 @@ img {
 
                         typeEffect("typed-text-2", "Digital Challenges");
                 </script>
+            
 </body>
 </html>
-
-
-
