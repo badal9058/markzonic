@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarkZonic - Up to Infinity</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" href="./assets/our voices/ADD 03 (1).mp4" as="video">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
@@ -16,8 +18,7 @@
         /* Custom styles and animations */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0a0a0a;
-            color: #e5e5e5;
+            color: white;
         }
 
         .hero-bg {
@@ -96,11 +97,11 @@
             opacity: 1;
         }
         
-        .portfolio-item img {
+        .portfolio-item video {
             transition: transform 0.4s ease;
         }
 
-        .portfolio-item:hover img {
+        .portfolio-item:hover video {
             transform: scale(1.05);
         }
 
@@ -552,6 +553,17 @@ img {
   /* Move the info card back by a smaller amount, e.g., 5px, for a layered effect */
   transform: translateY(72px);
 }
+.content-wrapper {
+  background-image: url('./assets/GalaxyX.svg'); /* यहां अपनी इमेज का URL डालें */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; /* यह सबसे महत्वपूर्ण प्रॉपर्टी है */
+}
+.chg a:hover{
+    color: #29abff;
+    transform: scale(1.4);
+}
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -690,10 +702,10 @@ img {
         </div>
     </div>
 </section>
-
+<div class="content-wrapper">
     <!-- About Us and service / Stats Section -->
        <!-- Services Section -->
-    <section class="services-section" style="background-image: url(./assets/GalaxyX.svg); background-repeat: no-repeat; background-size: cover;">
+    <section class="services-section">
         <h2 class="section-title">Services</h2>
 
         <div class="carousel-container">
@@ -850,44 +862,60 @@ img {
                     });
                 });
                     </script>
-<div class="line" style="width: auto; height: 6px; color: black; background-color: black; border: 2px solid black; margin-top: -2px;"></div>
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section-bg py- md:py- " style="background-image: url(./assets/GalaxyY.svg); background-repeat: no-repeat; background-size: cover; background-position: center;">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title-ad text-blue-400 mb-4 reveal">Proof in Pixels</h2>
-                <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Results That Speak For Themselves</p>
+    <section id="portfolio" class="section-bg py- md:py- ">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="section-title-ad text-blue-400 mb-4 reveal">Proof in Pixels</h2>
+            <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Results That Speak For Themselves</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 01.mp4" style="transition-delay: 0.1s;">
+                <video autoplay loop muted class="w-full h-80 object-cover">
+                    <source src="./assets/our voices/ADD 01.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="portfolio-overlay">
+                    <h3 class="text-2xl font-bold text-white">Fintech Growth</h3>
+                    <p class="text-gray-300">Increased user acquisition by 250%.</p>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Portfolio Item 1 -->
-                <div class="portfolio-item reveal">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop" alt="Project 1" class="w-full h-80 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-2xl font-bold text-white">Fintech Growth</h3>
-                        <p class="text-gray-300">Increased user acquisition by 250%.</p>
-                    </div>
+
+            <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 02.mp4" style="transition-delay: 0.1s;">
+                <video autoplay loop muted class="w-full h-80 object-cover">
+                    <source src="./assets/our voices/ADD 02.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="portfolio-overlay">
+                    <h3 class="text-2xl font-bold text-white">Fintech Growth</h3>
+                    <p class="text-gray-300">Increased user acquisition by 250%.</p>
                 </div>
-                <!-- Portfolio Item 2 -->
-                <div class="portfolio-item reveal" style="transition-delay: 0.1s;">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop" alt="Project 2" class="w-full h-80 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-2xl font-bold text-white">E-commerce Sales</h3>
-                        <p class="text-gray-300">Boosted online sales by 400% in 6 months.</p>
-                    </div>
-                </div>
-                <!-- Portfolio Item 3 -->
-                <div class="portfolio-item reveal" style="transition-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop" alt="Project 3" class="w-full h-80 object-cover">
-                    <div class="portfolio-overlay">
-                        <h3 class="text-2xl font-bold text-white">SaaS Domination</h3>
-                        <p class="text-gray-300">Achieved #1 market share through targeted campaigns.</p>
-                    </div>
+            </div>
+
+            <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 02.mp4" style="transition-delay: 0.1s;">
+                <video autoplay loop muted class="w-full h-80 object-cover">
+                    <source src="./assets/our voices/ADD 02.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="portfolio-overlay">
+                    <h3 class="text-2xl font-bold text-white">Fintech Growth</h3>
+                    <p class="text-gray-300">Increased user acquisition by 250%.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-        <section id="clients" class="section-bg py-20 md:py-32" style="background-image: url(./assets/GalaxyX.svg); background-repeat: no-repeat; background-size: cover; background-position: center;">
+<div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50">
+    <div class="relative w-full max-w-4xl p-4">
+        <video id="popupVideo" controls class="w-full">
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+        <section id="clients" class="section-bg py-20 md:py-32">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">Our Teams</h2>
@@ -930,11 +958,6 @@ img {
                             <h2 class="uppercase">Madhav Wahi</h2>
                             <p class="role">CEO</p>
                             <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                            <div class="socials">
-                                <i class="fab fa-facebook-f"></i>
-                                <i class="fab fa-twitter"></i>
-                                <i class="fab fa-instagram"></i>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -944,8 +967,8 @@ img {
     </section>
 
         <!-- Contact Section -->
-    <section id="contact" class="py-20 md:py-32" style="background-image: url(./assets/GalaxyY.svg); background-repeat: no-repeat; background-size: cover; background-position: center;">
-        <div class="container mx-auto px-6">
+    <section id="contact" class="pb-20 md:py-">
+        <div class="container mx-auto px-0">
             <div class="text-center mb-12">
                 <h2 class="section-title-ad text-blue-400 mb-4 reveal">Let's Talk</h2>
                 <p class="text-3xl md:text-4xl font-bold text-white reveal" style="transition-delay: 0.1s;">Ready to Start Your Ascent?</p>
@@ -971,7 +994,7 @@ img {
             </div>
         </div>
     </section>
-
+</div>
 
     
     <!-- Footer -->
@@ -982,16 +1005,51 @@ img {
                  <P style="color: white; font-family: 'montserrt', sans-serif; font-weight: bold; font-size: 30px;">MARK<span style="color: #29abff;">ZONIC</span></P>
                  <p style="color: white;">Up to Infinity</p>
             </a>
-            <div class="flex justify-center space-x-6 mb-6">
-                <a href="#" class="hover:text-white transition">Facebook</a>
-                <a href="#" class="hover:text-white transition">Twitter</a>
-                <a href="#" class="hover:text-white transition">LinkedIn</a>
-                <a href="#" class="hover:text-white transition">Instagram</a>
+            <div class="chg flex justify-center space-x-6 mb-6" style="color: white; ">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
             </div>
             <p>&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
         </div>
     </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // सभी portfolio-item एलिमेंट्स को चुनें
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const videoModal = document.getElementById('videoModal');
+        const popupVideo = document.getElementById('popupVideo');
+        const popupVideoSource = popupVideo.querySelector('source');
 
+
+        // हर portfolio-item पर लूप चलाएँ
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // डेटा एट्रीब्यूट से वीडियो का पाथ प्राप्त करें
+                const videoSrc = item.dataset.videoSrc;
+                
+                // पॉप-अप वीडियो के src को अपडेट करें
+                popupVideoSource.src = videoSrc;
+                popupVideo.load(); // वीडियो को लोड करें
+                
+                // modal को दिखाएं और वीडियो प्ले करें
+                videoModal.classList.remove('hidden');
+                popupVideo.play();
+            });
+        });
+
+
+        // modal के बाहर क्लिक करने पर बंद करें
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.classList.add('hidden');
+                popupVideo.pause();
+                popupVideo.currentTime = 0;
+            }
+        });
+    });
+</script>
     <script>
         
         document.addEventListener('DOMContentLoaded', () => {
@@ -1100,5 +1158,4 @@ img {
                 
 </body>
 </html>
-
 
