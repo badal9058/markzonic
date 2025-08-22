@@ -19,6 +19,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Custom styles and animations */
+        @media (max-width: 768px) {
+    #contact-form {
+        max-width: 100%; /* Allow the form to take the full width of its parent */
+        padding-left: 24px;  /* Add some padding to the form itself */
+        padding-right: 24px;
+    }
+
+    /* It's also good practice to ensure the container in the contact section doesn't add extra padding that might constrain the form */
+    #contact .header-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* You could also add padding to the body for smaller screens to ensure no content touches the edges */
+@media (max-width: 512px) {
+  body {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #contact-form {
+      padding-left: 0;
+      padding-right: 0;
+  }
+}
         :root {
             --primary-blue: #29abff;
             --secondary-blue: #0062FF;
@@ -1870,3 +1895,4 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 </body>
 </html>
+
