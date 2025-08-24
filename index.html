@@ -643,7 +643,7 @@
         .footer-logo {
             height: 160px;
             width: auto;
-            margin-bottom: -32px;
+            margin-bottom: -60px;
             animation: fadeInUp 3s ease forwards;
         }
 
@@ -662,6 +662,8 @@
 
         .footer-tagline {
             color: white;
+            font-size: 17px;
+            margin-top: -20px;
             text-decoration: none;
         }
 
@@ -675,6 +677,7 @@
         
         .social-links a {
             color: white;
+            font-size: 16px;
             text-decoration: none;
             transition: all 0.3s ease;
         }
@@ -1173,6 +1176,9 @@
     @media (max-width: 480px) {
       .chat-panel { width: calc(100vw - 24px); right: 12px; bottom: 80px; }
     }
+    .text-glow {
+            text-shadow: 0 0 8px rgba(0, 170, 255, 0.8), 0 0 10px rgba(0, 170, 255, 0.6);
+    }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -1233,9 +1239,9 @@
                     <div class="dropdown">
                         <a class="dropdown-btn">Legals ▾</a>
                         <div class="dropdown-content">
-                            <a href="./PrivacyPolicy.html">Privacy Policy</a>
-                            <a href="./Refund Policy.html">Refund and Return Policy</a>
-                            <a href="Term&Conditions.html">Term&Conditions</a>
+                            <a href="PrivacyPolicy.html">Privacy Policy</a>
+                            <a href="Refund Policy.html">Refund and Return Policy</a>
+                            <a href="Term&Conditions.html">Term and Conditions</a>
                         </div>
                     </div>
                     <script>
@@ -1271,9 +1277,9 @@
                 <div class="mobile-dropdown">
                     <button class="mobile-dropdown-btn">Legals ▾</button>
                     <div class="mobile-dropdown-content">
-                        <a href="./PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
-                        <a href="./Refund Policy.html" style="color: black;">Refund and Return Policy</a>
-                        <a href="Term&Conditions.html" style="color: black;">Term&Conditions</a>
+                        <a href="PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
+                        <a href="Refund Policy.html" style="color: black;">Refund and Return Policy</a>
+                        <a href="Term&Conditions.html" style="color: black;">Term and Conditions</a>
                     </div>
                 </div>
                 <script>
@@ -1300,7 +1306,7 @@
           class="hero-logo-bg"/>
      <div class="hero-container">
           <h1 class="hero-heading" style="font-size: large;">
-               <span>Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden-md"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
+               <span class="text-glow">Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden-md"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
           </h1>
           <div class="hero-content">
                <p>3+ years | 100+ Campaigns | 10+ Crore Ad Spent</p>
@@ -1996,4 +2002,3 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 </body>
 </html>
-
