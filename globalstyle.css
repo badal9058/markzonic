@@ -15,7 +15,9 @@
             background-position: fixed;
             background-color: black;
             margin: 0;
+            font-family: 'Poppins', sans-serif;
         }
+
 
 
         .header-wrapper {
@@ -26,6 +28,7 @@
         }
 
         .main-header {
+            font-family: 'Poppins', sans-serif;
             position: fixed;
             top: 12px;
             z-index: 50;
@@ -51,7 +54,11 @@
             align-items: center;
             height: 100%;
         }
-
+        @media (min-width: 768px) {
+            .header-logo-link {
+                margin-left: -60px;
+            }
+        }
         .header-logo-link {
             display: flex;
             align-items: center;
@@ -144,14 +151,14 @@
                 opacity: 0;
             }
         }
-        
 
         .footer {
             background-color: #111827;
-            padding: 10px 0px;
+            padding: 1px 0;
         }
+
         .footer-container {
-            max-width: 1300px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 0px;
             text-align: center;
@@ -167,7 +174,9 @@
         .footer-logo {
             height: 160px;
             width: auto;
-            margin-bottom: -32px;
+            margin-bottom: -30px;
+            margin-left: auto;
+            margin-right: auto;
             animation: fadeInUp 3s ease forwards;
         }
 
