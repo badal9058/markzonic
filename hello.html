@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkZonic - Up to Infinity</title>
+    <script src="./team.js"></script>
+    <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="globalstyle.css">
+    <link rel="icon" type="image/png" href="./assets/MarkZonic Logo Icon.svg">
+    <link rel="preload" href="./assets/our voices/ADD 02.mp4" as="video">
+    <link rel="preload" href="./assets/our voices/ADD 01.mp4" as="video">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        :root {
+            --primary-blue: #29abff;
+            --secondary-blue: #0062FF;
+            --text-gray: #aaa;
+            --background-dark: #1a1a1a;
+            --background-light: white;
+            --border-color: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            background-color: black;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 12px;
+            z-index: 50;
+            transition: all 0.3s ease;
+            background-color: black;
+            border-radius: 50px;
+            height: 55px;
+            width: 97%;
+            border: 3px solid var(--primary-blue);
+            font-size: 15px;
+            box-shadow: 0 0 50px rgba(41, 171, 255, 1);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        @media (min-width: 768px) {
+            .header-logo-link {
+                margin-left: -60px;
+            }
+        }
+        .header-logo-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo-img {
+            height: 50px;
+            width: auto;
+            animation: fadeInUp 3s ease forwards;
+        }
+        
+        /* Mobile menu button and desktop menu visibility fix */
+        .nav-menu {
+            display: none; /* Default for mobile: hide desktop menu */
+            align-items: center;
+            gap: 24px;
+            margin-left: 40px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none; /* gray-300 */
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .contact-btn {
+            color: white;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 9999px; /* full rounded */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .contact-btn:hover {
+            box-shadow: 0 8px 25px rgba(0, 132, 255, 0.5);
+                background: linear-gradient(90deg, #1b7dFF, #8933cd);
+        }
+
+        .mobile-menu-btn {
+            display: block; /* Default for mobile: show menu button */
+            color: white;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        
+        /* Mobile menu by default hidden, shows only when active */
+        #mobile-menu {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 13px;
+        }
+
+        #mobile-menu.active {
+            display: block; /* 'active' class adds display: block */
+        }
+        
+        #mobile-menu a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 12px 0;
+            transition: color 0.3s ease;
+        }
+
+        #mobile-menu a:hover {
+            color: #29abff;
+        }
+        
+        @keyframes spinAndZoomOut {
+            0% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(20) rotate(360deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(50) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .trusted-by-section {
+            background-color: white;
+            width: 100%;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .scroller {
+            max-width: 1500px;
+            margin: auto;
+            overflow: hidden;
+            -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 95%, transparent);
+            mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+        }
+
+        .scroller__inner {
+            display: flex;
+            gap: 2.5rem;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+
+        .scroller__inner img {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .services-section {
+            padding: 0px 0px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1500px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .services-carousel {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            padding: 70px 0;
+            gap: 30px;
+        }
+
+        .service-box {
+            flex: 0 0 auto;
+            width: 250px;
+            background: linear-gradient(180deg, rgba(72, 227, 255, 0), #004fca);
+            border-radius: 30px;
+            padding: 80px 10px 20px;
+            margin: 0 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
+            text-align: center;
+            font-weight: bolder;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        
+        .service-box:hover {
+            box-shadow: 0 0 10px 10px rgba(0, 132, 255, 0.5);
+            transform: translateY(-10px);
+            border: 3px solid var(--primary-blue);
+        }
+
+        .service-logo {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            z-index: 2;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .service-box h3 {
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #fff;
+        }
+        
+        .service-box p {
+            font-size: 0.8em;
+            line-height: 1.6;
+            color: white;
+            flex-grow: 1;
+        }
+        
+        .learn-more {
+            position: absolute;
+            bottom: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            padding: 10px 0;
+            background: linear-gradient(90deg, #1b7dFF, #8933cd);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-button {
+            background: white;
+            color: black;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 2em;
+            z-index: 10;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        .carousel-button.prev {
+            left: 0;
+        }
+        
+        .carousel-button.next {
+            right: 0;
+        }
+        
+        .about-section {
+            padding: 80px 24px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-ad {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: rgba(0, 166, 255, 0.1);
+            border: 1px solid rgba(0, 166, 255, 0.3);
+            border-radius: 9999px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+
+        .about-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 64px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #60a5fa, #a855f7);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #d1d5db;
+        }
+
+        .about-description {
+            max-width: 768px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            color: #9ca3af;
+        }
+
+        .portfolio-section {
+            padding: 80px 24px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        
+        .portfolio-item video {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover video {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0px;
+        }
+        
+        .portfolio-overlay p {
+            color: #d1d5db;
+            margin-bottom: 40px;
+        }
+        
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .video-modal .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 896px;
+            padding: 16px;
+        }
+        
+        .video-modal video {
+            width: 100%;
+        }
+
+        .team-section {
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.team-header h1 {
+  font-size: 36px;
+  margin-bottom: 0px;
+}
+
+.team-header .description {
+  max-width: 700px;
+  margin: 0 auto 10px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.team-header .credit {
+  color: #aaa;
+  font-size: 13px;
+  margin-bottom: 40px;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+}
+
+.member {
+  background-color: transparent;
+  position: relative;
+  width: 400px;
+  overflow: hidden;
+}
+
+.member img {
+  width:50%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out; 
+}
+
+.info-card {
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+  right: 20px;
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  text-align: left;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out; 
+}
+
+.info-card h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.info-card .role {
+  font-size: 13px;
+  color: #888;
+  text-transform: lowercase;
+  margin: 5px 0;
+}
+
+.info-card .text {
+  font-size: 12px;
+  color: #444;
+  margin: 10px 0;
+}
+.member:hover img {
+  /* Move the image up by a certain amount, e.g., 20px */
+  
+  transform: translateY(-20px); 
+}
+
+.member:hover .info-card {
+  /* Move the info card back by a smaller amount, e.g., 5px, for a layered effect */
+  transform: translateY(72px);
+}
+
+        .contact-section {
+            padding-bottom: 80px;
+            margin-top: 150px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .contact-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .contact-description {
+            font-size: 18px;
+            color: #9ca3af;
+            margin-top: 16px;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #contact-form{
+            max-width: 512px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-input, .form-textarea {
+            width: 90%;
+            background-color: #111827;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid #29abff;
+            box-shadow: 0px 0px 10px rgba(41, 171, 255, 1);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            box-shadow: 0px 0px 50px rgba(41, 171, 255, 1);
+        }
+
+        .form-button-container {
+            text-align: center;
+        }
+        
+        .submit-btn {
+            border: 2px solid var(--primary-blue);
+            color: white;
+            font-weight: bold;
+            background-color: transparent;
+            padding: 12px 40px;
+            border-radius: 9999px;
+            font-size: 18px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            box-shadow: 0px 2px 30px rgba(0, 132, 255, 1);
+            background: linear-gradient(90deg, #1b7dFF, #8933cd);
+        }
+
+        .footer {
+            background-color: #111827;
+            padding: 1px 0;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 0px;
+            text-align: center;
+            color: #9ca3af;
+        }
+        
+        .footer-logo-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+        
+        .footer-logo {
+            height: 160px;
+            width: auto;
+            margin-bottom: -60px;
+            animation: fadeInUp 3s ease forwards;
+        }
+
+        .footer-logo-text {
+            color: white;
+            font-family: 'montserrt', sans-serif;
+            font-weight: bold;
+            font-size: 30px;
+            text-decoration: none;
+        }
+        
+        .footer-logo-text span {
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+
+        .footer-tagline {
+            color: white;
+            font-size: 17px;
+            margin-top: -20px;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            color: white;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-blue);
+            transform: scale(1.2);
+        }
+
+        .footer-copy {
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex !important; /* Desktop par nav-menu hamesha dikhega */
+            }
+            
+            .mobile-menu-btn {
+                display: none !important; /* Desktop par menu button chhipa rahega */
+            }
+
+            .hero-title {
+                font-size: 72px;
+            }
+
+            .hero-subtitle .typewriter {
+                font-size: 36px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .submit-btn {
+                width: auto;
+            }
+        }
+        @media (min-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+
+            .hero-title {
+                margin-top: 50px !important;
+                font-size: 30px !important;
+            }
+
+            .hero-title span.text-lg {
+                font-size: 0.9em !important;
+            }
+            
+            .hero-subtitle .typewriter {
+                font-size: 25px !important;
+            }
+            
+            .hero-text {
+                font-size: 0.9em;
+            }
+            
+            .funnicon {
+                width: 180px;
+                margin-top: 40px !important;
+            }
+
+            .animate-glow-logo {
+                height: 800px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            /* Adjust hero logo and text for better mobile layout */
+            .header-logo-img {
+                height: 40px;
+            }
+            #typedtext {
+                font-size: 18px;
+            }
+
+            .hero-logo-bg {
+                height: 700px; /* Adjust height for mobile */
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .hero-heading span {
+                font-size: 30px !important;
+            }
+            .typewriter {
+                font-size: 25px !important;
+            }
+            
+        }
+
+        /* Animations */
+        @keyframes pulse-grow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes scroll {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow-logo {
+            0%, 100% {
+                filter: drop-shadow(0 0 5px var(--primary-blue));
+                opacity: 0.1;
+            }
+            50% {
+                filter: drop-shadow(0 0 25px var(--primary-blue));
+                opacity: 0.1;
+            }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #typedtext {
+            font-size: 30px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid black;
+            width: fit-content;
+            animation: blink 0.7s infinite;
+            text-decoration: none;
+        }
+
+        .mark {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .zonic {
+            color: var(--primary-blue);
+        }
+
+        @keyframes spinAndZoomOut {
+            0% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(20) rotate(360deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(50) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .logo-animated {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            animation: spinAndZoomOut 2s ease-out forwards;
+            transform-origin: center center;
+        }
+
+        .content-wrapper {
+            background-image: url('./assets/GalaxyX.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+         /* Hero Section */
+    .hero-section {
+        background: url("./assets/BG2.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center; /* Hero section background image fix */
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: -50px;
+        padding-bottom: 60px;
+    }
+    
+    .hero-logo-bg {
+        position: absolute;
+        top: 50%;
+        left: 29%;
+        transform: translate(-30%, -50%);
+        height: 1450px;
+        margin-top: 9px;
+        animation: glow-logo 5s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .hero-container {
+        max-width: 1280px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .hero-heading {
+        margin-top: 130px;
+    }
+
+    .hero-heading span {
+        color: white;
+        font-size: 50px;
+        margin-top: 0px;
+    }
+
+    .typewriter {
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .hidden-md {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .hidden-md {
+            display: block;
+        }
+    }
+
+    .hero-content {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .funnicon-container {
+        margin: 0 auto;
+        margin-top: 60px;
+    }
+    
+    .funnicon {
+        width: 240px;
+        margin: 0 auto;
+        animation: pulse-grow 2s ease-in-out infinite;
+    }
+
+    .btn-primary-hero {
+        border: 2px solid var(--primary-blue);
+        color: white;
+        font-weight: bold;
+        padding: 8px 32px;
+        margin-top: -8px;
+        border-radius: 9999px;
+        font-size: 18px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-primary-hero:hover{
+        background: linear-gradient(90deg, #1b7dFF, #8933cd);
+    }
+
+    .hero-small-text {
+        font-size: small;
+    }
+
+    /* Animations */
+    @keyframes glow-logo {
+        0%, 100% {
+            filter: drop-shadow(0 0 5px #29abff);
+            opacity: 0.1;
+        }
+        50% {
+            filter: drop-shadow(0 0 25px #29abff);
+            opacity: 0.1;
+        }
+    }
+
+    @keyframes pulse-grow {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+    }
+
+    .custom-pulse {
+        animation: pulse-grow 2s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding-top: 100px;
+            padding-bottom: 50px;
+            background-size: cover;
+        }
+        
+        .hero-heading span {
+            font-size: 30px !important;
+        }
+
+        .typewriter {
+            font-size: 25px !important;
+        }
+        
+        .hero-logo-bg {
+            height: 800px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Mobile specific menu styles */
+        .nav-menu {
+            display: none; /* Mobile par desktop menu chhipa rahega */
+        }
+        .mobile-menu-btn {
+            display: block; /* Mobile par menu button dikhega */
+        }
+    }
+    .mobile-menu-btn svg {
+        margin-top: 10px;
+    width: 24px;
+    height: 24px;
+        }
+        .hidden{
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .show {
+            display: block;
+            opacity: 1;
+        }
+        #anim {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 20px;
+            justify-self: center;
+        }
+        /* Dropdown container */
+        .dropdown {
+            position: relative;
+        }
+
+        /* Button style */
+        .dropdown-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+            color: inherit;
+        }
+
+        /* Dropdown content (hidden by default) */
+        .dropdown-content {
+            position: absolute;
+            background-color: black;
+            min-width: 180px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 10px 10px rgba(0, 132, 255, 0.5);
+            z-index: 10;
+            
+            /* animation prep */
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Links in dropdown */
+        .dropdown-content a {
+    display: block;
+    padding: 10px;
+    color: white;
+    border: 0;
+    transition: background-color 0.3s ease, color 0.3s ease; /* smooth fade */
+}
+        .dropdown-content a:hover {
+            background-color:white;
+            color: black;
+            transform: none;
+        }
+
+        /* Show dropdown with animation */
+        .dropdown.active .dropdown-content {
+            max-height: 500px; /* enough for full menu */
+            opacity: 1;
+            transform: translateY(1px);
+        }
+         /* Mobile dropdown container */
+.mobile-dropdown {
+    text-align: center;
+}
+
+/* Button style */
+.mobile-dropdown-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+/* Dropdown content hidden by default */
+.mobile-dropdown-content {
+    max-height: 0;
+    color: black;
+    background-color: white;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Links in mobile dropdown */
+.mobile-dropdown-content a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Active state to show dropdown */
+.mobile-dropdown.active .mobile-dropdown-content {
+    max-height: 200px; /* enough to show all links */
+    opacity: 1;
+}
+
+    /* Chat widget styles */
+    .chat-fab { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: #1f6feb; color: #fff; border: none; box-shadow: 0 8px 24px rgba(0,0,0,0.2); cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; z-index: 9999; }
+    .chat-panel { position: fixed; bottom: 88px; right: 20px; width: 360px; max-height: 70vh; display: none; flex-direction: column; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.22); overflow: hidden; z-index: 9999; border: 1px solid #e5e7eb; }
+    .chat-header { padding: 10px 12px; background: #29abff; color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: space-between; }
+    .chat-body { padding: 12px; overflow-y: auto; flex: 1; background: #29abff; }
+    .chat-input { display: none; }
+    .faq-item { border: 1px solid #e5e7eb; background: black; border-radius: 10px; padding: 10px; margin: 8px 0; cursor: pointer; }
+    .faq-item:hover { background: #f3f4f6; color: black;}
+    .answer { margin: 10px 0 0 0; padding: 10px; border-left: 3px solid #29abff;  border-radius: 6px; white-space: pre-wrap; }
+    .search { display: flex; gap: 8px; margin-bottom: 8px; }
+    .search input { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid white; font-size: 14px; }
+    .footer { font-size: 12px; color: white; margin-top: 8px; }
+    @media (max-width: 480px) {
+      .chat-panel { width: calc(100vw - 24px); right: 12px; bottom: 80px; }
+    }
+    .text-glow {
+            text-shadow: 0 0 8px rgba(0, 170, 255, 0.8), 0 0 10px rgba(0, 170, 255, 0.6);
+    }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="header-wrapper">
+    <header id="header" class="main-header">
+        <div class="header-container">
+            <div class="header-content">
+                <a href="#" class="header-logo-link" style="text-decoration: none;">
+                     <img src="./assets/MarkZonic Logo Icon.svg" id="animatedLogoImg" alt="MarkZonic Logo" class="header-logo-img"/>
+                     <div id="typedtext" style="margin-left: 10px; text-decoration: none;"></div>
+                        <script>
+                            const typedText = document.getElementById('typedtext');
+                            const markSpan = document.createElement('span');
+                            markSpan.className = 'mark';
+                            const zonicSpan = document.createElement('span');
+                            zonicSpan.className = 'zonic';
+                            typedtext.appendChild(markSpan);
+                            typedtext.appendChild(zonicSpan);
+                            const text = "MARKZONIC";
+                            let index = 0;
+                            function type() {
+                                if (index < text.length) {
+                                const char = text.charAt(index);
+                                if (index < 4) {
+                                    markSpan.textContent += char;
+                                } else {
+                                    zonicSpan.textContent += char;
+                                }
+                                index++;
+                                setTimeout(type, 100);
+                                }
+                            }
+                            type();
+                        </script>
+                        <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                            const logoImg = document.getElementById('animatedLogoImg');
+                            if (logoImg) {
+                                logoImg.addEventListener('click', function(event) {
+                                if (logoImg.classList.contains('logo-animated')) {
+                                    return;
+                                }
+                                logoImg.classList.add('logo-animated');
+                                logoImg.addEventListener('animationend', function() {
+                                    logoImg.classList.remove('logo-animated');
+                                }, { once: true });
+                                });
+                            }
+                            });
+                        </script>
+                </a>
+                <nav class="nav-menu">
+                    <a href="#home" class="Active">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="Aboutus.html">About Us</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <div class="dropdown">
+                        <a class="dropdown-btn">Legals ▾</a>
+                        <div class="dropdown-content">
+                            <a href="PrivacyPolicy.html">Privacy Policy</a>
+                            <a href="Refund Policy.html">Refund and Return Policy</a>
+                            <a href="Term&Conditions.html">Term and Conditions</a>
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const dropdownBtn = document.querySelector(".dropdown-btn");
+                            const dropdown = document.querySelector(".dropdown");
+
+                            dropdownBtn.addEventListener("click", function(e) {
+                                e.stopPropagation();
+                                dropdown.classList.toggle("active");
+                            });
+
+                            document.addEventListener("click", function() {
+                                dropdown.classList.remove("active");
+                            });
+                        });
+                        </script>
+
+                    <a href="#contact" class="contact-btn">Contact Us</a>
+                </nav>
+                <button id="mobile-menu-button" class="mobile-menu-btn">
+                    <svg  fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <!-- Ab yeh div by default hidden nahi hai, CSS isse handle karega -->
+            <div id="mobile-menu">
+                <a href="#home" class="Active">Home</a>
+                <a href="#services">Services</a>
+                <a href="Aboutus.html" class="active">About Us</a>
+                <a href="#portfolio">Portfolio</a>
+
+                <!-- Mobile Legals Dropdown -->
+                <div class="mobile-dropdown">
+                    <button class="mobile-dropdown-btn">Legals ▾</button>
+                    <div class="mobile-dropdown-content">
+                        <a href="PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
+                        <a href="Refund Policy.html" style="color: black;">Refund and Return Policy</a>
+                        <a href="Term&Conditions.html" style="color: black;">Term and Conditions</a>
+                    </div>
+                </div>
+                <script>
+                 // Mobile Legals dropdown toggle
+                const mobileDropdownBtn = document.querySelector(".mobile-dropdown-btn");
+                const mobileDropdown = document.querySelector(".mobile-dropdown");
+
+                mobileDropdownBtn.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    mobileDropdown.classList.toggle("active");
+                });
+                </script>
+
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </header>
+    </div>
+
+         <!-- Hero Section -->
+     <section id="home" class="hero-section">
+     <img src="./assets/MarkZonic Logo Icon.svg"
+          alt="Glowing MarkZonic Logo"
+          class="hero-logo-bg"/>
+     <div class="hero-container">
+          <h1 class="hero-heading" style="font-size: large;">
+               <span class="text-glow">Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden-md"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
+          </h1>
+          <div class="hero-content">
+               <p>3+ years | 100+ Campaigns | 10+ Crore Ad Spent</p>
+               <div class="funnicon-container">
+                    <img src="./assets/funnicon.svg" alt="Funnicon" class="funnicon custom-pulse"/>
+               </div>
+               <a href="https://wa.me/910000000000" class="btn-primary-hero" style="transition-delay: 0.4s;">
+                    Unleash Your Potential
+               </a><br><br>
+               <p class="hero-small-text">
+                    Confused about Digital Marketing?🤔<br>
+                    Don't worry, your next customer is just a click away! we'll get you there.<br>
+                    At Markzonic, we don't just run ads - we build digital engine that drives real business growth.
+               </p>
+          </div>
+     </div>
+     </section>
+    
+    <section class="trusted-by-section">
+        <div class="scroller">
+            <div class="scroller__inner">
+                <img src="./assets/logo/1.svg" alt="" >
+                <img src="./assets/logo/2.svg" alt="Microsoft" >
+                <img src="./assets/logo/3.svg" alt="Amazon">
+                <img src="./assets/logo/4.svg" alt="Notion">
+                <img src="./assets/logo/5.svg" alt="Slack">
+                <img src="./assets/logo/6.svg" alt="Spotify">
+                <img src="./assets/logo/7.svg" alt="Google Cloud">
+                <img src="./assets/logo/8.svg" alt="Microsoft">
+                <img src="./assets/logo/1.svg" alt="Amazon">
+                <img src="./assets/logo/2.svg" alt="Notion">
+                <img src="./assets/logo/3.svg" alt="Slack">
+                <img src="./assets/logo/4.svg" alt="Spotify">
+                <img src="./assets/logo/5.svg" alt="Google Cloud">
+                <img src="./assets/logo/6.svg" alt="Microsoft">
+                <img src="./assets/logo/7.svg" alt="Amazon">
+                <img src="./assets/logo/8.svg" alt="Notion">
+                <img src="./assets/logo/1.svg" alt="Slack">
+                <img src="./assets/logo/2.svg" alt="Spotify">
+            </div>
+        </div>
+    </section>
+    
+    <div class="content-wrapper">
+    <section id="services" class="services-section">
+        <h2 class="section-title">Services</h2>
+        <div class="carousel-container">
+            <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="services-carousel">
+                <div class="service-box" style="margin-left: 70px;">
+                    <img src="./assets/Icons/Meta Ads.svg" alt="ADS Logo" class="service-logo">
+                    <h3>Meta Ads</h3>
+                    <p>Facebook & Instagram Advertising. Reach your target audience with effective ad campaigns.</p>
+                    <a href="./metaads.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/Icons/SEO.svg" alt="SEO Logo" class="service-logo">
+                    <h3>SEO</h3>
+                    <p>Search Engine Optimization. Improve your search rankings and drive organic traffic.</p>
+                    <a href="./seo.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/Icons/Creative Designing.svg" alt="Content Logo" class="service-logo">
+                    <h3>Creative Designing</h3>
+                    <p>Ad Creatives + Motion Graphics. Engage your audience with Attractive and valuable content.</p>
+                    <a href="./creativedesign.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/Icons/Google Ads.svg" alt="Social Media Logo" class="service-logo">
+                    <h3>Google Ads</h3>
+                    <p>Build your brand and connect with customers on Google platforms.</p>
+                    <a href="./googleads.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/Icons/Web Designing.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Web Development</h3>
+                    <p>Create stunning and functional websites for your business.</p>
+                    <a href="./webdevelopment.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/Icons/Android Applications.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Android Development</h3>
+                    <p>Create stunning and functional websites for your business.</p>
+                    <a href="./androiddevelopment.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box">
+                    <img src="./assets/Icons/Social Media Management.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Social Media </h3>
+                    <p>Social Media Account Management Create stunning connections for your Social Media.</p>
+                    <a href="./socialmedia.html" class="learn-more">Learn More</a>
+                </div>
+
+                <div class="service-box" style="margin-right: 70px;">
+                    <img src="./assets/Icons/Professional Voices.svg" alt="Web Dev Logo" class="service-logo">
+                    <h3>Professional Voices </h3>
+                    <p>Clear , Captivating , High quality voice overs.</p>
+                    <a href="./professionalvoices.html" class="learn-more">Learn More</a>
+                </div>
+            </div>
+            <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="header-container">
+            <div class="section-header">
+                <h2 class="section-ad reveal">The MarkZonic Advantage</h2>
+                <p class="about-title reveal" style="transition-delay: 0.1s;">Numbers Don't Lie. Neither Do We.</p>
+            </div>
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                    <p class="stat-number counter" data-target="450">0</p>
+                    <p class="stat-label">Campaigns Launched</p>
+            </div>
+        <div class="stat-item reveal" style="transition-delay: 0.1s;">  
+                    <p class="stat-number counter" data-target="320">0</p>
+                    <p class="stat-label">Average ROI Increase</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.2s;">
+                    <p class="stat-number counter" data-target="150">0</p>
+                    <p class="stat-label">Happy Clients</p>
+                </div>
+            </div>
+            <div class="about-description reveal" style="transition-delay: 0.3s;">
+                <p>We are a collective of digital strategists, creative minds, and tech wizards obsessed with one thing: your growth. We believe in challenging the status quo and turning ambitious goals into market realities. Your success is our masterpiece.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="header-container">
+            <div class="section-header">
+                <h2 class="section-ad reveal">Proof in Pixels</h2>
+                <p class="about-title reveal" style="transition-delay: 0.1s;">Results That Speak For Themselves</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 01.mp4" style="transition-delay: 0.1s;">
+                    <video autoplay loop muted>
+                        <source src="./assets/our voices/ADD 01.mp4" type="video/mp4">
+                        Your browser does not support the video.
+                    </video>
+                    <div class="portfolio-overlay">
+                        <h3>Fintech Growth</h3>
+                        <p>Increased user acquisition by 250%.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 02.mp4" style="transition-delay: 0.1s;">
+                    <video autoplay loop muted>
+                        <source src="./assets/our voices/ADD 02.mp4" type="video/mp4">
+                        Your browser does not support the video.
+                    </video>
+                    <div class="portfolio-overlay">
+                        <h3>Fintech Growth</h3>
+                        <p>Increased user acquisition by 250%.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 03.mp4" style="transition-delay: 0.1s;">
+                    <video autoplay loop muted>
+                        <source src="./assets/our voices/ADD 03.mp4" type="video/mp4">
+                        Your browser does not support the video.    
+                    </video>
+                    <div class="portfolio-overlay">
+                        <h3>Fintech Growth</h3>
+                        <p>Increased user acquisition by 250%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="videoModal" class="video-modal">
+        <div class="modal-content">
+            <video id="popupVideo" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <section id="clients" class="team-section">
+        <div class="header-container">
+            <div class="team-header">
+                <h2 class="section-ad reveal">Our Teams</h2>
+                <p class="team-title reveal" style="transition-delay: 0.1s; font-size: larger;font-weight: bold; margin-bottom: 50px; color: white;">Our Team Members Trusted by the Best Companies</p>
+            </div>
+            <section class="team-section">
+                <div class="team-members">
+                    <div class="member">
+                        <img src="./assets/teams member/IMG_2061.JPG" alt="Creative Designer">
+                        <div class="info-card">
+                            <h2 class="uppercase">Madhav Wahi</h2>
+                            <p class="role">CEO</p>
+                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        </div>
+                    </div>
+
+                    <div class="member">
+                        <img src="./assets/teams member/badal.jpg" alt="Web Developer">
+                        <div class="info-card">
+                            <h2>Badal Arya</h2>
+                            <p class="role">Web Developer</p>
+                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        </div>
+                    </div>
+
+                    <div class="member">
+                        <img src="./assets/teams member/IMG_2061.JPG" alt="Android Developer">
+                        <div class="info-card">
+                            <h2>Shivani Singh</h2>
+                            <p class="role">Android Developer</p>
+                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        </div>
+                    </div>
+
+                    <div class="member">
+                        <img src="./assets/teams member/dhritiman.jpg" alt="CEO">
+                        <div class="info-card">
+                            <h2 class="uppercase">Dhritiman</h2>
+                            <p class="role">Web developer</p>
+                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        </div>
+                    </div>
+
+                    <div class="member">
+                        <img src="./assets/teams member/IMG_2061.JPG" alt="CEO">
+                        <div class="info-card">
+                            <h2 class="uppercase">Jayant Deshmukh</h2>
+                            <p class="role">Creative Designer</p>
+                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="header-container">
+            <div class="contact-header">
+                <h2 class="section-ad reveal">Let's Talk</h2>
+                <p class="contact-title reveal" style="transition-delay: 0.1s;">Ready to Start Your Ascent?</p>
+                <p class="contact-description reveal" style="transition-delay: 0.2s;">Your competition won't wait. Neither should you. Fill out the form below or email us directly.</p>
+            </div></div>
+            <div id="anim"></div>
+            <div  class="hidden" id="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group reveal" style="transition-delay: 0.3s;">
+                        <input type="text" name="name" placeholder="Your Name" class="form-input">
+                    </div>
+                    <div class="form-group reveal" style="transition-delay: 0.4s;">
+                        <input type="email" name="email" placeholder="Your Emafil" class="form-input">
+                    </div>
+                    <div class="form-group reveal" style="transition-delay: 0.5s;">
+                        <textarea name="message" rows="5" placeholder="Tell us about your project..." class="form-textarea"></textarea>
+                    </div>
+                    <div class="form-button-container reveal" style="transition-delay: 0.6s;">
+                        <button type="submit" class="submit-btn">
+                            Send Mission Brief
+                        </button>
+                    </div>
+                </form>
+            
+        </div>
+    </section>
+      <!-- Chatbot trigger -->
+  <button id="chatFab" class="chat-fab" aria-label="Open chat">💬</button>
+
+  <!-- Chatbot panel -->
+  <div id="chatPanel" class="chat-panel" role="dialog" aria-label="FAQ chat">
+    <div class="chat-header">
+      <span>Help Center</span>
+      <button id="chatClose" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;">✕</button>
+    </div>
+    <div id="chatBody" class="chat-body">
+      <div class="search">
+        <input id="faqSearch" type="text" placeholder="Search Question..." />
+      </div>
+      <div id="faqList"></div>
+      <div class="footer">Tip: Click on a question to see the answer.</div>
+    </div>
+    <div class="chat-input"></div>
+  </div>
+
+  <!-- Chatbot logic -->
+  <script>
+  (() => {
+    // ========= EDIT THIS CONFIG ANYTIME =========
+    const FAQ_CONFIG = [
+      { q: 'आपके बिज़नेस आवर्स क्या हैं?', a: 'सोमवार–शुक्रवार, 9am–6pm IST. इमरजेंसी के लिए support@example.com पर ईमेल करें.' },
+      { q: 'सपोर्ट से कैसे संपर्क करें?', a: 'support@example.com पर ईमेल करें या +91-00000-00000 पर कॉल करें. हम 24 घंटे में जवाब देते हैं.' },
+      { q: 'क्या रिफंड मिलता है?', a: 'हाँ, 14 दिन के भीतर योग्य खरीद पर रिफंड. अपना ऑर्डर आईडी billing@example.com पर भेजें.' },
+      { q: 'प्राइसिंग कहाँ मिलेगी?', a: 'टॉप नेविगेशन में Pricing पेज देखें. कस्टम कोट के लिए Contact फॉर्म भरें.' }
+    ];
+    // ===========================================
+
+    const $ = (id) => document.getElementById(id);
+    const panel = $('chatPanel');
+    const fab = $('chatFab');
+    const closeBtn = $('chatClose');
+    const faqList = $('faqList');
+    const faqSearch = $('faqSearch');
+
+    function renderList(items) {
+      faqList.innerHTML = '';
+      if (!items.length) {
+        const empty = document.createElement('div');
+        empty.style.color = '#6b7280';
+        empty.textContent = 'कोई मिलते-जुलते प्रश्न नहीं मिले.';
+        faqList.appendChild(empty);
+        return;
+      }
+      items.forEach((item) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'faq-item';
+        wrap.setAttribute('role', 'button');
+        wrap.setAttribute('tabindex', '0');
+        wrap.setAttribute('aria-expanded', 'false');
+
+        const q = document.createElement('div');
+        q.textContent = item.q;
+        q.style.fontWeight = '600';
+
+        const a = document.createElement('div');
+        a.className = 'answer';
+        a.style.display = 'none';
+        a.textContent = item.a;
+
+        wrap.appendChild(q);
+        wrap.appendChild(a);
+
+        const toggle = () => {
+          const open = a.style.display !== 'none';
+          a.style.display = open ? 'none' : 'block';
+          wrap.setAttribute('aria-expanded', String(!open));
+        };
+        wrap.addEventListener('click', toggle);
+        wrap.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+
+        faqList.appendChild(wrap);
+      });
+    }
+
+    function filter(term) {
+      const t = term.trim().toLowerCase();
+      if (!t) return FAQ_CONFIG;
+      return FAQ_CONFIG.filter(x =>
+        x.q.toLowerCase().includes(t) || x.a.toLowerCase().includes(t)
+      );
+    }
+
+    faqSearch.addEventListener('input', (e) => renderList(filter(e.target.value)));
+
+    fab.addEventListener('click', () => {
+      const isOpen = panel.style.display === 'flex';
+      panel.style.display = isOpen ? 'none' : 'flex';
+      panel.style.flexDirection = 'column';
+      faqSearch.focus();
+    });
+
+    closeBtn.addEventListener('click', () => { panel.style.display = 'none'; });
+
+    // Initial render
+    renderList(FAQ_CONFIG);
+  })();
+  </script>
+    <script>
+        document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(field => {
+        field.addEventListener('blur', () => {
+            if (field.value.trim() !== '') {
+                field.style.backgroundColor = 'white';
+                field.style.color = 'black';
+            } else {
+                field.style.backgroundColor = '';
+                field.style.color = '';
+            }
+        });
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const animContainer = document.getElementById('anim');
+    const contactForm = document.getElementById('contact-form');
+    const contactSection = document.getElementById('contact');
+
+    let anim; // Animation reference
+    let animationStarted = false; // Ensure it runs only once per view
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animationStarted) {
+                animationStarted = true; // Run only once
+
+                // Lottie load
+                anim = lottie.loadAnimation({
+                    container: animContainer,
+                    renderer: 'svg',
+                    loop: false,
+                    autoplay: true,
+                    path: 'Email verification (1).json'
+                });
+
+                // After animation finishes (3.05 sec)
+                setTimeout(() => {
+                    anim.pause();
+                    contactForm.classList.remove('hidden');
+                    contactForm.classList.add('show');
+                    animContainer.style.display = 'none';
+                }, 3050);
+
+                // Form submit
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    contactForm.classList.remove('show');
+                    contactForm.classList.add('hidden');
+
+                    animContainer.style.display = 'block';
+                    anim.play();
+                    setTimeout(() => {
+                        anim.pause();
+                    }, 1350);
+                });
+            }
+        });
+    }, { threshold: 1.0 }); // 1.0 means full section visible
+
+    observer.observe(contactSection);
+});
+</script>
+
+</div>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="#" class="footer-logo-link">
+                 <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="footer-logo">
+                 <p class="footer-logo-text">MARK<span>ZONIC</span></p>
+                 <p class="footer-tagline">Up to Infinity</p>
+            </a>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+            <p class="footer-copy">&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const videoModal = document.getElementById('videoModal');
+        const popupVideo = document.getElementById('popupVideo');
+        const popupVideoSource = popupVideo.querySelector('source');
+
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoSrc = item.dataset.videoSrc;
+                popupVideoSource.src = videoSrc;
+                popupVideo.load();
+                videoModal.style.display = 'flex';
+                popupVideo.play();
+            });
+        });
+
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                popupVideo.pause();
+                popupVideo.currentTime = 0;
+            }
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // 1. Mobile menu button ko click karne par menu ko toggle karna
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // 2. Menu ke links par click karne par menu ko band karna
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active'); // 'active' class remove karke menu ko band kare
+            });
+        });
+
+        // 3. Menu ke bahar click karne par menu ko band karna
+        document.addEventListener('click', (event) => {
+            const isMenuOpen = mobileMenu.classList.contains('active');
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+            const isClickOnButton = mobileMenuButton.contains(event.target);
+
+            if (isMenuOpen && !isClickInsideMenu && !isClickOnButton) {
+                mobileMenu.classList.remove('active'); // Menu ko band kare
+            }
+        });
+    });
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                revealElements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        el.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        const inc = Math.ceil(target / speed);
+
+                        if (count < target) {
+                            counter.innerText = count + inc;
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            };
+            
+            const aboutSection = document.getElementById('about');
+            let hasAnimated = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        animateCounters();
+                        hasAnimated = true;
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(aboutSection);
+            
+        
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- All your other scripts can remain here (portfolio modal, menu, reveal, etc.) ---
+
+        // ===================================================================
+        // START: REPLACEMENT CAROUSEL SCRIPT
+        // ===================================================================
+        const carousel = document.querySelector('.services-carousel');
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
+        const serviceBoxes = document.querySelectorAll('.service-box');
+        const numBoxes = serviceBoxes.length;
+
+        if (carousel && prevButton && nextButton && serviceBoxes.length > 0) {
+            let currentIndex = 0;
+
+            // This function calculates the exact position to center the target box
+            function centerServiceBox(index) {
+                // Ensure index is within bounds (0 to last item)
+                if (index < 0) {
+                    index = 0;
+                }
+                if (index >= numBoxes) {
+                    index = numBoxes - 1;
+                }
+
+                const targetBox = serviceBoxes[index];
+                const carouselWidth = carousel.clientWidth;
+                const boxWidth = targetBox.offsetWidth;
+                const boxOffsetLeft = targetBox.offsetLeft;
+
+                // The magic calculation: find where to scroll to center the box
+                const scrollLeftPosition = boxOffsetLeft - (carouselWidth / 2) + (boxWidth / 2);
+
+                carousel.scrollTo({
+                    left: scrollLeftPosition,
+                    behavior: 'smooth'
+                });
+
+                currentIndex = index;
+            }
+
+            // Event listener for the 'next' button
+            nextButton.addEventListener('click', () => {
+                let nextIndex = currentIndex + 1;
+                // You can uncomment the line below if you want the carousel to loop
+                // if (nextIndex >= numBoxes) { nextIndex = 0; }
+                centerServiceBox(nextIndex);
+            });
+
+            // Event listener for the 'previous' button
+            prevButton.addEventListener('click', () => {
+                let prevIndex = currentIndex - 1;
+                // You can uncomment the line below if you want the carousel to loop
+                // if (prevIndex < 0) { prevIndex = numBoxes - 1; }
+                centerServiceBox(prevIndex);
+            });
+
+            // This part makes your manual drag/touch scrolling work with the buttons
+            let scrollEndTimer;
+            carousel.addEventListener('scroll', () => {
+                clearTimeout(scrollEndTimer);
+                // When scrolling stops, find which element is closest to the center
+                scrollEndTimer = setTimeout(() => {
+                    const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
+                    let minDistance = Infinity;
+                    let newIndex = 0;
+
+                    serviceBoxes.forEach((box, index) => {
+                        const boxCenter = box.offsetLeft + box.offsetWidth / 2;
+                        const distance = Math.abs(boxCenter - carouselCenter);
+
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            newIndex = index;
+                        }
+                    });
+                    // Update the current index based on the scroll position
+                    currentIndex = newIndex;
+                }, 150); // Wait 150ms after scroll ends to run
+            });
+
+            // The original drag-to-scroll logic remains to provide the manual scroll feature
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+            carousel.addEventListener('mouseleave', () => { isDown = false; });
+            carousel.addEventListener('mouseup', () => { isDown = false; });
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+            carousel.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+            carousel.addEventListener('touchend', () => { isDown = false; });
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                const x = e.touches[0].pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+        }
+        // ===================================================================
+        // END: REPLACEMENT CAROUSEL SCRIPT
+        // ===================================================================
+
+    });
+    </script>
+    <script>
+        function typeEffect(elementId, text, speed = 100) {
+            let i = 0;
+            function typeChar() {
+                if (i < text.length) {
+                    document.getElementById(elementId).innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeChar, speed);
+                }
+            }
+            typeChar();
+        }
+        typeEffect("typed-text-2", "Digital Challenges");
+    </script>
+</body>
+</html>

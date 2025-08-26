@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markzonic | Professional Creative Designing & Branding Services</title>
+    <meta name="description" content="Elevate your brand with Markzonic's expert creative designing services. From logo design to social media graphics, we craft visuals that tell your unique story.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./globalstyle.css">
+    <style>
+        h1{ color: white; }
+        h2{ color: white; }
+        h3{ color: white; }
+        h4{ color: white; }
+        .glass-effect {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 79, 202, 0.3);
+        }
+        .bg{
+            background-color: rgba(0, 79, 202, 0.3);
+        }
+        .primary-accent {
+            color: #29abff;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #8892b0;
+        }
+        .form-input {
+            background-color: rgba(10, 25, 47, 0.8);
+            border: 1px solid #1d2d44;
+            color: #ccd6f6;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #29abff;
+            box-shadow: 0 0 0 2px rgba(41, 171, 255, 0.3);
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: #29abff;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .hover-text-primary:hover {
+            color: #29abff;
+        }
+        .hover-border-primary:hover {
+            border-color: #29abff;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn-primary-hero {
+            border: 2px solid var(--primary-blue);
+            color: white;
+            font-weight: bold;
+            padding: 8px 32px;
+            margin-top: -8px;
+            border-radius: 9999px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-hero:hover{
+            background: linear-gradient(90deg, #1b7dFF, #8933cd);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Markzonic",
+      "url": "https://www.markzonic.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.markzonic.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header id="header" class="main-header">
+            <div class="header-container">
+                <div class="header-content">
+                    <a href="#" class="header-logo-link" style="text-decoration: none;">
+                        <img src="./assets/MarkZonic Logo Icon.svg" id="animatedLogoImg" alt="MarkZonic Logo" class="header-logo-img"/>
+                        <div id="typedtext" style="margin-left: 10px; text-decoration: none;"></div>
+                    </a>
+                    <nav class="nav-menu">
+                        <a href="index.html">Home</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="Aboutus.html">About Us</a>
+                        <a href="index.html#portfolio.html">Portfolio</a>
+                        <div class="dropdown">
+                            <a class="dropdown-btn">Legals ▾</a>
+                            <div class="dropdown-content">
+                                <a href="PrivacyPolicy.html">Privacy Policy</a>
+                                <a href="Refund Policy.html">Refund and Return Policy</a>
+                                <a href="Term&Conditions.html">Term and Conditions</a>
+                            </div>
+                        </div>
+                        <a href="#contact" class="contact-btn">Contact Us</a>
+                    </nav>
+                    <button id="mobile-menu-button" class="mobile-menu-btn">
+                        <svg fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="mobile-menu">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="Aboutus.html">About Us</a>
+                    <a href="index.html#portfolio.html">Portfolio</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-btn">Legals ▾</button>
+                        <div class="mobile-dropdown-content">
+                            <a href="PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
+                            <a href="Refund Policy.html" style="color: black;">Refund and Return Policy</a>
+                            <a href="Term&Conditions.html" style="color: black;">Term and Conditions</a>
+                        </div>
+                    </div>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <section class="py-20 md:py-32 mt-14">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                    Build a Memorable Brand with Our <span class="primary-accent">Creative Designing</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-slate-400">
+                    From stunning logos to captivating social media visuals, we create designs that resonate with your audience and make your brand unforgettable.
+                </p>
+                <a href="https://wa.me/910000000000" class="btn-primary-hero">
+                    Get a Free Design Consultation
+                </a>
+            </div>
+        </section>
+
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Our Creative Designing Services</h2>
+                <p class="section-subtitle">We offer a full suite of professional design services to bring your brand's vision to life across all platforms.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="compass" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Logo & Brand Identity</h3><p class="text-slate-400">We design unique and professional logos that serve as the foundation of your brand identity, complete with a style guide.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="image" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Social Media Graphics</h3><p class="text-slate-400">Our team creates eye-catching visuals, banners, and ad creatives for all major social platforms to boost your engagement.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="target" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Website & UI/UX Design</h3><p class="text-slate-400">We design beautiful, user-friendly websites and interfaces that not only look great but also provide a seamless user experience.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="settings-2" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Print Design (Brochures, Flyers)</h3><p class="text-slate-400">From business cards to large-format posters, we create high-quality print materials that leave a lasting impression.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="trending-up" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Product Packaging Design</h3><p class="text-slate-400">We design innovative and attractive packaging that stands out on the shelves and reinforces your brand's message.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="bar-chart-3" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Infographics & Data Visualization</h3><p class="text-slate-400">Turn complex data into beautiful, easy-to-understand visuals that are perfect for reports, presentations, and marketing content.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-generator" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">✨ AI-Powered Design Idea Generator</h2>
+                <p class="section-subtitle">Need inspiration? Describe your brand's vibe and let our AI provide a list of creative design concepts and keywords.</p>
+                <div class="max-w-2xl mx-auto glass-effect rounded-lg p-8">
+                    <form id="design-idea-form">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="brandName" class="block text-sm font-medium text-slate-300 mb-2">Brand Name/Product</label>
+                                <input type="text" id="brandName" class="form-input" placeholder="e.g., GreenThumb Gardens" required>
+                            </div>
+                            <div>
+                                <label for="brandVibe" class="block text-sm font-medium text-slate-300 mb-2">Brand Vibe/Keywords</label>
+                                <textarea id="brandVibe" rows="3" class="form-input" placeholder="e.g., Organic, natural, minimalist, clean, peaceful" required></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button type="submit" id="generate-btn" class="btn-primary-hero">
+                                Generate Design Ideas
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="loader" class="text-center mt-8 hidden">
+                    <div class="loader mx-auto"></div>
+                    <p class="mt-4 text-slate-400">Generating ideas...</p>
+                </div>
+                <div id="error-message" class="text-center mt-8 hidden bg-red-900/50 border border-red-500 text-red-300 px-4 py-3 rounded-lg max-w-2xl mx-auto">
+                    <p>Sorry, something went wrong. Please try again later.</p>
+                </div>
+                <div id="design-results" class="mt-12 max-w-4xl mx-auto space-y-6" style="color: white;">
+                    </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Why Partner with Mark<span style="color: #29abff;">zonic</span> for Design?</h2>
+                <p class="section-subtitle">We're not just another agency. We're your dedicated creative partner, committed to bringing your vision to life.</p>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="award" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Expert Designers</h4><p class="text-slate-400">Our team consists of talented and experienced designers who understand branding, user experience, and visual communication.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="dollar-sign" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Tailored Solutions</h4><p class="text-slate-400">We don't believe in one-size-fits-all. We create custom designs that are a perfect fit for your brand's personality and goals.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="eye" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Full Transparency</h4><p class="text-slate-400">You'll have complete visibility into the design process, from initial concepts to final deliverables.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="user-check" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Dedicated Support</h4><p class="text-slate-400">Get a dedicated designer who understands your brand's unique needs and is always available to help.</p></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Create a Stunning Visual Identity?</h2>
+                <p class="text-lg max-w-2xl mx-auto mb-8 text-slate-400">
+                    Let's discuss how Markzonic can help you build a memorable brand with our professional creative designing services.
+                </p>
+                <a href="https://wa.me/910000000000" class="btn-primary-hero">
+                    Schedule Your Free Strategy Call
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="./global.js"></script>
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="#" class="footer-logo-link">
+                <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="footer-logo">
+                <p class="footer-logo-text">MARK<span>ZONIC</span></p>
+                <p class="footer-tagline">Up to Infinity</p>
+            </a>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+            <p class="footer-copy">&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
+        </div>
+    </footer>
+    <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // AI Design Idea Generator Logic
+    const designIdeaForm = document.getElementById('design-idea-form');
+    const generateBtn = document.getElementById('generate-btn');
+    const loader = document.getElementById('loader');
+    const resultsContainer = document.getElementById('design-results');
+    const errorMessage = document.getElementById('error-message');
+
+    designIdeaForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const brandName = document.getElementById('brandName').value;
+        const brandVibe = document.getElementById('brandVibe').value;
+
+        if (!brandName || !brandVibe) {
+            return;
+        }
+
+        // --- UI Changes on Submit ---
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = 'Generating...';
+        loader.classList.remove('hidden');
+        resultsContainer.innerHTML = '';
+        errorMessage.classList.add('hidden');
+
+        // --- Construct the Prompt for Gemini API ---
+        const prompt = `You are an expert creative director. Generate 3 distinct creative design concepts for a brand based on the following information. For each concept, provide a name, a brief description of the design aesthetic, and a list of 5 keywords/moods.
+
+        Brand Name/Product: ${brandName}
+        Brand Vibe/Keywords: ${brandVibe}
+        
+        Output the result as a JSON array of objects with 'conceptName', 'description', and 'keywords' (an array of strings).`;
+        
+        try {
+            // --- Call Gemini API ---
+            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                conceptName: { type: "STRING", description: "A catchy name for the design concept." },
+                                description: { type: "STRING", description: "A brief description of the design aesthetic." },
+                                keywords: { type: "ARRAY", items: { type: "STRING" }, description: "A list of 5 keywords/moods for the design." }
+                            },
+                            required: ["conceptName", "description", "keywords"]
+                        }
+                    }
+                }
+            };
+
+            const apiKey = "AIzaSyAiLVFrQbCOQCur2AAsFle9k5VwvONT9D4"; // Replace with your actual API Key
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.text();
+                console.error("API Error Response:", errorBody);
+                throw new Error(`API call failed with status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                const designIdeas = JSON.parse(result.candidates[0].content.parts[0].text);
+                displayResults(designIdeas);
+            } else {
+                console.error("Unexpected API response structure:", result);
+                throw new Error("Unexpected API response structure.");
+            }
+
+        } catch (error) {
+            console.error("Error calling Gemini API:", error);
+            errorMessage.classList.remove('hidden');
+        } finally {
+            // --- Reset UI ---
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = 'Generate Design Ideas';
+            loader.classList.add('hidden');
+        }
+    });
+
+    function displayResults(designIdeas) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+        if (!designIdeas || designIdeas.length === 0) {
+            resultsContainer.innerHTML = `<p class="text-center text-slate-400">No design ideas could be generated. Try refining your brand vibe description.</p>`;
+            return;
+        }
+
+        designIdeas.forEach((idea, index) => {
+            const ideaCard = document.createElement('div');
+            ideaCard.className = 'glass-effect p-6 rounded-lg border border-transparent hover-border-primary transition-colors duration-300';
+            
+            ideaCard.innerHTML = `
+                <h3 class="text-xl font-bold primary-accent mb-3">Concept ${index + 1}: ${idea.conceptName}</h3>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Description</p>
+                        <p>${idea.description}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Keywords/Moods</p>
+                        <p class="font-bold">${idea.keywords.join(', ')}</p>
+                    </div>
+                </div>
+            `;
+            resultsContainer.appendChild(ideaCard);
+        });
+    }
+    </script>
+</body>
+</html>

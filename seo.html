@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markzonic | Expert SEO Services to Boost Your Business Online</title>
+    <meta name="description" content="Dominate search rankings and drive organic traffic with Markzonic's comprehensive SEO services. We specialize in on-page, off-page, technical SEO, and content strategy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./globalstyle.css">
+    <style>
+        h1{ color: white; }
+        h2{ color: white; }
+        h3{ color: white; }
+        h4{ color: white; }
+        .glass-effect {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 79, 202, 0.3);
+        }
+        .bg{
+            background-color: rgba(0, 79, 202, 0.3);
+        }
+        .primary-accent {
+            color: #29abff;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #8892b0;
+        }
+        .form-input {
+            background-color: rgba(10, 25, 47, 0.8);
+            border: 1px solid #1d2d44;
+            color: #ccd6f6;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #29abff;
+            box-shadow: 0 0 0 2px rgba(41, 171, 255, 0.3);
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: #29abff;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .hover-text-primary:hover {
+            color: #29abff;
+        }
+        .hover-border-primary:hover {
+            border-color: #29abff;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn-primary-hero {
+            border: 2px solid var(--primary-blue);
+            color: white;
+            font-weight: bold;
+            padding: 8px 32px;
+            margin-top: -8px;
+            border-radius: 9999px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-hero:hover{
+            background: linear-gradient(90deg, #1b7dFF, #8933cd);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Markzonic",
+      "url": "https://www.markzonic.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.markzonic.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header id="header" class="main-header">
+            <div class="header-container">
+                <div class="header-content">
+                    <a href="#" class="header-logo-link" style="text-decoration: none;">
+                        <img src="./assets/MarkZonic Logo Icon.svg" id="animatedLogoImg" alt="MarkZonic Logo" class="header-logo-img"/>
+                        <div id="typedtext" style="margin-left: 10px; text-decoration: none;"></div>
+                    </a>
+                    <nav class="nav-menu">
+                        <a href="index.html">Home</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="Aboutus.html">About Us</a>
+                        <a href="index.html#portfolio.html">Portfolio</a>
+                        <div class="dropdown">
+                            <a class="dropdown-btn">Legals ▾</a>
+                            <div class="dropdown-content">
+                                <a href="PrivacyPolicy.html">Privacy Policy</a>
+                                <a href="Refund Policy.html">Refund and Return Policy</a>
+                                <a href="Term&Conditions.html">Term and Conditions</a>
+                            </div>
+                        </div>
+                        <a href="#contact" class="contact-btn">Contact Us</a>
+                    </nav>
+                    <button id="mobile-menu-button" class="mobile-menu-btn">
+                        <svg fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="mobile-menu">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="Aboutus.html">About Us</a>
+                    <a href="index.html#portfolio.html">Portfolio</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-btn">Legals ▾</button>
+                        <div class="mobile-dropdown-content">
+                            <a href="PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
+                            <a href="Refund Policy.html" style="color: black;">Refund and Return Policy</a>
+                            <a href="Term&Conditions.html" style="color: black;">Term and Conditions</a>
+                        </div>
+                    </div>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <section class="py-20 md:py-32 mt-14">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                    Unlock Your Potential with Expert <span class="primary-accent">SEO Services</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-slate-400">
+                    Drive organic traffic, rank higher on Google, and convert more visitors into customers with our data-driven SEO strategies.
+                </p>
+                <a href="https://wa.me/910000000000" class="btn-primary-hero">
+                    Get a Free SEO Consultation
+                </a>
+            </div>
+        </section>
+
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Our Comprehensive SEO Services</h2>
+                <p class="section-subtitle">We handle every aspect of search engine optimization to build a sustainable, long-term growth engine for your business.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="compass" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Technical SEO Audit</h3><p class="text-slate-400">We analyze your site's health, fix technical issues, and improve crawlability for better search engine indexing.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="image" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">On-Page SEO & Content</h3><p class="text-slate-400">Our team optimizes your website's content, keywords, and meta tags to attract and engage your target audience.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="target" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">In-Depth Keyword Research</h3><p class="text-slate-400">We identify the most valuable and relevant keywords for your business to capture high-intent search traffic.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="settings-2" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Off-Page SEO & Link Building</h3><p class="text-slate-400">Our strategies focus on building high-quality backlinks and establishing your brand as an industry leader.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="trending-up" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Local SEO for Local Growth</h3><p class="text-slate-400">We help your business appear prominently in local search results, driving more foot traffic and phone calls.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="bar-chart-3" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Performance Analytics & Reporting</h3><p class="text-slate-400">Receive transparent, easy-to-understand reports that show you exactly how your investment is performing.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-generator" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">✨ AI-Powered Title Tag & Meta Description Generator</h2>
+                <p class="section-subtitle">Struggling with what to write? Describe your page and let our AI kickstart your creativity with compelling SEO ideas.</p>
+                <div class="max-w-2xl mx-auto glass-effect rounded-lg p-8">
+                    <form id="seo-generator-form">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="pageTopic" class="block text-sm font-medium text-slate-300 mb-2">Page Topic/Keyword</label>
+                                <input type="text" id="pageTopic" class="form-input" placeholder="e.g., Best running shoes" required>
+                            </div>
+                            <div>
+                                <label for="pageDesc" class="block text-sm font-medium text-slate-300 mb-2">Brief Description</label>
+                                <textarea id="pageDesc" rows="3" class="form-input" placeholder="e.g., A blog post reviewing the top 5 running shoes for marathon runners with information on comfort, durability, and price." required></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button type="submit" id="generate-btn" class="btn-primary-hero">
+                                Generate SEO Copy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="loader" class="text-center mt-8 hidden">
+                    <div class="loader mx-auto"></div>
+                    <p class="mt-4 text-slate-400">Generating ideas...</p>
+                </div>
+                <div id="error-message" class="text-center mt-8 hidden bg-red-900/50 border border-red-500 text-red-300 px-4 py-3 rounded-lg max-w-2xl mx-auto">
+                    <p>Sorry, something went wrong. Please try again later.</p>
+                </div>
+                <div id="seo-results" class="mt-12 max-w-4xl mx-auto space-y-6" style="color: white;">
+                    </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Why Mark<span style="color: #29abff;">zonic</span> is Your Ideal SEO Partner?</h2>
+                <p class="section-subtitle">We're not just another agency. We're your dedicated growth partner, committed to delivering tangible results.</p>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="award" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Certified Experts</h4><p class="text-slate-400">Our team consists of SEO and digital marketing professionals with years of experience driving organic growth.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="dollar-sign" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">ROI-Focused Approach</h4><p class="text-slate-400">Every decision we make is driven by data and focused on maximizing your return on investment.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="eye" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Full Transparency</h4><p class="text-slate-400">You'll have complete visibility into your keyword rankings, traffic growth, and campaign performance.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="user-check" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Dedicated Support</h4><p class="text-slate-400">Get a dedicated SEO expert who understands your business and is always available to help.</p></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Online Presence?</h2>
+                <p class="text-lg max-w-2xl mx-auto mb-8 text-slate-400">
+                    Let's discuss how Markzonic can help you achieve your business goals with powerful SEO campaigns.
+                </p>
+                <a href="https://wa.me/910000000000" class="btn-primary-hero">
+                    Schedule Your Free Strategy Call
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="./global.js"></script>
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="#" class="footer-logo-link">
+                <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="footer-logo">
+                <p class="footer-logo-text">MARK<span>ZONIC</span></p>
+                <p class="footer-tagline">Up to Infinity</p>
+            </a>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+            <p class="footer-copy">&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
+        </div>
+    </footer>
+    <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // AI Title Tag & Meta Description Generator Logic
+    const seoGeneratorForm = document.getElementById('seo-generator-form');
+    const generateBtn = document.getElementById('generate-btn');
+    const loader = document.getElementById('loader');
+    const resultsContainer = document.getElementById('seo-results');
+    const errorMessage = document.getElementById('error-message');
+
+    seoGeneratorForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const pageTopic = document.getElementById('pageTopic').value;
+        const pageDesc = document.getElementById('pageDesc').value;
+
+        if (!pageTopic || !pageDesc) {
+            return;
+        }
+
+        // --- UI Changes on Submit ---
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = 'Generating...';
+        loader.classList.remove('hidden');
+        resultsContainer.innerHTML = '';
+        errorMessage.classList.add('hidden');
+
+        // --- Construct the Prompt for Gemini API ---
+        const prompt = `You are an expert SEO copywriter. Generate 3 distinct SEO title tags and meta descriptions for the following page. Each variation must be optimized for search engines and click-through rate (CTR).
+
+        Page Topic/Keyword: ${pageTopic}
+        Brief Description: ${pageDesc}
+
+        Requirements:
+        1. Title tags should be catchy and under 60 characters.
+        2. Meta descriptions should be compelling and under 160 characters.
+        
+        Output the result as a JSON array of objects with 'title' and 'description' keys.`;
+        
+        try {
+            // --- Call Gemini API ---
+            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                         type: "ARRAY",
+                         items: {
+                             type: "OBJECT",
+                             properties: {
+                                 title: { type: "STRING", description: "An SEO-friendly title tag (max 60 chars)." },
+                                 description: { type: "STRING", description: "A compelling meta description (max 160 chars)." }
+                             },
+                             required: ["title", "description"]
+                         }
+                     }
+                }
+            };
+
+            const apiKey = "AIzaSyAiLVFrQbCOQCur2AAsFle9k5VwvONT9D4"; // Replace with your actual API Key
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.text();
+                console.error("API Error Response:", errorBody);
+                throw new Error(`API call failed with status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                const seoCopies = JSON.parse(result.candidates[0].content.parts[0].text);
+                displayResults(seoCopies);
+            } else {
+                console.error("Unexpected API response structure:", result);
+                throw new Error("Unexpected API response structure.");
+            }
+
+        } catch (error) {
+            console.error("Error calling Gemini API:", error);
+            errorMessage.classList.remove('hidden');
+        } finally {
+            // --- Reset UI ---
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = 'Generate SEO Copy';
+            loader.classList.add('hidden');
+        }
+    });
+
+    function displayResults(seoCopies) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+        if (!seoCopies || seoCopies.length === 0) {
+            resultsContainer.innerHTML = `<p class="text-center text-slate-400">No SEO copy could be generated. Try refining your description.</p>`;
+            return;
+        }
+
+        seoCopies.forEach((copy, index) => {
+            const resultCard = document.createElement('div');
+            resultCard.className = 'glass-effect p-6 rounded-lg border border-transparent hover-border-primary transition-colors duration-300';
+            
+            resultCard.innerHTML = `
+                <h3 class="text-xl font-bold primary-accent mb-3">Result ${index + 1}</h3>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Title Tag</p>
+                        <p class="text-lg">${copy.title}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Meta Description</p>
+                        <p>${copy.description}</p>
+                    </div>
+                </div>
+            `;
+            resultsContainer.appendChild(resultCard);
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markzonic - Meta Ads Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./globalstyle.css">
+    <style>
+        h1{
+          color: white;
+        }
+        h2{
+          color: white;
+        }
+        h3{
+          color: white;
+        }
+        h4{
+          color: white;
+        }
+        /* Socioutt styles to override Markzonic defaults for main content */
+        .glass-effect {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 79, 202, 0.3); /* 0.5 = 50% transparency */
+        }
+        .bg{
+          background-color: rgba(0, 79, 202, 0.3); /* 0.5 = 50% transparency */
+        }
+        .primary-accent {
+            color: #29abff;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #8892b0;
+        }
+        .form-input {
+            background-color: rgba(10, 25, 47, 0.8);
+            border: 1px solid #1d2d44;
+            color: #ccd6f6;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #29abff;
+            box-shadow: 0 0 0 2px rgba(41, 171, 255, 0.3);
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: #29abff;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .hover-text-primary:hover {
+            color: #29abff;
+        }
+        .hover-border-primary:hover {
+            border-color: #29abff;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn-primary-hero {
+        border: 2px solid var(--primary-blue);
+        color: white;
+        font-weight: bold;
+        padding: 8px 32px;
+        margin-top: -8px;
+        border-radius: 9999px;
+        font-size: 18px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-primary-hero:hover{
+        background: linear-gradient(90deg, #1b7dFF, #8933cd);
+    }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Markzonic",
+      "url": "https://www.markzonic.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.markzonic.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header id="header" class="main-header">
+            <div class="header-container">
+                <div class="header-content">
+                    <a href="#" class="header-logo-link" style="text-decoration: none;">
+                        <img src="./assets/MarkZonic Logo Icon.svg" id="animatedLogoImg" alt="MarkZonic Logo" class="header-logo-img"/>
+                        <div id="typedtext" style="margin-left: 10px; text-decoration: none;"></div>
+                    </a>
+                    <nav class="nav-menu">
+                        <a href="index.html">Home</a>
+                        <a href="index.html#services">Services</a>
+                        <a href="Aboutus.html">About Us</a>
+                        <a href="index.html#portfolio.html">Portfolio</a>
+                        <div class="dropdown">
+                            <a class="dropdown-btn">Legals ▾</a>
+                            <div class="dropdown-content">
+                                <a href="PrivacyPolicy.html">Privacy Policy</a>
+                                <a href="Refund Policy.html">Refund and Return Policy</a>
+                                <a href="Term&Conditions.html">Term and Conditions</a>
+                            </div>
+                        </div>
+                        <a href="#contact" class="contact-btn">Contact Us</a>
+                    </nav>
+                    <button id="mobile-menu-button" class="mobile-menu-btn">
+                        <svg fill="none" stroke="white" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="mobile-menu">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="Aboutus.html">About Us</a>
+                    <a href="index.html#portfolio.html">Portfolio</a>
+                    <div class="mobile-dropdown">
+                        <button class="mobile-dropdown-btn">Legals ▾</button>
+                        <div class="mobile-dropdown-content">
+                            <a href="PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
+                            <a href="Refund Policy.html" style="color: black;">Refund and Return Policy</a>
+                            <a href="Term&Conditions.html" style="color: black;">Term and Conditions</a>
+                        </div>
+                    </div>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <section class="py-20 md:py-32 mt-14">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                    Dominate Social Media with <span class="primary-accent">Meta Ads</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-slate-400">
+                    Drive targeted traffic, generate high-quality leads, and skyrocket your ROI with our expert Meta (Facebook & Instagram) advertising strategies.
+                </p>
+                <a href="https://wa.me/910000000000" class="btn-primary-hero">
+                    Get a Free Consultation
+                </a>
+            </div>
+        </section>
+
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Our Comprehensive Meta Ads Services</h2>
+                <p class="section-subtitle">We handle every aspect of your Meta advertising, from strategy to optimization, so you can focus on your business.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="compass" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Campaign Strategy</h3><p class="text-slate-400">We develop a custom strategy based on your business goals, target audience, and budget to ensure maximum impact.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="image" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Ad Creative & Copy</h3><p class="text-slate-400">Our team designs eye-catching visuals and writes persuasive copy that captures attention and drives action.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="target" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Audience Targeting</h3><p class="text-slate-400">We leverage advanced targeting options to reach your ideal customers based on demographics, interests, and behaviors.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="settings-2" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Campaign Management</h3><p class="text-slate-400">We continuously monitor and manage your campaigns, performing A/B tests and adjusting bids to optimize performance.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="trending-up" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Performance Optimization</h3><p class="text-slate-400">Our focus is on constant improvement. We analyze data to refine your campaigns for lower costs and higher conversions.</p></div>
+                    <div class="glass-effect p-8 rounded-lg text-center hover-border-primary border-transparent border transition-all duration-300 transform hover:-translate-y-2"><div class="flex justify-center mb-4"><i data-lucide="bar-chart-3" class="w-12 h-12 primary-accent"></i></div><h3 class="text-2xl font-bold mb-3">Detailed Reporting</h3><p class="text-slate-400">Receive transparent, easy-to-understand reports that show you exactly how your investment is performing.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-generator" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">✨ AI-Powered Ad Copy Generator</h2>
+                <p class="section-subtitle">Struggling with what to say? Describe your product and let our AI kickstart your creativity with compelling ad copy ideas.</p>
+                <div class="max-w-2xl mx-auto glass-effect rounded-lg p-8">
+                    <form id="ad-copy-form">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="productName" class="block text-sm font-medium text-slate-300 mb-2">Product/Service Name</label>
+                                <input type="text" id="productName" class="form-input" placeholder="e.g., Artisan Coffee Beans" required>
+                            </div>
+                            <div>
+                                <label for="productDesc" class="block text-sm font-medium text-slate-300 mb-2">Brief Description</label>
+                                <textarea id="productDesc" rows="3" class="form-input" placeholder="e.g., Ethically sourced, single-origin beans roasted to perfection for a rich, smooth flavor." required></textarea>
+                            </div>
+                            <div>
+                                <label for="targetAudience" class="block text-sm font-medium text-slate-300 mb-2">Target Audience</label>
+                                <input type="text" id="targetAudience" class="form-input" placeholder="e.g., Coffee lovers, home baristas, eco-conscious consumers" required>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button type="submit" id="generate-btn" class="btn-primary-hero">
+                                Generate Ad Copy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="loader" class="text-center mt-8 hidden">
+                    <div class="loader mx-auto"></div>
+                    <p class="mt-4 text-slate-400">Generating ideas...</p>
+                </div>
+                <div id="error-message" class="text-center mt-8 hidden bg-red-900/50 border border-red-500 text-red-300 px-4 py-3 rounded-lg max-w-2xl mx-auto">
+                    <p>Sorry, something went wrong. Please try again later.</p>
+                </div>
+                <div id="ad-copy-results" class="mt-12 max-w-4xl mx-auto space-y-6" style="color: white;">
+                    <!-- Generated ad copy results will appear here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">Why Partner with Mark<span style="color: #29abff;">zonic</span>?</h2>
+                <p class="section-subtitle">We're not just another agency. We're your dedicated growth partner, committed to delivering tangible results.</p>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="award" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Certified Experts</h4><p class="text-slate-400">Our team consists of Meta Blueprint certified professionals with years of experience.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="dollar-sign" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">ROI-Focused Approach</h4><p class="text-slate-400">Every decision we make is driven by data and focused on maximizing your return on investment.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="eye" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Full Transparency</h4><p class="text-slate-400">You'll have complete visibility into your campaign performance and ad spend.</p></div></div>
+                    <div class="flex items-start space-x-4"><div class="bg p-3 rounded-full"><i data-lucide="user-check" class="w-6 h-6 primary-accent"></i></div><div><h4 class="text-xl font-bold mb-1">Dedicated Support</h4><p class="text-slate-400">Get a dedicated account manager who understands your business and is always available to help.</p></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Amplify Your Reach?</h2>
+                <p class="text-lg max-w-2xl mx-auto mb-8 text-slate-400">
+                    Let's discuss how Socioutt can help you achieve your business goals with powerful Meta advertising campaigns.
+                </p>
+                <a href="https://wa.me/910000000000" class="btn-primary-hero">
+                    Schedule Your Free Strategy Call
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script src="./global.js"></script>
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="#" class="footer-logo-link">
+                <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="footer-logo">
+                <p class="footer-logo-text">MARK<span>ZONIC</span></p>
+                <p class="footer-tagline">Up to Infinity</p>
+            </a>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+            </div>
+            <p class="footer-copy">&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
+        </div>
+    </footer>
+    <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // NOTE: The mobile menu toggle is assumed to be in your global.js file.
+    // The conflicting code that was here has been removed to fix the generator.
+
+    // AI Ad Copy Generator Logic
+    const adCopyForm = document.getElementById('ad-copy-form');
+    const generateBtn = document.getElementById('generate-btn');
+    const loader = document.getElementById('loader');
+    const resultsContainer = document.getElementById('ad-copy-results');
+    const errorMessage = document.getElementById('error-message');
+
+    adCopyForm.addEventListener('submit', async (e) => {
+        // This line prevents the page from reloading on submit
+        e.preventDefault(); 
+        
+        const productName = document.getElementById('productName').value;
+        const productDesc = document.getElementById('productDesc').value;
+        const targetAudience = document.getElementById('targetAudience').value;
+
+        if (!productName || !productDesc || !targetAudience) {
+            return;
+        }
+
+        // --- UI Changes on Submit ---
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = 'Generating...';
+        loader.classList.remove('hidden');
+        resultsContainer.innerHTML = '';
+        errorMessage.classList.add('hidden');
+
+        // --- Construct the Prompt for Gemini API ---
+        const prompt = `You are an expert marketing copywriter specializing in high-converting Meta Ads (Facebook/Instagram). Generate 3 distinct ad copy variations for the following product. Each variation must include a headline (maximum 40 characters), primaryText (maximum 125 characters), and a callToAction (e.g., 'Shop Now', 'Learn More').
+
+        Product Name: ${productName}
+        Description: ${productDesc}
+        Target Audience: ${targetAudience}`;
+        
+        try {
+            // --- Call Gemini API ---
+            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                headline: { type: "STRING", description: "A short, catchy headline (max 40 chars)." },
+                                primaryText: { type: "STRING", description: "The main body of the ad (max 125 chars)." },
+                                callToAction: { type: "STRING", description: "A clear call to action." }
+                            },
+                            required: ["headline", "primaryText", "callToAction"]
+                        }
+                    }
+                }
+            };
+
+            // --- API Key is now included ---
+            const apiKey = "AIzaSyAiLVFrQbCOQCur2AAsFle9k5VwvONT9D4";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.text();
+                console.error("API Error Response:", errorBody);
+                throw new Error(`API call failed with status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                const adCopies = JSON.parse(result.candidates[0].content.parts[0].text);
+                displayResults(adCopies);
+            } else {
+                console.error("Unexpected API response structure:", result);
+                throw new Error("Unexpected API response structure.");
+            }
+
+        } catch (error) {
+            console.error("Error calling Gemini API:", error);
+            errorMessage.classList.remove('hidden');
+        } finally {
+            // --- Reset UI ---
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = 'Generate Ad Copy';
+            loader.classList.add('hidden');
+        }
+    });
+
+    function displayResults(adCopies) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+        if (!adCopies || adCopies.length === 0) {
+            resultsContainer.innerHTML = `<p class="text-center text-slate-400">No ad copy could be generated. Try refining your product description.</p>`;
+            return;
+        }
+
+        adCopies.forEach((ad, index) => {
+            const adCard = document.createElement('div');
+            adCard.className = 'glass-effect p-6 rounded-lg border border-transparent hover-border-primary transition-colors duration-300';
+            
+            adCard.innerHTML = `
+                <h3 class="text-xl font-bold primary-accent mb-3">Result ${index + 1}</h3>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Headline</p>
+                        <p class="text-lg">${ad.headline}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Primary Text</p>
+                        <p>${ad.primaryText}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-400">Call to Action</p>
+                        <p class="font-bold primary-accent">${ad.callToAction}</p>
+                    </div>
+                </div>
+            `;
+            resultsContainer.appendChild(adCard);
+        });
+    }
+    </script>
+</body>
+</html>
