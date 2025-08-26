@@ -197,7 +197,10 @@
             color: white;
             text-decoration: none;
         }
-
+        .Active{
+            color: #29abff !important;
+            font-weight: 600 !important;
+        }
         .social-links {
             display: flex;
             justify-content: center;
@@ -416,3 +419,4 @@
     max-height: 200px; /* enough to show all links */
     opacity: 1;
 }
+
