@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/MarkZonic Logo Icon.svg">
     <link rel="preload" href="./assets/our voices/ADD 02.mp4" as="video">
     <link rel="preload" href="./assets/our voices/ADD 01.mp4" as="video">
+    <link rel="preload" href="./assets/our voices/ADD 03.mp4" as="video">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,137 +38,6 @@
             scroll-behavior: smooth;
             margin: 0;
             padding: 0;
-        }
-
-        .header-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .main-header {
-            position: fixed;
-            top: 12px;
-            z-index: 50;
-            transition: all 0.3s ease;
-            background-color: black;
-            border-radius: 50px;
-            height: 55px;
-            width: 97%;
-            border: 3px solid var(--primary-blue);
-            font-size: 15px;
-            box-shadow: 0 0 50px rgba(41, 171, 255, 1);
-        }
-
-        .header-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        @media (min-width: 768px) {
-            .header-logo-link {
-                margin-left: -60px;
-            }
-        }
-        .header-logo-link {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-logo-img {
-            height: 50px;
-            width: auto;
-            animation: fadeInUp 3s ease forwards;
-        }
-        
-        /* Mobile menu button and desktop menu visibility fix */
-        .nav-menu {
-            display: none; /* Default for mobile: hide desktop menu */
-            align-items: center;
-            gap: 24px;
-            margin-left: 40px;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none; /* gray-300 */
-            transition: color 0.3s ease;
-        }
-        
-        .nav-menu a:hover {
-            color: white;
-            transform: scale(1.2);
-        }
-
-        .contact-btn {
-            color: white;
-            font-weight: 600;
-            padding: 4px 16px;
-            border-radius: 9999px; /* full rounded */
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
-            border: 2px solid var(--primary-blue);
-        }
-
-        .contact-btn:hover {
-            box-shadow: 0 8px 25px rgba(0, 132, 255, 0.5);
-                background: linear-gradient(90deg, #1b7dFF, #8933cd);
-        }
-
-        .mobile-menu-btn {
-            display: block; /* Default for mobile: show menu button */
-            color: white;
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
-        
-        /* Mobile menu by default hidden, shows only when active */
-        #mobile-menu {
-            display: none;
-            background-color: rgba(0, 0, 0, 0.9);
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 13px;
-        }
-
-        #mobile-menu.active {
-            display: block; /* 'active' class adds display: block */
-        }
-        
-        #mobile-menu a {
-            display: block;
-            text-decoration: none;
-            color: white;
-            padding: 12px 0;
-            transition: color 0.3s ease;
-        }
-
-        #mobile-menu a:hover {
-            color: #29abff;
-        }
-        
-        @keyframes spinAndZoomOut {
-            0% {
-                transform: translate(-50%, -50%) scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(20) rotate(360deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(50) rotate(360deg);
-                opacity: 0;
-            }
         }
         .trusted-by-section {
             background-color: white;
@@ -402,7 +272,8 @@
         .portfolio-item video {
             width: 100%;
             height: 320px;
-            object-fit: cover;
+            object-fit: contain;
+            
             transition: transform 0.4s ease;
         }
         
@@ -412,7 +283,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+
             opacity: 0;
             transition: opacity 0.4s ease;
             display: flex;
@@ -433,12 +304,14 @@
             font-size: 24px;
             font-weight: 700;
             color: white;
+            text-shadow: 2px 2px 4px #111827;
             margin-bottom: 0px;
         }
         
         .portfolio-overlay p {
-            color: #d1d5db;
-            margin-bottom: 40px;
+            color: white;
+            text-shadow: 2px 2px 4px #111827;
+            margin-bottom: 70px;
         }
         
         .video-modal {
@@ -499,24 +372,25 @@
   background-color: transparent;
   position: relative;
   width: 400px;
+  padding-top: 12px;
   overflow: hidden;
 }
-
 .member img {
-  width:50%;
-  height: auto;
+  width:70%;
+  height: 370px;
+  top: 80%;
   border-radius: 4px;
   transition: transform 0.3s ease-in-out; 
 }
 
 .info-card {
   position: absolute;
-  bottom: 10px;
+  bottom: 5px;
   left: 50px;
   right: 20px;
   background-color: #fff;
   color: #000;
-  padding: 20px;
+  padding: 13px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
   text-align: left;
   border-radius: 4px;
@@ -524,6 +398,7 @@
 }
 
 .info-card h2 {
+    font-style: oblique;
   margin: 0;
   font-size: 18px;
   font-weight: bold;
@@ -538,18 +413,18 @@
 
 .info-card .text {
   font-size: 12px;
+  font-style: italic;
   color: #444;
   margin: 10px 0;
 }
 .member:hover img {
   /* Move the image up by a certain amount, e.g., 20px */
-  
-  transform: translateY(-20px); 
+   transform: translateY(-20px);
 }
 
 .member:hover .info-card {
   /* Move the info card back by a smaller amount, e.g., 5px, for a layered effect */
-  transform: translateY(72px);
+  transform: translateY(65px);
 }
 
         .contact-section {
@@ -1181,6 +1056,9 @@
     .text-glow {
             text-shadow: 0 0 8px rgba(0, 170, 255, 0.8), 0 0 10px rgba(0, 170, 255, 0.6);
     }
+    .main-header{
+        height: 50px;
+    }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -1505,7 +1383,7 @@
             <section class="team-section">
                 <div class="team-members">
                     <div class="member">
-                        <img src="./assets/teams member/IMG_2061.JPG" alt="Creative Designer">
+                        <img src="./assets/teams member/JD1.svg" alt="Creative Designer">
                         <div class="info-card">
                             <h2 class="uppercase">Madhav Wahi</h2>
                             <p class="role">CEO</p>
@@ -1514,7 +1392,7 @@
                     </div>
 
                     <div class="member">
-                        <img src="./assets/teams member/badal.jpg" alt="Web Developer">
+                        <img src="./assets/teams member/BA.svg" alt="Web Developer">
                         <div class="info-card">
                             <h2>Badal Arya</h2>
                             <p class="role">Web Developer</p>
@@ -1523,7 +1401,7 @@
                     </div>
 
                     <div class="member">
-                        <img src="./assets/teams member/IMG_2061.JPG" alt="Android Developer">
+                        <img src="./assets/teams member/Untitled design.svg" alt="Android Developer">
                         <div class="info-card">
                             <h2>Shivani Singh</h2>
                             <p class="role">Android Developer</p>
@@ -1532,7 +1410,7 @@
                     </div>
 
                     <div class="member">
-                        <img src="./assets/teams member/dhritiman.jpg" alt="CEO">
+                        <img src="./assets/teams member/BA.svg" alt="CEO">
                         <div class="info-card">
                             <h2 class="uppercase">Dhritiman</h2>
                             <p class="role">Web developer</p>
@@ -1541,7 +1419,7 @@
                     </div>
 
                     <div class="member">
-                        <img src="./assets/teams member/IMG_2061.JPG" alt="CEO">
+                        <img src="./assets/teams member/JD1.svg" alt="CEO">
                         <div class="info-card">
                             <h2 class="uppercase">Jayant Deshmukh</h2>
                             <p class="role">Creative Designer</p>
