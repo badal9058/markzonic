@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markzonic - Elevate Your Digital Presence</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#4f46e5', // Indigo-600
+                            DEFAULT: '#4338ca', // Indigo-700
+                            dark: '#3730a3', // Indigo-800
+                            accent: '#f43f5e', // Rose-500
+                            bg: '#0f172a', // Slate-900
+                            surface: '#1e293b' // Slate-800
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --glow-color: rgba(79, 70, 229, 0.5);
+            
+        }
+        body {
+            background-color: theme('colors.brand.bg');
+            color: black;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: theme('colors.brand.bg'); }
+        ::-webkit-scrollbar-thumb { background: theme('colors.brand.surface'); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: theme('colors.brand.light'); }
+
+        /* SPA Page Transitions */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            min-height: calc(100vh - 200px); /* Account for header/footer */
+            padding-top: 100px; /* Space for fixed header */
+        }
+        .page-view.active {
+            display: block;
+        }
+        .page-view.fade-in {
+            opacity: 1;
+        }
+
+        /* Abstract shapes */
+        .shape-blob {
+            background: theme('colors.brand.light');
+            height: 300px;
+            width: 300px;
+            border-radius: 40% 50% 30% 40%;
+            animation: transform 18s ease-in-out infinite both alternate, movement 20s ease-in-out infinite both;
+            opacity: 0.15;
+            position: fixed;
+            filter: blur(40px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .shape-blob.one { top: -150px; left: -100px; }
+        .shape-blob.two { top: 20%; right: -100px; background: theme('colors.brand.accent'); animation-delay: -5s; }
+        .shape-blob.three { bottom: -100px; left: 20%; background: #0ea5e9; animation-delay: -10s; }
+
+        @keyframes transform {
+            0%, 100% { border-radius: 33% 67% 70% 30% / 30% 30% 70% 70%; }
+            20% { border-radius: 37% 63% 51% 49% / 37% 65% 35% 63%; }
+            40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 36%; }
+            60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 70%; }
+            80% { border-radius: 40% 60% 42% 58% / 41% 51% 49% 59%; }
+        }
+        @keyframes movement {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(20deg); }
+        }
+
+        /* Utilities */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.8) 0%, rgba(15,23,42,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .btn-glow { position: relative; z-index: 1; overflow: hidden; }
+        .btn-glow::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease; z-index: -1;
+        }
+        .btn-glow:hover::before { left: 100%; }
+        
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -2; opacity: 0.5;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+            pointer-events: none;
+        }
+        
+        .nav-link.active-link {
+            color: theme('colors.brand.accent');
+        }
+        .nav-link.active-link span {
+            width: 100%;
+        }
+
+        /* Message Box */
+        #msg-box {
+            position: fixed; bottom: -100px; right: 20px; z-index: 9999;
+            transition: bottom 0.4s ease-in-out;
+        }
+        #msg-box.show { bottom: 20px; }
+        #typedtext {
+      font-size: 30px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid black;
+      width: fit-content;
+      animation: blink 0.7s infinite;
+    }
+    .mark {
+    color: white;
+  }
+
+  .zonic {
+    color: #29abff;
+  }
+    </style>
+</head>
+<body class="antialiased font-sans relative">
+
+    <!-- Global Background Elements -->
+    <div class="grid-bg"></div>
+    <div class="shape-blob one"></div>
+    <div class="shape-blob two"></div>
+    <div class="shape-blob three"></div>
+
+    <!-- Message Box (replaces alert) -->
+    <div id="msg-box" class="glass-card px-6 py-4 rounded-xl flex items-center gap-3 border-l-4 border-l-brand-accent">
+        <i class="fa-solid fa-circle-info text-brand-accent"></i>
+        <p id="msg-text" class="text-sm font-medium"></p>
+        <button onclick="document.getElementById('msg-box').classList.remove('show')" class="ml-4 text-gray-400 hover:text-white">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <header class="fixed w-full top-0 z-50 glass transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" data-target="home" class="nav-trigger text-2xl font-bold tracking-tighter flex items-center gap-2 group">
+                <img src="assets/Logo GIF.gif" alt="Markzonic Logo" class="h-14 w-auto group-hover:scale-105 transition-transform">
+                <!-- <span class="text-gradient">Markzonic</span> -->
+                <div id="typedtext" style="margin-left: 0px;"></div>
+                        <script>
+                            const typedText = document.getElementById('typedtext');
+                            const markSpan = document.createElement('span');
+                            markSpan.className = 'mark';
+                            const zonicSpan = document.createElement('span');
+                            zonicSpan.className = 'zonic';
+                            typedtext.appendChild(markSpan);
+                            typedtext.appendChild(zonicSpan);
+                            const text = "MARKZONIC";
+                            let index = 0;
+                            function type() {
+                                if (index < text.length) {
+                                const char = text.charAt(index);
+                                if (index < 4) {
+                                    markSpan.textContent += char; // "MARK"
+                                } else {
+                                    zonicSpan.textContent += char; // "ZONIC"
+                                }
+                                index++;
+                                setTimeout(type, 100);
+                                }
+                            }
+                            type();
+                        </script>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <button data-target="home" class="nav-trigger nav-link active-link text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group pb-1">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all group-hover:w-full"></span>
+                </button>
+                <button data-target="services" class="nav-trigger nav-link text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group pb-1">
+                    Services
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all group-hover:w-full"></span>
+                </button>
+                <button data-target="about" class="nav-trigger nav-link text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group pb-1">
+                    About
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all group-hover:w-full"></span>
+                </button>
+                <button data-target="work" class="nav-trigger nav-link text-gray-300 hover:text-white transition-colors text-sm font-medium uppercase tracking-wider relative group pb-1">
+                    Work
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-accent transition-all group-hover:w-full"></span>
+                </button>
+                <button data-target="contact" class="nav-trigger bg-brand text-white px-6 py-2 rounded-full font-semibold btn-glow shadow-lg shadow-brand-light/20 hover:shadow-brand-light/40 transition-shadow">
+                    Let's Talk
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white focus:outline-none" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-brand-bg/95 backdrop-blur-md flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300 z-40">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-3xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <nav class="flex flex-col space-y-8 text-center">
+                <button data-target="home" class="nav-trigger mobile-link text-3xl font-bold text-gray-300 hover:text-white">Home</button>
+                <button data-target="services" class="nav-trigger mobile-link text-3xl font-bold text-gray-300 hover:text-white">Services</button>
+                <button data-target="about" class="nav-trigger mobile-link text-3xl font-bold text-gray-300 hover:text-white">About</button>
+                <button data-target="work" class="nav-trigger mobile-link text-3xl font-bold text-gray-300 hover:text-white">Work</button>
+                <button data-target="contact" class="nav-trigger mobile-link text-3xl font-bold text-brand-accent">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN SPA CONTAINER -->
+    <main id="app-container">
+
+        <!-- ==================== HOME PAGE ==================== -->
+        <section id="page-home" class="page-view active fade-in">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+                <!-- Hero Content -->
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-accent/30 text-sm font-medium text-gray-300 gs-home-reveal">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        Accepting New Clients
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight gs-home-reveal">
+                        Dominate the <br />
+                        <span class="text-gradient">Digital</span> Realm.
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-lg leading-relaxed gs-home-reveal">
+                        Markzonic crafts data-driven marketing strategies that explode growth, engage audiences, and build unstoppable brands.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4 gs-home-reveal">
+                        <button data-target="contact" class="nav-trigger bg-brand text-white px-8 py-4 rounded-full font-bold btn-glow shadow-lg shadow-brand-light/30 flex items-center gap-2">
+                            Start Your Journey <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button data-target="services" class="nav-trigger glass-card text-white px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-colors flex items-center gap-2">
+                            Explore Services
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 gs-home-reveal">
+                        <div>
+                            <p class="text-3xl font-bold text-black stat-num" data-val="150">0</p>
+                            <p class="text-xs text-dargray-400 uppercase tracking-widest mt-1">Clients</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-black"><span class="stat-num" data-val="50">0</span>M+</p>
+                            <p class="text-xs text-dargray-400 uppercase tracking-widest mt-1">Revenue Gen</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-black stat-num" data-val="98">0</p>
+                            <p class="text-xs text-dargray-400 uppercase tracking-widest mt-1">Retention %</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="relative h-[500px] hidden md:block gs-home-reveal" id="hero-visual-container">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-gradient-to-tr from-brand-dark via-brand-light to-brand-accent  opacity-80 animate-pulse interactive-orb shadow-[0_0_100px_rgba(79,70,229,0.5)]"></div>
+                    <div class="absolute inset-14 border border-white/10 rounded-full animate-[spin_10s_linear_infinite]">
+                         <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-3 h-3 bg-brand-accent rounded-full shadow-[0_0_15px_#f43f5e]"></div>
+                    </div>
+                    <div class="absolute inset-20 border border-white/5 rounded-full animate-[spin_10s_linear_infinite_reverse]">
+                         <div class="absolute top-1/2 -right-3 -translate-y-1/2 w-6 h-6 bg-blue-400 rounded-full shadow-[0_0_15px_#60a5fa]"></div>
+                    </div>
+                    <div class="absolute inset-32 border border-white/5 rounded-full animate-[spin_10s_linear_infinite]">
+                         <div class="absolute top-1/2 -right-3 -translate-y-1/2 w-4 h-4 bg-yellow-400 rounded-full shadow-[0_0_15px_yellow]"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scrolling Banner -->
+            <div class="mt-20 py-8 bg-brand-light/10 border-y border-white/5 overflow-hidden flex whitespace-nowrap">
+                <div class="animate-[marquee_20s_linear_infinite] flex items-center gap-12 text-2xl font-bold text-gray-500 uppercase tracking-widest">
+                    <span>Innovation</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Strategy</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Growth</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Results</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Markzonic</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Innovation</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Strategy</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Growth</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Results</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                    <span>Markzonic</span><i class="fa-solid fa-star text-brand-accent text-sm"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SERVICES PAGE ==================== -->
+        <section id="page-services" class="page-view">
+            <div class="container mx-auto px-6 py-12">
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-4 gs-serv-reveal">
+                    <h2 class="text-brand-accent font-bold tracking-wider uppercase text-sm">Our Core Offerings</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold">Services that <span class="text-gradient">Scale</span></h3>
+                    <p class="text-gray-400">We build comprehensive marketing ecosystems designed for exponential growth.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Cards -->
+                    <div class="glass-card p-8 rounded-2xl group gs-serv-card">
+                        <div class="w-14 h-14 rounded-xl bg-brand-light/20 flex items-center justify-center text-brand-light text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-light group-hover:text-white transition-all">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">SEO Optimization</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Dominate search rankings with technical SEO, keyword mastery, and authoritative backlink building.</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl group gs-serv-card">
+                        <div class="w-14 h-14 rounded-xl bg-brand-accent/20 flex items-center justify-center text-brand-accent text-2xl mb-6 group-hover:scale-110 group-hover:bg-brand-accent group-hover:text-white transition-all">
+                            <i class="fa-solid fa-hashtag"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Social Media Management</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Build thriving communities and drive viral engagement across IG, TikTok, LinkedIn, and Twitter.</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl group gs-serv-card">
+                        <div class="w-14 h-14 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-mouse-pointer"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">PPC & Paid Ads</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">High-converting ad campaigns on Google, Meta, and TikTok optimized for maximum Return on Ad Spend (ROAS).</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl group gs-serv-card">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Email Automation</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Nurture leads into loyal customers with highly personalized, trigger-based email sequences and newsletters.</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl group gs-serv-card">
+                        <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Content Strategy</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Compelling narratives, high-quality blog posts, and video scripts that establish your brand authority.</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl group gs-serv-card">
+                        <div class="w-14 h-14 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-teal-500 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Data Analytics & CRO</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Deep dive reporting and Conversion Rate Optimization to plug funnel leaks and boost sales.</p>
+                    </div>
+                </div>
+                
+                <!-- Call to action inside Services -->
+                <div class="mt-16 text-center">
+                    <button data-target="contact" class="nav-trigger inline-flex items-center gap-2 text-brand-accent hover:text-white font-bold text-lg transition-colors border-b-2 border-brand-accent pb-1 hover:border-white">
+                        Need a custom solution? Let's chat. <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT PAGE ==================== -->
+        <section id="page-about" class="page-view">
+            <div class="container mx-auto px-6 py-12">
+                <div class="flex flex-col md:flex-row items-center gap-16">
+                    <div class="md:w-1/2 space-y-6 gs-about-reveal">
+                        <h2 class="text-brand-accent font-bold tracking-wider uppercase text-sm">Who We Are</h2>
+                        <h3 class="text-4xl md:text-5xl font-bold leading-tight">Data-Driven.<br/>Creatively <span class="text-gradient">Executed.</span></h3>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            Markzonic was founded on a simple principle: Marketing should be an investment, not an expense. We blend hardcore data science with cutting-edge creative to engineer campaigns that simply perform better.
+                        </p>
+                        
+                        <div class="space-y-6 pt-6">
+                            <div class="flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-full bg-brand-light/20 flex items-center justify-center text-brand-light font-bold shrink-0 border border-brand-light/50">1</div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Discovery & Audit</h4>
+                                    <p class="text-sm text-gray-400">We analyze your current footprint and uncover untapped market opportunities.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent font-bold shrink-0 border border-brand-accent/50">2</div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Strategy Blueprint</h4>
+                                    <p class="text-sm text-gray-400">Crafting a custom roadmap tailored to your specific business objectives and KPIs.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold shrink-0 border border-blue-500/50">3</div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">Execution & Scale</h4>
+                                    <p class="text-sm text-gray-400">Launching campaigns, A/B testing aggressively, and scaling what works.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 w-full relative gs-about-img">
+                        <!-- Abstract Team/Office Representation -->
+                        <div class="glass-card rounded-2xl p-8 border border-white/10 relative overflow-hidden aspect-square flex flex-col justify-center items-center">
+                            <div class="absolute inset-0 opacity-20 bg-[url('https://placehold.co/600x600/1e293b/ffffff?text=Abstract+Graph')] bg-cover bg-center mix-blend-overlay"></div>
+                            
+                            <div class="relative z-10 w-full h-full flex items-end gap-3 justify-center">
+                                <!-- Animated Bars -->
+                                <div class="w-12 bg-white/10 rounded-t-lg about-bar relative overflow-hidden" style="height: 40%"><div class="absolute bottom-0 w-full bg-brand-light h-full opacity-50"></div></div>
+                                <div class="w-12 bg-white/10 rounded-t-lg about-bar relative overflow-hidden" style="height: 60%"><div class="absolute bottom-0 w-full bg-brand-light h-full opacity-60"></div></div>
+                                <div class="w-12 bg-white/10 rounded-t-lg about-bar relative overflow-hidden" style="height: 50%"><div class="absolute bottom-0 w-full bg-brand-light h-full opacity-70"></div></div>
+                                <div class="w-12 bg-white/10 rounded-t-lg about-bar relative overflow-hidden" style="height: 80%"><div class="absolute bottom-0 w-full bg-brand-light h-full opacity-80"></div></div>
+                                <div class="w-12 bg-brand-accent rounded-t-lg about-bar shadow-[0_0_20px_#f43f5e]" style="height: 100%"></div>
+                            </div>
+                            <div class="absolute top-6 left-6 right-6 bg-black/60 p-4 rounded-xl backdrop-blur-md flex justify-between items-center border border-white/10">
+                                <span class="font-bold text-lg">Year over Year Growth</span>
+                                <span class="text-brand-accent font-bold text-2xl">+350%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== WORK PAGE ==================== -->
+        <section id="page-work" class="page-view">
+            <div class="container mx-auto px-6 py-12">
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-brand-accent font-bold tracking-wider uppercase text-sm">Case Studies</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold">Proven <span class="text-gradient">Results</span></h3>
+                    <p class="text-gray-400">Don't just take our word for it. Look at the numbers.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Case Study 1 -->
+                    <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer gs-work-card relative" onclick="showMsg('Full case study opening soon.')">
+                        <div class="h-48 bg-gradient-to-r from-blue-900 to-brand-dark p-6 flex flex-col justify-between relative overflow-hidden">
+                            <i class="fa-brands fa-shopify text-6xl text-white/20 absolute -right-4 -bottom-4 group-hover:scale-110 transition-transform"></i>
+                            <div class="bg-white/20 w-max px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">E-Commerce</div>
+                            <h4 class="text-2xl font-bold text-white mt-auto z-10 relative">Aura Tech Wearables</h4>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-400 text-sm mb-6">Scaled monthly recurring revenue through highly targeted Facebook Ads and a complete overhaul of their email abandonment flows.</p>
+                            <div class="flex justify-between border-t border-white/10 pt-4">
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase">ROAS</p>
+                                    <p class="text-xl font-bold text-brand-light">4.8x</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase">Rev Increase</p>
+                                    <p class="text-xl font-bold text-green-400">+210%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 2 -->
+                    <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer gs-work-card relative" onclick="showMsg('Full case study opening soon.')">
+                        <div class="h-48 bg-gradient-to-r from-emerald-900 to-teal-900 p-6 flex flex-col justify-between relative overflow-hidden">
+                            <i class="fa-solid fa-leaf text-6xl text-white/20 absolute -right-4 -bottom-4 group-hover:scale-110 transition-transform"></i>
+                            <div class="bg-white/20 w-max px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">SaaS / B2B</div>
+                            <h4 class="text-2xl font-bold text-white mt-auto z-10 relative">EcoHR Software</h4>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-400 text-sm mb-6">Dominated organic search for competitive HR software keywords through aggressive technical SEO and long-form content creation.</p>
+                            <div class="flex justify-between border-t border-white/10 pt-4">
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase">Traffic</p>
+                                    <p class="text-xl font-bold text-brand-light">+450k</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase">Lead Gen</p>
+                                    <p class="text-xl font-bold text-green-400">+185%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT PAGE ==================== -->
+        <section id="page-contact" class="page-view">
+            <div class="container mx-auto px-6 py-12">
+                <div class="glass-card rounded-3xl p-8 md:p-16 relative overflow-hidden text-center max-w-4xl mx-auto gs-contact-reveal">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-light/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+                    
+                    <div class="relative z-10 space-y-6">
+                        <h2 class="text-3xl md:text-5xl font-bold">Ready to <span class="text-gradient">Dominate</span>?</h2>
+                        <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                            Stop leaving money on the table. Let's build a marketing machine that works for you 24/7. Schedule your free strategy session today.
+                        </p>
+                        
+                        <form class="mt-8 max-w-lg mx-auto space-y-4 text-left" id="contact-form">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="sr-only">First Name</label>
+                                    <input type="text" placeholder="First Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-colors">
+                                </div>
+                                <div>
+                                    <label class="sr-only">Last Name</label>
+                                    <input type="text" placeholder="Last Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-colors">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="sr-only">Email Address</label>
+                                <input type="email" placeholder="Work Email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-colors">
+                            </div>
+                            <div>
+                                <label class="sr-only">Message</label>
+                                <textarea placeholder="Tell us about your goals..." rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-colors resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand text-white px-6 py-4 rounded-xl font-bold btn-glow hover:bg-brand-light transition-colors flex justify-center items-center gap-2">
+                                Send Message <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        
+                        <div class="pt-8 mt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-400">
+                            <div>
+                                <i class="fa-solid fa-envelope text-brand-accent mb-2 text-xl"></i>
+                                <p>hello@markzonic.com</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-phone text-brand-accent mb-2 text-xl"></i>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-location-dot text-brand-accent mb-2 text-xl"></i>
+                                <p>New York City, NY</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/10 bg-black/20 pt-16 pb-8 relative z-10 mt-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" data-target="home" class="nav-trigger text-2xl font-bold tracking-tighter flex items-center gap-2 mb-4">
+                        <img src="assets/Logo GIF.gif" alt="Markzonic Logo" class="h-12 w-auto">
+                        <span class="text-gradient">Markzonic</span>
+                    </a>
+                    <p class="text-gray-400 text-sm max-w-sm mb-6">
+                        The premier digital marketing agency for brands looking to disrupt their industry and achieve non-linear growth.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-brand-accent hover:border-brand-accent transition-all"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-brand-accent hover:border-brand-accent transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-brand-accent hover:border-brand-accent transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><button data-target="home" class="nav-trigger hover:text-brand-light transition-colors">Home</button></li>
+                        <li><button data-target="services" class="nav-trigger hover:text-brand-light transition-colors">Services</button></li>
+                        <li><button data-target="about" class="nav-trigger hover:text-brand-light transition-colors">About Us</button></li>
+                        <li><button data-target="work" class="nav-trigger hover:text-brand-light transition-colors">Portfolio</button></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-light transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-light transition-colors">Terms of Service</a></li>
+                        <li><button data-target="contact" class="nav-trigger hover:text-brand-light transition-colors">Contact</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-white/10 text-xs text-gray-500">
+                <p>&copy; 2026 Markzonic Digital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
+
+    <script>
+        // Custom message box replacing alert()
+        function showMsg(msg) {
+            const box = document.getElementById('msg-box');
+            document.getElementById('msg-text').innerText = msg;
+            box.classList.add('show');
+            setTimeout(() => box.classList.remove('show'), 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // --- SPA ROUTING LOGIC ---
+            const pages = document.querySelectorAll('.page-view');
+            const navTriggers = document.querySelectorAll('.nav-trigger');
+            
+            function navigateTo(targetPageId) {
+                // Hide mobile menu if open
+                closeMenu();
+
+                // 1. Fade out current page
+                const currentPage = document.querySelector('.page-view.active');
+                if (currentPage) {
+                    currentPage.classList.remove('fade-in');
+                    setTimeout(() => {
+                        currentPage.classList.remove('active');
+                        showNewPage(targetPageId);
+                    }, 400); // Wait for fade out CSS transition
+                } else {
+                    showNewPage(targetPageId);
+                }
+                
+                // Update URL Hash
+                window.location.hash = targetPageId;
+            }
+
+            function showNewPage(targetPageId) {
+                const newPage = document.getElementById(`page-${targetPageId}`);
+                if (!newPage) return;
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                // Show new page
+                newPage.classList.add('active');
+                
+                // Force reflow
+                void newPage.offsetWidth; 
+                
+                // Fade in
+                newPage.classList.add('fade-in');
+
+                // Update active links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('data-target') === targetPageId) {
+                        link.classList.add('active-link');
+                    }
+                });
+
+                // Re-initialize GSAP animations for the specific page
+                initPageAnimations(targetPageId);
+            }
+
+            // Handle Click Events
+            navTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = trigger.getAttribute('data-target');
+                    if (target) navigateTo(target);
+                });
+            });
+
+            // Handle browser back/forward buttons (hash changes)
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash.replace('#', '') || 'home';
+                navigateTo(hash);
+            });
+
+            // --- GSAP ANIMATION LOGIC ---
+            // Keep a record of triggers to kill them when leaving pages (clean up)
+            let currentTriggers = [];
+
+            function clearAnimations() {
+                currentTriggers.forEach(t => t.kill());
+                currentTriggers = [];
+                // Reset common inline styles applied by GSAP so they can animate again
+                gsap.set('.stat-num', {innerHTML: 0});
+            }
+
+            function initPageAnimations(page) {
+                clearAnimations();
+                ScrollTrigger.refresh();
+
+                if (page === 'home') {
+                    gsap.fromTo('.gs-home-reveal', 
+                        { y: 30, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", delay: 0.2 }
+                    );
+
+                    // Number Counter
+                    const stats = document.querySelectorAll('.stat-num');
+                    stats.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-val'));
+                        const st = ScrollTrigger.create({
+                            trigger: stat,
+                            start: "top 90%",
+                            onEnter: () => {
+                                gsap.to(stat, { innerHTML: target, duration: 2, snap: { innerHTML: 1 }, ease: "power1.out" });
+                            }
+                        });
+                        currentTriggers.push(st);
+                    });
+
+                    // Orb Mouse Move
+                    const heroContainer = document.getElementById('hero-visual-container');
+                    const orb = document.querySelector('.interactive-orb');
+                    if (heroContainer && orb) {
+                        heroContainer.addEventListener('mousemove', (e) => {
+                            const rect = heroContainer.getBoundingClientRect();
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            gsap.to(orb, { x: x * 0.1, y: y * 0.1, duration: 0.5, ease: "power2.out" });
+                        });
+                        heroContainer.addEventListener('mouseleave', () => {
+                            gsap.to(orb, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
+                        });
+                    }
+                } 
+                else if (page === 'services') {
+                    gsap.fromTo('.gs-serv-reveal', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.2 });
+                    gsap.fromTo('.gs-serv-card', 
+                        { y: 50, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, delay: 0.4, ease: "back.out(1.2)" }
+                    );
+                }
+                else if (page === 'about') {
+                    gsap.fromTo('.gs-about-reveal', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, delay: 0.2 });
+                    gsap.fromTo('.gs-about-img', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, delay: 0.4 });
+                    
+                    const bars = document.querySelectorAll('.about-bar');
+                    bars.forEach((bar, index) => {
+                        const originalHeight = bar.style.height;
+                        gsap.fromTo(bar, 
+                            { height: '0%' }, 
+                            { height: originalHeight, duration: 1, delay: 0.6 + (index * 0.1), ease: "bounce.out" }
+                        );
+                    });
+                }
+                else if (page === 'work') {
+                    gsap.fromTo('.gs-work-card', 
+                        { scale: 0.9, opacity: 0 },
+                        { scale: 1, opacity: 1, duration: 0.6, stagger: 0.2, delay: 0.2, ease: "power2.out" }
+                    );
+                }
+                else if (page === 'contact') {
+                    gsap.fromTo('.gs-contact-reveal', 
+                        { y: 40, opacity: 0, scale: 0.95 },
+                        { y: 0, opacity: 1, scale: 1, duration: 0.7, delay: 0.2, ease: "back.out(1.5)" }
+                    );
+                }
+            }
+
+            // Initial Load based on hash
+            const initialHash = window.location.hash.replace('#', '') || 'home';
+            showNewPage(initialHash);
+
+            // --- MOBILE MENU ---
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('close-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function openMenu() { mobileMenu.classList.remove('opacity-0', 'pointer-events-none'); }
+            function closeMenu() { mobileMenu.classList.add('opacity-0', 'pointer-events-none'); }
+
+            mobileBtn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+
+            // --- CONTACT FORM ---
+            const form = document.getElementById('contact-form');
+            if(form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = form.querySelector('button');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+                        btn.classList.add('bg-green-500');
+                        btn.classList.remove('bg-brand');
+                        form.reset();
+                        showMsg("Thanks for reaching out! We will get back to you shortly.");
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.classList.remove('bg-green-500');
+                            btn.classList.add('bg-brand');
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // --- NAVBAR SCROLL ---
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2', 'bg-brand-bg/80');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2', 'bg-brand-bg/80');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
