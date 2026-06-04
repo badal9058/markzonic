@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - MarkZonic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #01030d; }
+        ::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0891b2; }
+
+        /* Magic Card Effect */
+        .magic-card { 
+            position: relative; border-radius: 1.5rem; padding: 2px; 
+            overflow: hidden; background: rgba(255, 255, 255, 0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            height: 100%; cursor: pointer;
+        }
+        .magic-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px -10px var(--star-color, rgba(6, 182, 212, 0.5));
+        }
+        
+        .magic-card::before { 
+            content: ""; position: absolute; width: 250%; height: 250%; top: -75%; left: -75%; 
+            background: conic-gradient(transparent, transparent, transparent, var(--star-color), #ffffff); 
+            animation: spin-star 3s linear infinite; opacity: 0; transition: opacity 0.4s ease; 
+        }
+        .magic-card:hover::before, .magic-card.active-card::before { opacity: 1; }
+        
+        .magic-card-inner { 
+            position: relative; background: #020617; border-radius: 1.4rem; height: 100%; 
+            padding: 1.5rem; z-index: 10; display: flex; flex-direction: column; 
+            align-items: center; text-align: center; 
+        }
+
+        @keyframes spin-star { 100% { transform: rotate(360deg); } }
+
+        /* --- MAIN TREE MAP CSS --- */
+        .tree-root { position: relative; }
+        .tree-root::after {
+            content: ''; position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
+            width: 2px; height: 40px; background: #06b6d4; box-shadow: 0 0 15px #06b6d4;
+        }
+        
+        .tree-branch-container { position: relative; padding-top: 40px; }
+        
+        @media (min-width: 768px) {
+            .tree-branch-container::before {
+                content: ''; position: absolute; top: 0; left: 10%; right: 10%;
+                height: 2px; background: #06b6d4; box-shadow: 0 0 15px #06b6d4;
+            }
+            .tree-node { position: relative; }
+            .tree-node::before {
+                content: ''; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+                width: 2px; height: 40px; background: #06b6d4; box-shadow: 0 0 15px #06b6d4;
+            }
+        }
+
+        /* --- SUB-TREE ANIMATIONS --- */
+        .sub-tree-container {
+            display: none; /* Hidden by default */
+            animation: slideDown 0.4s ease-out forwards;
+        }
+        .sub-tree-container.active { display: flex; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[#01030d] text-slate-300 font-sans selection:bg-cyan-500/30 overflow-x-hidden min-h-screen flex flex-col">
+
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#01030d]">
+        <canvas id="universe" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_#01030d_100%)] opacity-80"></div>
+    </div>
+
+    <div class="fixed top-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50 z-50"></div>
+
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#01030d]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+                    <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">MarkZonic</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="services.html" class="text-cyan-400 transition-colors drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">Services</a>
+                <a href="index.html#roadmap" class="hover:text-cyan-400 transition-colors">Roadmap</a>
+            </div>
+            <a href="index.html" class="hidden md:flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2.5 rounded-full transition-all text-sm font-semibold hover:border-cyan-500/50">
+                Back to Core <i data-lucide="corner-down-left" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-24 flex-grow flex flex-col justify-center">
+        
+        <div class="max-w-7xl mx-auto px-6 w-full text-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-8 backdrop-blur-sm mx-auto">
+                <i data-lucide="network" class="w-4 h-4"></i> Service Architecture
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-16 text-white drop-shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                Our <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">Digital Ecosystem</span>
+            </h1>
+
+            <div class="flex flex-col items-center mt-10">
+                
+                <div class="tree-root z-20">
+                    <div class="px-10 py-5 bg-[#020617] border-2 border-cyan-500 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.4)] flex flex-col items-center gap-2">
+                        <i data-lucide="zap" class="w-8 h-8 text-cyan-400"></i>
+                        <span class="text-xl font-bold text-white tracking-widest uppercase">MarkZonic Hub</span>
+                    </div>
+                </div>
+
+                <div class="tree-branch-container w-full max-w-7xl mt-10">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4 relative z-10 items-start">
+                        
+                        <div class="tree-node flex flex-col items-center">
+                            <div class="magic-card group w-full" id="card-dm" style="--star-color: #3b82f6;" onclick="toggleSubTree('dm')">
+                                <div class="magic-card-inner">
+                                    <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="trending-up" class="w-6 h-6 text-blue-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-2">Digital Marketing</h3>
+                                </div>
+                            </div>
+                            <div class="sub-tree-container flex-col items-center w-full pt-6 relative" id="sub-dm">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                                <div class="flex flex-col gap-3 relative w-full px-2">
+                                    <div class="absolute top-0 bottom-6 left-1/2 -translate-x-1/2 w-[2px] bg-blue-500/30"></div>
+                                    
+                                    <div class="bg-blue-900/20 border border-blue-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] relative z-10 hover:border-blue-400 transition-colors cursor-pointer">
+                                        Meta Ads
+                                    </div>
+                                    <div class="bg-blue-900/20 border border-blue-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] relative z-10 hover:border-blue-400 transition-colors cursor-pointer">
+                                        Social Media Marketing
+                                    </div>
+                                    <div class="bg-blue-900/20 border border-blue-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] relative z-10 hover:border-blue-400 transition-colors cursor-pointer">
+                                        Account Handling
+                                    </div>
+                                    <div class="bg-blue-900/20 border border-blue-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] relative z-10 hover:border-blue-400 transition-colors cursor-pointer">
+                                        SEO Services
+                                    </div>
+                                    <div class="bg-blue-900/20 border border-blue-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] relative z-10 hover:border-blue-400 transition-colors cursor-pointer">
+                                        Email/SMS Marketing
+                                    </div>
+                                    <div class="bg-blue-900/20 border border-blue-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] relative z-10 hover:border-blue-400 transition-colors cursor-pointer">
+                                        Influencer Marketing
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tree-node flex flex-col items-center">
+                            <div class="magic-card group w-full" id="card-web" style="--star-color: #06b6d4;" onclick="toggleSubTree('web')">
+                                <div class="magic-card-inner">
+                                    <div class="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="monitor-dot" class="w-6 h-6 text-cyan-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-2">Website Development</h3>
+                                </div>
+                            </div>
+                            <div class="sub-tree-container flex-col items-center w-full pt-6 relative" id="sub-web">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-cyan-500 shadow-[0_0_10px_#06b6d4]"></div>
+                                <div class="flex flex-col gap-3 relative w-full px-2">
+                                    <div class="absolute top-0 bottom-6 left-1/2 -translate-x-1/2 w-[2px] bg-cyan-500/30"></div>
+                                    <div class="bg-cyan-900/20 border border-cyan-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(6,182,212,0.1)] relative z-10 hover:border-cyan-400 transition-colors cursor-pointer">
+                                        Website Design & Development
+                                    </div>
+                                    <div class="bg-cyan-900/20 border border-cyan-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(6,182,212,0.1)] relative z-10 hover:border-cyan-400 transition-colors cursor-pointer">
+                                        Landing Pages Design & Development
+                                    </div>
+                                    <div class="bg-cyan-900/20 border border-cyan-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(6,182,212,0.1)] relative z-10 hover:border-cyan-400 transition-colors cursor-pointer">
+                                        Custom Web Apps
+                                    </div>
+                                    <div class="bg-cyan-900/20 border border-cyan-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(6,182,212,0.1)] relative z-10 hover:border-cyan-400 transition-colors cursor-pointer">
+                                        Shopify/E-commerce
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tree-node flex flex-col items-center">
+                            <div class="magic-card group w-full" id="card-vid" style="--star-color: #ef4444;" onclick="toggleSubTree('vid')">
+                                <div class="magic-card-inner">
+                                    <div class="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="film" class="w-6 h-6 text-red-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-2">Video Production <br>& Animation</h3>
+                                </div>
+                            </div>
+                            <div class="sub-tree-container flex-col items-center w-full pt-6 relative" id="sub-vid">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-red-500 shadow-[0_0_10px_#ef4444]"></div>
+                                <div class="flex flex-col gap-3 relative w-full px-2">
+                                    <div class="absolute top-0 bottom-6 left-1/2 -translate-x-1/2 w-[2px] bg-red-500/30"></div>
+                                    <div class="bg-red-900/20 border border-red-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(239,68,68,0.1)] relative z-10 hover:border-red-400 transition-colors cursor-pointer">
+                                        video Editing
+                                    </div>
+                                    <div class="bg-red-900/20 border border-red-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(239,68,68,0.1)] relative z-10 hover:border-red-400 transition-colors cursor-pointer">
+                                        Ai Video Generation
+                                    </div>
+                                    <div class="bg-red-900/20 border border-red-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(239,68,68,0.1)] relative z-10 hover:border-red-400 transition-colors cursor-pointer">
+                                        Spokesperson Videos
+                                    </div>
+                                    <div class="bg-red-900/20 border border-red-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(239,68,68,0.1)] relative z-10 hover:border-red-400 transition-colors cursor-pointer">
+                                        Intro/Outro Videos
+                                    </div>
+                                    <div class="bg-red-900/20 border border-red-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(239,68,68,0.1)] relative z-10 hover:border-red-400 transition-colors cursor-pointer">
+                                        Animated Explainers
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tree-node flex flex-col items-center">
+                            <div class="magic-card group w-full" id="card-gfx" style="--star-color: #a855f7;" onclick="toggleSubTree('gfx')">
+                                <div class="magic-card-inner">
+                                    <div class="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="palette" class="w-6 h-6 text-purple-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-2">Graphic Designing</h3>
+                                </div>
+                            </div>
+                            <div class="sub-tree-container flex-col items-center w-full pt-6 relative" id="sub-gfx">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-purple-500 shadow-[0_0_10px_#a855f7]"></div>
+                                <div class="flex flex-col gap-3 relative w-full px-2">
+                                    <div class="absolute top-0 bottom-6 left-1/2 -translate-x-1/2 w-[2px] bg-purple-500/30"></div>
+                                    <div class="bg-purple-900/20 border border-purple-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative z-10 hover:border-purple-400 transition-colors cursor-pointer">
+                                        Logo & Brand Identity
+                                    </div>
+                                    <div class="bg-purple-900/20 border border-purple-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative z-10 hover:border-purple-400 transition-colors cursor-pointer">
+                                        UI/UX Design
+                                    </div>
+                                    <div class="bg-purple-900/20 border border-purple-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative z-10 hover:border-purple-400 transition-colors cursor-pointer">
+                                        Social Media Posters
+                                    </div>
+                                    <div class="bg-purple-900/20 border border-purple-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative z-10 hover:border-purple-400 transition-colors cursor-pointer">
+                                        YouTube Thumbnails
+                                    </div>
+                                    <div class="bg-purple-900/20 border border-purple-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative z-10 hover:border-purple-400 transition-colors cursor-pointer">
+                                        Posters/Flyers/Brochures
+                                    </div>
+                                    <div class="bg-purple-900/20 border border-purple-500/40 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(168,85,247,0.1)] relative z-10 hover:border-purple-400 transition-colors cursor-pointer">
+                                        Banner Design
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tree-node flex flex-col items-center">
+                            <div class="magic-card group w-full" id="card-exp" style="--star-color: #cbd5e1;" onclick="toggleSubTree('exp')">
+                                <div class="magic-card-inner border border-dashed border-slate-700 group-hover:border-transparent transition-colors">
+                                    <div class="w-12 h-12 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="plus" class="w-6 h-6 text-slate-300 group-hover:text-cyan-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-2">Explore More</h3>
+                                </div>
+                            </div>
+                            <div class="sub-tree-container flex-col items-center w-full pt-6 relative" id="sub-exp">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-slate-400 shadow-[0_0_10px_#cbd5e1]"></div>
+                                <div class="flex flex-col gap-3 relative w-full px-2">
+                                    <div class="absolute top-0 bottom-6 left-1/2 -translate-x-1/2 w-[2px] bg-slate-500/30"></div>
+                                    <div class="bg-slate-800/40 border border-slate-600/50 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(255,255,255,0.05)] relative z-10 hover:border-slate-400 transition-colors cursor-pointer">
+                                        Mobile App Dev
+                                    </div>
+                                    <div class="bg-slate-800/40 border border-slate-600/50 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(255,255,255,0.05)] relative z-10 hover:border-slate-400 transition-colors cursor-pointer">
+                                        AI Integrations
+                                    </div>
+                                    <div class="bg-slate-800/40 border border-slate-600/50 py-3 px-4 rounded-xl backdrop-blur-md text-sm text-slate-200 shadow-[0_0_15px_rgba(255,255,255,0.05)] relative z-10 hover:border-slate-400 transition-colors cursor-pointer">
+                                        Tech Consulting
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="relative z-50 border-t border-white/10 bg-[#010208] pt-16 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
+                    <span class="text-2xl font-bold text-white tracking-tight">MarkZonic</span>
+                </div>
+                <p class="text-slate-500 max-w-md text-lg leading-relaxed">
+                    We architect high-impact digital infrastructure that drives measurable growth in the modern web era.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 text-lg">Infrastructure</h4>
+                <ul class="space-y-3 text-slate-500 font-medium">
+                    <li><a href="#" class="hover:text-cyan-400 transition-colors">Web Systems</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition-colors">Digital Growth</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition-colors">VFX & Media</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition-colors">Algorithmic SEO</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 text-lg">Command Center</h4>
+                <ul class="space-y-3 text-slate-500 font-medium">
+                    <li>Aligarh, Uttar Pradesh</li>
+                    <li>India</li>
+                    <li class="pt-4">
+                        <a href="mailto:hello@markzonic.com" class="text-cyan-400 hover:text-cyan-300 transition-colors">
+                            hello@markzonic.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/10 text-center text-slate-600 font-medium flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 MarkZonic. All systems operational.</p>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-slate-300 transition-colors">Terms</a>
+                <a href="#" class="hover:text-slate-300 transition-colors">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // --- SUB-TREE TOGGLE LOGIC ---
+        function toggleSubTree(serviceId) {
+            const allSubTrees = document.querySelectorAll('.sub-tree-container');
+            const targetTree = document.getElementById('sub-' + serviceId);
+            const targetCard = document.getElementById('card-' + serviceId);
+
+            // Hide all other sub-trees and remove active glows
+            allSubTrees.forEach(tree => {
+                if (tree.id !== 'sub-' + serviceId) {
+                    tree.classList.remove('active');
+                    // Remove active glow from other cards
+                    const otherCardId = tree.id.replace('sub-', 'card-');
+                    document.getElementById(otherCardId).classList.remove('active-card');
+                }
+            });
+
+            // Toggle the clicked one
+            if (targetTree.classList.contains('active')) {
+                targetTree.classList.remove('active');
+                targetCard.classList.remove('active-card');
+            } else {
+                targetTree.classList.add('active');
+                targetCard.classList.add('active-card');
+            }
+        }
+
+        // --- CALM DRIFTING STARS BACKGROUND ---
+        const canvas = document.getElementById('universe');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let stars = [];
+        const starColors = ['#ffffff', '#e0f0ff', '#fffcf0', '#c7d2fe'];
+
+        function resize() {
+            width = window.innerWidth; height = window.innerHeight;
+            canvas.width = width; canvas.height = height;
+        }
+
+        function initUniverse() {
+            stars = [];
+            const numStars = window.innerWidth < 768 ? 250 : 600; 
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * width, y: Math.random() * height, radius: Math.random() * 1.5,
+                    color: starColors[Math.floor(Math.random() * starColors.length)],
+                    speedX: (Math.random() * 0.15) + 0.02, alpha: Math.random(), alphaChange: (Math.random() * 0.02) + 0.005
+                });
+            }
+        }
+
+        function drawUniverse() {
+            ctx.clearRect(0, 0, width, height);
+            stars.forEach(star => {
+                star.alpha += star.alphaChange;
+                if (star.alpha <= 0.1 || star.alpha >= 1) star.alphaChange *= -1;
+                star.x -= star.speedX;
+                if (star.x < 0) { star.x = width; star.y = Math.random() * height; }
+                
+                ctx.beginPath(); ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = star.color; ctx.globalAlpha = star.alpha; ctx.fill();
+            });
+            ctx.globalAlpha = 1.0;
+            requestAnimationFrame(drawUniverse);
+        }
+
+        window.addEventListener('resize', () => { resize(); initUniverse(); });
+        resize(); initUniverse(); drawUniverse();
+    </script>
+</body>
+</html>

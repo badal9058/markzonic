@@ -1,1884 +1,483 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarkZonic - Up to Infinity</title>
-    <script src="./team.js"></script>
-    <link rel="stylesheet" href="team.css">
-    <link rel="stylesheet" href="globalstyle.css">
-    <link rel="icon" type="image/png" href="./assets/MarkZonic Logo Icon.svg">
-    <link rel="preload" href="./assets/our voices/ADD 02.mp4" as="video">
-    <link rel="preload" href="./assets/our voices/ADD 01.mp4" as="video">
-    <link rel="preload" href="./assets/our voices/ADD 03.mp4" as="video">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:light' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700:900&family=Ubuntu:wght@100;400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>MarkZonic - The Next-Gen Digital Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Custom styles and animations */
-        :root {
-            --primary-blue: #29abff;
-            --secondary-blue: #0062FF;
-            --text-gray: #aaa;
-            --background-dark: #1a1a1a;
-            --background-light: white;
-            --border-color: #2a2a2a;
-        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #01030d; }
+        ::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0891b2; }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            overflow-x: hidden;
-            background-color: black;
-            scroll-behavior: smooth;
-            margin: 0;
-            padding: 0;
-        }
-        .trusted-by-section {
-            background-color: white;
-            width: 100%;
-            padding: 3rem 0;
-            text-align: center;
-        }
+        /* Magic Card Effect */
+        .magic-card { position: relative; border-radius: 1.5rem; padding: 2px; overflow: hidden; background: rgba(255, 255, 255, 0.05); transition: transform 0.3s ease; }
+        .magic-card:hover { transform: translateY(-5px); }
+        .magic-card::before { content: ""; position: absolute; width: 250%; height: 250%; top: -75%; left: -75%; background: conic-gradient(transparent, transparent, transparent, #06b6d4, #ffffff); animation: spin-star 3s linear infinite; opacity: 0; transition: opacity 0.4s ease; }
+        .magic-card:hover::before { opacity: 1; }
+        .magic-card-inner { position: relative; background: #020617; border-radius: 1.4rem; height: 100%; padding: 2rem; z-index: 10; }
 
-        .scroller {
-            max-width: 1500px;
-            margin: auto;
-            overflow: hidden;
-            -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 95%, transparent);
-            mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
-        }
+        @keyframes spin-star { 100% { transform: rotate(360deg); } }
 
-        .scroller__inner {
-            display: flex;
-            gap: 2.5rem;
-            width: max-content;
-            animation: scroll 20s linear infinite;
-        }
-
-        .scroller__inner img {
-            height: 120px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .services-section {
-            padding: 0px 0px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .section-title {
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #fff;
-        }
-
-        .carousel-container {
-            position: relative;
-            max-width: 1500px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-        }
-
-        .services-carousel {
-            display: flex;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            padding: 70px 0;
-            gap: 30px;
-        }
-
-        .service-box {
-            flex: 0 0 auto;
-            width: 250px;
-            background: linear-gradient(180deg, rgba(72, 227, 255, 0), #004fca);
-            border-radius: 30px;
-            padding: 80px 10px 20px;
-            margin: 0 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
-            text-align: center;
-            font-weight: bolder;
-            position: relative;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
+        /* --- SOLAR SYSTEM (BACKGROUND) --- */
+        .orbit-track { position: absolute; top: 50%; left: 50%; border-radius: 50%; border: 1px dashed rgba(255, 255, 255, 0.15); animation: orbit-spin var(--speed) linear infinite; }
+        .planet { position: absolute; top: 0; left: 50%; width: 50px; height: 50px; margin-top: -25px; margin-left: -25px; background: rgba(2, 6, 23, 0.95); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 20px rgba(0,0,0,0.5); animation: counter-orbit-spin var(--speed) linear infinite; }
         
-        .service-box:hover {
-            box-shadow: 0 0 10px 10px rgba(0, 132, 255, 0.5);
-            transform: translateY(-10px);
-            border: 3px solid var(--primary-blue);
-        }
+        @keyframes orbit-spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes counter-orbit-spin { 100% { transform: rotate(-360deg); } }
 
-        .service-logo {
-            position: absolute;
-            top: -70px;
-            left: 50%;
-            z-index: 2;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 200px;
-            display: block;
-            object-fit: contain;
-        }
+        .galaxy-mask { -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%); mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%); }
 
-        .service-box h3 {
-            margin-top: 15px;
-            font-size: 1.2em;
-            color: #fff;
+        /* --- EXPANDING PLANET SERVICES --- */
+        .expanding-planet {
+            position: absolute; top: 50%; left: 50%; width: 100px; height: 100px;
+            margin-top: -50px; margin-left: -50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transform: scale(0); transform-origin: center center;
+            will-change: transform; z-index: 40;
         }
+        .planet-icon { transition: opacity 0.2s ease; }
         
-        .service-box p {
-            font-size: 0.8em;
-            line-height: 1.6;
-            color: white;
-            flex-grow: 1;
-        }
-        
-        .learn-more {
-            position: absolute;
-            bottom: 3%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 260px;
-            padding: 10px 0;
-            background: linear-gradient(90deg, #1b7dFF, #8933cd);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: background-color 0.3s ease;
-        }
-
-        .carousel-button {
-            background: white;
-            color: black;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 2em;
-            z-index: 10;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: background-color 0.3s ease;
-            outline: none;
-        }
-
-        .carousel-button.prev {
-            left: 0;
-        }
-        
-        .carousel-button.next {
-            right: 0;
-        }
-        
-        .about-section {
-            padding: 80px 24px;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-ad {
-            display: inline-block;
-            padding: 8px 20px;
-            background-color: rgba(0, 166, 255, 0.1);
-            border: 1px solid rgba(0, 166, 255, 0.3);
-            border-radius: 9999px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            color: #60a5fa;
-            margin-bottom: 16px;
-        }
-
-        .about-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: white;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            margin-bottom: 64px;
-            text-align: center;
-        }
-        
-        .stat-item {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(to right, #60a5fa, #a855f7);
-            margin-bottom: 8px;
-        }
-        
-        .stat-label {
-            font-size: 18px;
-            color: #d1d5db;
-        }
-
-        .about-description {
-            max-width: 768px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 18px;
-            color: #9ca3af;
-        }
-
-        .portfolio-section {
-            padding: 80px 24px;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-        
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-        
-        .portfolio-item video {
-            width: 100%;
-            height: 320px;
-            object-fit: contain;
-            
-            transition: transform 0.4s ease;
-        }
-        
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-        }
-        
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-item:hover video {
-            transform: scale(1.05);
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
-            text-shadow: 2px 2px 4px #111827;
-            margin-bottom: 0px;
-        }
-        
-        .portfolio-overlay p {
-            color: white;
-            text-shadow: 2px 2px 4px #111827;
-            margin-bottom: 70px;
-        }
-        
-        .video-modal {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.75);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-        }
-
-        .video-modal .modal-content {
-            position: relative;
-            width: 100%;
-            max-width: 896px;
-            padding: 16px;
-        }
-        
-        .video-modal video {
-            width: 100%;
-        }
-
-        .team-section {
-  text-align: center;
-  padding: 0px 10px;
-}
-
-.team-header h1 {
-  font-size: 36px;
-  margin-bottom: 0px;
-}
-
-.team-header .description {
-  max-width: 700px;
-  margin: 0 auto 10px;
-  color: #aaa;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.team-header .credit {
-  color: #aaa;
-  font-size: 13px;
-  margin-bottom: 40px;
-}
-
-.team-members {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto 50px;
-}
-
-.member {
-  background-color: transparent;
-  position: relative;
-  width: 400px;
-  padding-top: 12px;
-  overflow: hidden;
-}
-.member img {
-  width:70%;
-  height: 370px;
-  top: 80%;
-  border-radius: 4px;
-  transition: transform 0.3s ease-in-out; 
-}
-
-.info-card {
-  position: absolute;
-  bottom: 5px;
-  left: 50px;
-  right: 20px;
-  background-color: #fff;
-  color: #000;
-  padding: 13px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  text-align: left;
-  border-radius: 4px;
-  transition: transform 0.3s ease-in-out; 
-}
-
-.info-card h2 {
-    font-style: oblique;
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.info-card .role {
-  font-size: 13px;
-  color: #888;
-  text-transform: lowercase;
-  margin: 5px 0;
-}
-
-.info-card .text {
-  font-size: 12px;
-  font-style: italic;
-  color: #444;
-  margin: 10px 0;
-}
-.member:hover img {
-  /* Move the image up by a certain amount, e.g., 20px */
-   transform: translateY(-20px);
-}
-
-.member:hover .info-card {
-  /* Move the info card back by a smaller amount, e.g., 5px, for a layered effect */
-  transform: translateY(65px);
-}
-
-        .contact-section {
-            padding-bottom: 80px;
-            margin-top: 150px;
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .contact-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: white;
-        }
-        
-        .contact-description {
-            font-size: 18px;
-            color: #9ca3af;
-            margin-top: 16px;
-            max-width: 768px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #contact-form{
-            max-width: 512px;
-            margin: 0 auto;
-        }
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-input, .form-textarea {
-            width: 90%;
-            background-color: #111827;
-            border: 1px solid #374151;
-            border-radius: 8px;
-            padding: 12px 16px;
-            color: white;
-            transition: all 0.3s ease;
-            border: 2px solid #29abff;
-            box-shadow: 0px 0px 10px rgba(41, 171, 255, 1);
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            box-shadow: 0px 0px 50px rgba(41, 171, 255, 1);
-        }
-
-        .form-button-container {
-            text-align: center;
-        }
-        
-        .submit-btn {
-            border: 2px solid var(--primary-blue);
-            color: white;
-            font-weight: bold;
-            background-color: transparent;
-            padding: 12px 40px;
-            border-radius: 9999px;
-            font-size: 18px;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .submit-btn:hover {
-            box-shadow: 0px 2px 30px rgba(0, 132, 255, 1);
-            background: linear-gradient(90deg, #1b7dFF, #8933cd);
-        }
-
-        .footer {
-            background-color: #111827;
-            padding: 1px 0;
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 0px;
-            text-align: center;
-            color: #9ca3af;
-        }
-        
-        .footer-logo-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            text-decoration: none;
-        }
-        
-        .footer-logo {
-            height: 160px;
-            width: auto;
-            margin-bottom: -60px;
-            animation: fadeInUp 3s ease forwards;
-        }
-
-        .footer-logo-text {
-            color: white;
-            font-family: 'montserrt', sans-serif;
-            font-weight: bold;
-            font-size: 30px;
-            text-decoration: none;
-        }
-        
-        .footer-logo-text span {
-            text-decoration: none;
-            color: var(--primary-blue);
-        }
-
-        .footer-tagline {
-            color: white;
-            font-size: 17px;
-            margin-top: -20px;
-            text-decoration: none;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 24px;
-            color: white;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-blue);
-            transform: scale(1.2);
-        }
-
-        .footer-copy {
-            font-size: 14px;
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex !important; /* Desktop par nav-menu hamesha dikhega */
-            }
-            
-            .mobile-menu-btn {
-                display: none !important; /* Desktop par menu button chhipa rahega */
-            }
-
-            .hero-title {
-                font-size: 72px;
-            }
-
-            .hero-subtitle .typewriter {
-                font-size: 36px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .submit-btn {
-                width: auto;
-            }
-        }
-        @media (min-width: 1024px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-section {
-                padding-top: 100px;
-                padding-bottom: 50px;
-            }
-
-            .hero-title {
-                margin-top: 50px !important;
-                font-size: 30px !important;
-            }
-
-            .hero-title span.text-lg {
-                font-size: 0.9em !important;
-            }
-            
-            .hero-subtitle .typewriter {
-                font-size: 25px !important;
-            }
-            
-            .hero-text {
-                font-size: 0.9em;
-            }
-            
-            .funnicon {
-                width: 180px;
-                margin-top: 40px !important;
-            }
-
-            .animate-glow-logo {
-                height: 800px;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-
-            /* Adjust hero logo and text for better mobile layout */
-            .header-logo-img {
-                height: 40px;
-            }
-            #typedtext {
-                font-size: 18px;
-            }
-
-            .hero-logo-bg {
-                height: 700px; /* Adjust height for mobile */
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-            .hero-heading span {
-                font-size: 30px !important;
-            }
-            .typewriter {
-                font-size: 25px !important;
-            }
-            
-        }
-
-        /* Animations */
-        @keyframes pulse-grow {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes scroll {
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes glow-logo {
-            0%, 100% {
-                filter: drop-shadow(0 0 5px var(--primary-blue));
-                opacity: 0.1;
-            }
-            50% {
-                filter: drop-shadow(0 0 25px var(--primary-blue));
-                opacity: 0.1;
-            }
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #typedtext {
-            font-size: 30px;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid black;
-            width: fit-content;
-            animation: blink 0.7s infinite;
-            text-decoration: none;
-        }
-
-        .mark {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .zonic {
-            color: var(--primary-blue);
-        }
-
-        @keyframes spinAndZoomOut {
-            0% {
-                transform: translate(-50%, -50%) scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(20) rotate(360deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(50) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .logo-animated {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            z-index: 9999;
-            pointer-events: none;
-            animation: spinAndZoomOut 2s ease-out forwards;
-            transform-origin: center center;
-        }
-
-        .content-wrapper {
-            background-image: url('./assets/GalaxyX.svg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-        }
-         /* Hero Section */
-    .hero-section {
-        background: url("./assets/BG2.svg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center; /* Hero section background image fix */
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-        margin-top: -50px;
-        padding-bottom: 60px;
-    }
-    
-    .hero-logo-bg {
-        position: absolute;
-        top: 50%;
-        left: 29%;
-        transform: translate(-30%, -50%);
-        height: 1450px;
-        margin-top: 9px;
-        animation: glow-logo 5s ease-in-out infinite;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .hero-container {
-        max-width: 1280px;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        position: relative;
-        z-index: 10;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
-    .hero-heading {
-        margin-top: 130px;
-    }
-
-    .hero-heading span {
-        color: white;
-        font-size: 50px;
-        margin-top: 0px;
-    }
-
-    .typewriter {
-        font-size: 30px;
-        font-weight: 600;
-    }
-
-    .hidden-md {
-        display: none;
-    }
-
-    @media (min-width: 768px) {
-        .hidden-md {
-            display: block;
-        }
-    }
-
-    .hero-content {
-        max-width: 640px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .funnicon-container {
-        margin: 0 auto;
-        margin-top: 60px;
-    }
-    
-    .funnicon {
-        width: 240px;
-        margin: 0 auto;
-        animation: pulse-grow 2s ease-in-out infinite;
-    }
-
-    .btn-primary-hero {
-        border: 2px solid var(--primary-blue);
-        color: white;
-        font-weight: bold;
-        padding: 8px 32px;
-        margin-top: -8px;
-        border-radius: 9999px;
-        font-size: 18px;
-        text-decoration: none;
-        display: inline-block;
-    }
-    .btn-primary-hero:hover{
-        background: linear-gradient(90deg, #1b7dFF, #8933cd);
-    }
-
-    .hero-small-text {
-        font-size: small;
-    }
-
-    /* Animations */
-    @keyframes glow-logo {
-        0%, 100% {
-            filter: drop-shadow(0 0 5px #29abff);
-            opacity: 0.1;
-        }
-        50% {
-            filter: drop-shadow(0 0 25px #29abff);
-            opacity: 0.1;
-        }
-    }
-
-    @keyframes pulse-grow {
-        0%, 100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        50% {
-            transform: scale(1.05);
-            opacity: 0.8;
-        }
-    }
-
-    .custom-pulse {
-        animation: pulse-grow 2s ease-in-out infinite;
-    }
-
-    @media (max-width: 768px) {
-        .hero-section {
-            padding-top: 100px;
-            padding-bottom: 50px;
-            background-size: cover;
-        }
-        
-        .hero-heading span {
-            font-size: 30px !important;
-        }
-
-        .typewriter {
-            font-size: 25px !important;
-        }
-        
-        .hero-logo-bg {
-            height: 800px;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Mobile specific menu styles */
-        .nav-menu {
-            display: none; /* Mobile par desktop menu chhipa rahega */
-        }
-        .mobile-menu-btn {
-            display: block; /* Mobile par menu button dikhega */
-        }
-    }
-    .mobile-menu-btn svg {
-        margin-top: 10px;
-    width: 24px;
-    height: 24px;
-        }
-        .hidden{
-            display: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-        .show {
-            display: block;
-            opacity: 1;
-        }
-        #anim {
-            width: 300px;
-            height: 300px;
-            margin-bottom: 20px;
-            justify-self: center;
-        }
-        /* Dropdown container */
-        .dropdown {
-            position: relative;
-        }
-
-        /* Button style */
-        .dropdown-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font: inherit;
-            color: inherit;
-        }
-
-        /* Dropdown content (hidden by default) */
-        .dropdown-content {
-            position: absolute;
-            background-color: black;
-            min-width: 180px;
-            border: 2px solid var(--primary-blue);
-            border-radius: 10px;
-            box-shadow: 0 0 10px 10px rgba(0, 132, 255, 0.5);
-            z-index: 10;
-            
-            /* animation prep */
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        /* Links in dropdown */
-        .dropdown-content a {
-    display: block;
-    padding: 10px;
-    color: white;
-    border: 0;
-    transition: background-color 0.3s ease, color 0.3s ease; /* smooth fade */
-}
-        .dropdown-content a:hover {
-            background-color:white;
-            color: black;
-            transform: none;
-        }
-
-        /* Show dropdown with animation */
-        .dropdown.active .dropdown-content {
-            max-height: 500px; /* enough for full menu */
-            opacity: 1;
-            transform: translateY(1px);
-        }
-         /* Mobile dropdown container */
-.mobile-dropdown {
-    text-align: center;
-}
-
-/* Button style */
-.mobile-dropdown-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    padding: 12px 0;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-}
-
-/* Dropdown content hidden by default */
-.mobile-dropdown-content {
-    max-height: 0;
-    color: black;
-    background-color: white;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-/* Links in mobile dropdown */
-.mobile-dropdown-content a {
-    display: block;
-    padding: 10px;
-    color: black;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-/* Active state to show dropdown */
-.mobile-dropdown.active .mobile-dropdown-content {
-    max-height: 200px; /* enough to show all links */
-    opacity: 1;
-}
-
-    /* Chat widget styles */
-    .chat-fab { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: #1f6feb; color: #fff; border: none; box-shadow: 0 8px 24px rgba(0,0,0,0.2); cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; z-index: 9999; }
-    .chat-panel { position: fixed; bottom: 88px; right: 20px; width: 360px; max-height: 70vh; display: none; flex-direction: column; background: #fff; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.22); overflow: hidden; z-index: 9999; border: 1px solid #e5e7eb; }
-    .chat-header { padding: 10px 12px; background: #29abff; color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: space-between; }
-    .chat-body { padding: 12px; overflow-y: auto; flex: 1; background: #29abff; }
-    .chat-input { display: none; }
-    .faq-item { border: 1px solid #e5e7eb; background: black; border-radius: 10px; padding: 10px; margin: 8px 0; cursor: pointer; }
-    .faq-item:hover { background: #f3f4f6; color: black;}
-    .answer { margin: 10px 0 0 0; padding: 10px; border-left: 3px solid #29abff;  border-radius: 6px; white-space: pre-wrap; }
-    .search { display: flex; gap: 8px; margin-bottom: 8px; }
-    .search input { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid white; font-size: 14px; }
-    .footer { font-size: 12px; color: white; margin-top: 8px; }
-    @media (max-width: 480px) {
-      .chat-panel { width: calc(100vw - 24px); right: 12px; bottom: 80px; }
-    }
-    .text-glow {
-            text-shadow: 0 0 8px rgba(0, 170, 255, 0.8), 0 0 10px rgba(0, 170, 255, 0.6);
-    }
-    .main-header{
-        height: 50px;
-    }
+        .service-content-wrapper {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            opacity: 0; z-index: 50; pointer-events: none; transition: opacity 0.1s ease; padding: 1.5rem;
+        }
+        .service-content-wrapper.active { pointer-events: auto; }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-[#01030d] text-slate-300 font-sans selection:bg-cyan-500/30 overflow-x-hidden">
 
-    <div class="header-wrapper">
-    <header id="header" class="main-header">
-        <div class="header-container">
-            <div class="header-content">
-                <a href="#" class="header-logo-link" style="text-decoration: none;">
-                     <img src="./assets/MarkZonic Logo Icon.svg" id="animatedLogoImg" alt="MarkZonic Logo" class="header-logo-img"/>
-                     <div id="typedtext" style="margin-left: 10px; text-decoration: none;"></div>
-                        <script>
-                            const typedText = document.getElementById('typedtext');
-                            const markSpan = document.createElement('span');
-                            markSpan.className = 'mark';
-                            const zonicSpan = document.createElement('span');
-                            zonicSpan.className = 'zonic';
-                            typedtext.appendChild(markSpan);
-                            typedtext.appendChild(zonicSpan);
-                            const text = "MARKZONIC";
-                            let index = 0;
-                            function type() {
-                                if (index < text.length) {
-                                const char = text.charAt(index);
-                                if (index < 4) {
-                                    markSpan.textContent += char;
-                                } else {
-                                    zonicSpan.textContent += char;
-                                }
-                                index++;
-                                setTimeout(type, 100);
-                                }
-                            }
-                            type();
-                        </script>
-                        <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                            const logoImg = document.getElementById('animatedLogoImg');
-                            if (logoImg) {
-                                logoImg.addEventListener('click', function(event) {
-                                if (logoImg.classList.contains('logo-animated')) {
-                                    return;
-                                }
-                                logoImg.classList.add('logo-animated');
-                                logoImg.addEventListener('animationend', function() {
-                                    logoImg.classList.remove('logo-animated');
-                                }, { once: true });
-                                });
-                            }
-                            });
-                        </script>
-                </a>
-                <nav class="nav-menu">
-                    <a href="#home" class="Active">Home</a>
-                    <a href="#services">Services</a>
-                    <a href="Aboutus.html">About Us</a>
-                    <a href="#portfolio">Portfolio</a>
-                    <div class="dropdown">
-                        <a class="dropdown-btn">Legals ▾</a>
-                        <div class="dropdown-content">
-                            <a href="PrivacyPolicy.html">Privacy Policy</a>
-                            <a href="Refund Policy.html">Refund and Return Policy</a>
-                            <a href="Term&Conditions.html">Term and Conditions</a>
-                        </div>
-                    </div>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            const dropdownBtn = document.querySelector(".dropdown-btn");
-                            const dropdown = document.querySelector(".dropdown");
-
-                            dropdownBtn.addEventListener("click", function(e) {
-                                e.stopPropagation();
-                                dropdown.classList.toggle("active");
-                            });
-
-                            document.addEventListener("click", function() {
-                                dropdown.classList.remove("active");
-                            });
-                        });
-                        </script>
-
-                    <a href="#contact" class="contact-btn">Contact Us</a>
-                </nav>
-                <button id="mobile-menu-button" class="mobile-menu-btn">
-                    <svg  fill="none" stroke="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-            <!-- Ab yeh div by default hidden nahi hai, CSS isse handle karega -->
-            <div id="mobile-menu">
-                <a href="#home" class="Active">Home</a>
-                <a href="#services">Services</a>
-                <a href="Aboutus.html" class="active">About Us</a>
-                <a href="#portfolio">Portfolio</a>
-
-                <!-- Mobile Legals Dropdown -->
-                <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn">Legals ▾</button>
-                    <div class="mobile-dropdown-content">
-                        <a href="PrivacyPolicy.html" style="color: black;">Privacy Policy</a>
-                        <a href="Refund Policy.html" style="color: black;">Refund and Return Policy</a>
-                        <a href="Term&Conditions.html" style="color: black;">Term and Conditions</a>
-                    </div>
-                </div>
-                <script>
-                 // Mobile Legals dropdown toggle
-                const mobileDropdownBtn = document.querySelector(".mobile-dropdown-btn");
-                const mobileDropdown = document.querySelector(".mobile-dropdown");
-
-                mobileDropdownBtn.addEventListener("click", function(e) {
-                    e.stopPropagation();
-                    mobileDropdown.classList.toggle("active");
-                });
-                </script>
-
-                <a href="#contact">Contact Us</a>
-            </div>
-        </div>
-    </header>
-    </div>
-
-         <!-- Hero Section -->
-     <section id="home" class="hero-section">
-     <img src="./assets/MarkZonic Logo Icon.svg"
-          alt="Glowing MarkZonic Logo"
-          class="hero-logo-bg"/>
-     <div class="hero-container">
-          <h1 class="hero-heading" style="font-size: large;">
-               <span class="text-glow">Creative Solutions to<br><span id="typed-text-2" class="typewriter"></span></span><br class="hidden-md"><br>Our Dedicated teams of experts delivers outstanding results to client globally! 
-          </h1>
-          <div class="hero-content">
-               <p>3+ years | 100+ Campaigns | 10+ Crore Ad Spent</p>
-               <div class="funnicon-container">
-                    <img src="./assets/funnicon.svg" alt="Funnicon" class="funnicon custom-pulse"/>
-               </div>
-               <a href="https://wa.me/910000000000" class="btn-primary-hero" style="transition-delay: 0.4s;">
-                    Unleash Your Potential
-               </a><br><br>
-               <p class="hero-small-text">
-                    Confused about Digital Marketing?🤔<br>
-                    Don't worry, your next customer is just a click away! we'll get you there.<br>
-                    At Markzonic, we don't just run ads - we build digital engine that drives real business growth.
-               </p>
-          </div>
-     </div>
-     </section>
-    
-    <section class="trusted-by-section">
-        <div class="scroller">
-            <div class="scroller__inner">
-                <img src="./assets/logo/1.svg" alt="" >
-                <img src="./assets/logo/2.svg" alt="Microsoft" >
-                <img src="./assets/logo/3.svg" alt="Amazon">
-                <img src="./assets/logo/4.svg" alt="Notion">
-                <img src="./assets/logo/5.svg" alt="Slack">
-                <img src="./assets/logo/6.svg" alt="Spotify">
-                <img src="./assets/logo/7.svg" alt="Google Cloud">
-                <img src="./assets/logo/8.svg" alt="Microsoft">
-                <img src="./assets/logo/1.svg" alt="Amazon">
-                <img src="./assets/logo/2.svg" alt="Notion">
-                <img src="./assets/logo/3.svg" alt="Slack">
-                <img src="./assets/logo/4.svg" alt="Spotify">
-                <img src="./assets/logo/5.svg" alt="Google Cloud">
-                <img src="./assets/logo/6.svg" alt="Microsoft">
-                <img src="./assets/logo/7.svg" alt="Amazon">
-                <img src="./assets/logo/8.svg" alt="Notion">
-                <img src="./assets/logo/1.svg" alt="Slack">
-                <img src="./assets/logo/2.svg" alt="Spotify">
-            </div>
-        </div>
-    </section>
-    
-    <div class="content-wrapper">
-    <section id="services" class="services-section">
-        <h2 class="section-title">Services</h2>
-        <div class="carousel-container">
-            <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-            <div class="services-carousel">
-                <div class="service-box" style="margin-left: 70px;">
-                    <img src="./assets/Icons/Meta Ads.svg" alt="ADS Logo" class="service-logo">
-                    <h3>Meta Ads</h3>
-                    <p>Facebook & Instagram Advertising. Reach your target audience with effective ad campaigns.</p>
-                    <a href="./metaads.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box">
-                    <img src="./assets/Icons/SEO.svg" alt="SEO Logo" class="service-logo">
-                    <h3>SEO</h3>
-                    <p>Search Engine Optimization. Improve your search rankings and drive organic traffic.</p>
-                    <a href="./seo.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box">
-                    <img src="./assets/Icons/Creative Designing.svg" alt="Content Logo" class="service-logo">
-                    <h3>Creative Designing</h3>
-                    <p>Ad Creatives + Motion Graphics. Engage your audience with Attractive and valuable content.</p>
-                    <a href="./creativedesign.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box">
-                    <img src="./assets/Icons/Google Ads.svg" alt="Social Media Logo" class="service-logo">
-                    <h3>Google Ads</h3>
-                    <p>Build your brand and connect with customers on Google platforms.</p>
-                    <a href="./googleads.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box">
-                    <img src="./assets/Icons/Web Designing.svg" alt="Web Dev Logo" class="service-logo">
-                    <h3>Web Development</h3>
-                    <p>Create stunning and functional websites for your business.</p>
-                    <a href="./webdevelopment.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box">
-                    <img src="./assets/Icons/Android Applications.svg" alt="Web Dev Logo" class="service-logo">
-                    <h3>Android Development</h3>
-                    <p>Create stunning and functional websites for your business.</p>
-                    <a href="./androiddevelopment.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box">
-                    <img src="./assets/Icons/Social Media Management.svg" alt="Web Dev Logo" class="service-logo">
-                    <h3>Social Media </h3>
-                    <p>Social Media Account Management Create stunning connections for your Social Media.</p>
-                    <a href="./socialmedia.html" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="service-box" style="margin-right: 70px;">
-                    <img src="./assets/Icons/Professional Voices.svg" alt="Web Dev Logo" class="service-logo">
-                    <h3>Professional Voices </h3>
-                    <p>Clear , Captivating , High quality voice overs.</p>
-                    <a href="./professionalvoices.html" class="learn-more">Learn More</a>
-                </div>
-            </div>
-            <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="header-container">
-            <div class="section-header">
-                <h2 class="section-ad reveal">The MarkZonic Advantage</h2>
-                <p class="about-title reveal" style="transition-delay: 0.1s;">Numbers Don't Lie. Neither Do We.</p>
-            </div>
-        <div class="stats-grid">
-            <div class="stat-item reveal">
-                    <p class="stat-number counter" data-target="450">0</p>
-                    <p class="stat-label">Campaigns Launched</p>
-            </div>
-        <div class="stat-item reveal" style="transition-delay: 0.1s;">  
-                    <p class="stat-number counter" data-target="320">0</p>
-                    <p class="stat-label">Average ROI Increase</p>
-                </div>
-                <div class="stat-item reveal" style="transition-delay: 0.2s;">
-                    <p class="stat-number counter" data-target="150">0</p>
-                    <p class="stat-label">Happy Clients</p>
-                </div>
-            </div>
-            <div class="about-description reveal" style="transition-delay: 0.3s;">
-                <p>We are a collective of digital strategists, creative minds, and tech wizards obsessed with one thing: your growth. We believe in challenging the status quo and turning ambitious goals into market realities. Your success is our masterpiece.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="portfolio-section">
-        <div class="header-container">
-            <div class="section-header">
-                <h2 class="section-ad reveal">Proof in Pixels</h2>
-                <p class="about-title reveal" style="transition-delay: 0.1s;">Results That Speak For Themselves</p>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 01.mp4" style="transition-delay: 0.1s;">
-                    <video autoplay loop muted>
-                        <source src="./assets/our voices/ADD 01.mp4" type="video/mp4">
-                        Your browser does not support the video.
-                    </video>
-                    <div class="portfolio-overlay">
-                        <h3>Fintech Growth</h3>
-                        <p>Increased user acquisition by 250%.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 02.mp4" style="transition-delay: 0.1s;">
-                    <video autoplay loop muted>
-                        <source src="./assets/our voices/ADD 02.mp4" type="video/mp4">
-                        Your browser does not support the video.
-                    </video>
-                    <div class="portfolio-overlay">
-                        <h3>Fintech Growth</h3>
-                        <p>Increased user acquisition by 250%.</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-item reveal" data-video-src="./assets/our voices/ADD 03.mp4" style="transition-delay: 0.1s;">
-                    <video autoplay loop muted>
-                        <source src="./assets/our voices/ADD 03.mp4" type="video/mp4">
-                        Your browser does not support the video.    
-                    </video>
-                    <div class="portfolio-overlay">
-                        <h3>Fintech Growth</h3>
-                        <p>Increased user acquisition by 250%.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="videoModal" class="video-modal">
-        <div class="modal-content">
-            <video id="popupVideo" controls>
-                <source src="" type="video/mp4">
-                Your browser does not support the video tag.
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#01030d]">
+        <div id="galaxy-video-container" class="absolute top-1/2 left-1/2 w-[800px] h-[800px] mix-blend-screen opacity-90 transition-transform origin-center">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover galaxy-mask">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-spinning-spiral-galaxy-in-space-23961-large.mp4" type="video/mp4">
             </video>
         </div>
+        <canvas id="universe" class="absolute inset-0 w-full h-full"></canvas>
+
+        <div id="solar-system" class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-out scale-150">
+            <div class="absolute z-50 w-28 h-28 bg-gradient-to-br from-cyan-400 via-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-[0_0_60px_rgba(6,182,212,0.6)] border border-white/20 text-white font-black text-2xl tracking-tighter">
+                <i class="fa-solid fa-bolt mr-1"></i> MZ
+            </div>
+            <div class="orbit-track" style="width: 250px; height: 250px; --speed: 8s; transform: translate(-50%, -50%);">
+                <div class="planet" style="box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i></div>
+            </div>
+            <div class="orbit-track" style="width: 450px; height: 450px; --speed: 15s; transform: translate(-50%, -50%);">
+                <div class="planet" style="box-shadow: 0 0 20px rgba(225, 48, 108, 0.4);"><i class="fa-brands fa-instagram" style="color: #E1306C;"></i></div>
+                <div class="planet" style="top: auto; bottom: 0; margin-top: 0; margin-bottom: -25px; box-shadow: 0 0 20px rgba(24, 119, 242, 0.4);"><i class="fa-brands fa-facebook" style="color: #1877F2;"></i></div>
+            </div>
+            <div class="orbit-track" style="width: 650px; height: 650px; --speed: 25s; transform: translate(-50%, -50%); border-style: dotted;">
+                <div class="planet" style="box-shadow: 0 0 20px rgba(6, 104, 225, 0.4);"><i class="fa-brands fa-meta" style="color: #0668E1;"></i></div>
+                <div class="planet" style="top: auto; bottom: 0; margin-top: 0; margin-bottom: -25px; box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);"><i class="fa-brands fa-google" style="color: #4285F4;"></i></div>
+            </div>
+        </div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#01030d_100%)] opacity-70"></div>
     </div>
 
-    <section id="clients" class="team-section">
-        <div class="header-container">
-            <div class="team-header">
-                <h2 class="section-ad reveal">Our Teams</h2>
-                <p class="team-title reveal" style="transition-delay: 0.1s; font-size: larger;font-weight: bold; margin-bottom: 50px; color: white;">Our Team Members Trusted by the Best Companies</p>
+    <div class="fixed top-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50 z-50"></div>
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#01030d]/50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+                <img src="./assets/Logo GIF.gif" alt="MarkZonic Logo" class="w-full h-full object-contain">
+                </div>
+                <span class="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">Mark<span class="gradient-text">Zonic</span></span>
             </div>
-            <section class="team-section">
-                <div class="team-members">
-                    <div class="member">
-                        <img src="./assets/teams member/JD1.svg" alt="Creative Designer">
-                        <div class="info-card">
-                            <h2 class="uppercase">Madhav Wahi</h2>
-                            <p class="role">CEO</p>
-                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                        </div>
-                    </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="services.html" class="hover:text-cyan-400 transition-colors">Services</a>
+                <a href="#roadmap" class="hover:text-cyan-400 transition-colors">Roadmap</a>
+            </div>
+            <button class="hidden md:flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2.5 rounded-full transition-all text-sm font-semibold hover:border-cyan-500/50">
+                Initialize <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </nav>
 
-                    <div class="member">
-                        <img src="./assets/teams member/BA.svg" alt="Web Developer">
-                        <div class="info-card">
-                            <h2>Badal Arya</h2>
-                            <p class="role">Web Developer</p>
-                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                        </div>
-                    </div>
+    <main class="relative z-10 pt-20 flex flex-col min-h-screen">
+        
+        <section class="min-h-screen flex flex-col justify-center px-6 max-w-7xl mx-auto text-center pb-24">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-8 backdrop-blur-sm mx-auto mt-20">
+                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span></span>
+                Scroll Down to Enter the System
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-8 leading-tight text-white drop-shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                We Architect & Scale <br class="hidden md:block">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">Your Digital Future.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed backdrop-blur-sm p-2 rounded-xl">
+                End-to-end website design, highly engaging video production, and AI-driven ad campaigns engineered for exponential growth.
+            </p>
+        </section>
 
-                    <div class="member">
-                        <img src="./assets/teams member/Untitled design.svg" alt="Android Developer">
-                        <div class="info-card">
-                            <h2>Shivani Singh</h2>
-                            <p class="role">Android Developer</p>
-                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                        </div>
+        <section id="services" class="min-h-screen flex flex-col justify-center px-6 max-w-7xl mx-auto pb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
+                    MarkZonic Builds <br class="md:hidden"><span class="text-cyan-400">Digital Experiences.</span>
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="magic-card group">
+                    <div class="magic-card-inner">
+                        <i data-lucide="target" class="w-12 h-12 text-cyan-400 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Discover & Define</h3>
+                        <p class="text-slate-400 leading-relaxed">We map your trajectory by analyzing goals, audience, and core metrics before selecting the optimal tech stack.</p>
                     </div>
-
-                    <div class="member">
-                        <img src="./assets/teams member/BA.svg" alt="CEO">
-                        <div class="info-card">
-                            <h2 class="uppercase">Dhritiman</h2>
-                            <p class="role">Web developer</p>
-                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                        </div>
+                </div>
+                <div class="magic-card group">
+                    <div class="magic-card-inner">
+                        <i data-lucide="cpu" class="w-12 h-12 text-cyan-400 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Design & Prototype</h3>
+                        <p class="text-slate-400 leading-relaxed">AI-assisted layouts and UI/UX assets are compiled into high-fidelity interactive previews for rapid iteration.</p>
                     </div>
+                </div>
+                <div class="magic-card group">
+                    <div class="magic-card-inner">
+                        <i data-lucide="rocket" class="w-12 h-12 text-cyan-400 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Deploy & Optimize</h3>
+                        <p class="text-slate-400 leading-relaxed">We launch blazing-fast platforms and deploy data-driven ad structures to ensure continuous conversion scaling.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="member">
-                        <img src="./assets/teams member/JD1.svg" alt="CEO">
-                        <div class="info-card">
-                            <h2 class="uppercase">Jayant Deshmukh</h2>
-                            <p class="role">Creative Designer</p>
-                            <p class="text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-                        </div>
+        <section id="roadmap" class="min-h-screen px-6 max-w-4xl mx-auto flex flex-col justify-center">
+            <div class="text-center mb-16"><h2 class="text-4xl font-bold text-white mb-4 tracking-tight drop-shadow-lg">System <span class="text-cyan-400">Roadmap</span></h2></div>
+            <div class="space-y-12 border-l-2 border-white/10 ml-4 md:ml-0 pl-8 md:pl-12">
+                <div class="relative">
+                    <div class="absolute left-[calc(-2rem-9px)] md:left-[calc(-3rem-9px)] top-1.5 w-4 h-4 rounded-full bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,1)] ring-4 ring-slate-950 z-20"></div>
+                    <div class="uppercase text-xs font-bold tracking-widest text-cyan-400 mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Live Services</div>
+                    <div class="magic-card group"><div class="magic-card-inner p-8">
+                            <h4 class="text-2xl font-bold text-white mb-3">Performance Ads & Web Dev</h4>
+                            <p class="text-slate-400 leading-relaxed">Custom interactive landing pages, combined with hyper-targeted Meta & Google ad campaigns for immediate metric tracking and ROI.</p>
+                    </div></div>
+                </div>
+                <div class="relative">
+                    <div class="absolute left-[calc(-2rem-9px)] md:left-[calc(-3rem-9px)] top-1.5 w-4 h-4 rounded-full bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,1)] ring-4 ring-slate-950 z-20"></div>
+                    <div class="uppercase text-xs font-bold tracking-widest text-purple-400 mb-3">In Progress</div>
+                    <div class="magic-card group"><div class="magic-card-inner p-8">
+                            <h4 class="text-2xl font-bold text-white mb-3">AI-Powered Ad Optimization</h4>
+                            <p class="text-slate-400 leading-relaxed">Integrating real-time AI strategies and data-driven client dashboards to cut acquisition costs dynamically and monitor analytics live.</p>
+                    </div></div>
+                </div>
+            </div>
+            <br>
+            <br>
+            </section>
+            
+        <div id="planet-services-wrapper" style="height: 600vh; position: relative;" class="mt-10">
+            <div style="position: sticky; top: 0; height: 100vh; overflow: hidden; width: 100%;">  
+                <div id="planet-yt" class="expanding-planet bg-[#ff0000]"><i class="fa-brands fa-youtube text-white text-5xl planet-icon"></i></div>
+                <div class="text-center mb-16"><h2 class="text-5xl font-bold text-white mb-4 tracking-tight drop-shadow-lg">Main<span class="text-cyan-400">Services</span></h2></div>
+                <div id="content-yt" class="service-content-wrapper">
+                    <div class="bg-black/60 backdrop-blur-2xl border border-red-500/50 p-10 md:p-16 rounded-3xl max-w-3xl text-center shadow-[0_0_50px_rgba(255,0,0,0.3)]">
+                        <i class="fa-brands fa-youtube text-red-500 text-6xl mb-6 drop-shadow-lg"></i>
+                        <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">YouTube <span class="text-red-500">Video Ads</span></h2>
+                        <p class="text-slate-300 text-lg md:text-xl leading-relaxed mb-8">Dominate the screen. We create highly engaging unskippable & skippable video campaigns that drive instant brand recall and massive conversions.</p>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full transition-colors flex items-center gap-2 mx-auto">Launch Campaign <i data-lucide="play-circle" class="w-5 h-5"></i></button>
                     </div>
                 </div>
 
-            </section>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <div class="header-container">
-            <div class="contact-header">
-                <h2 class="section-ad reveal">Let's Talk</h2>
-                <p class="contact-title reveal" style="transition-delay: 0.1s;">Ready to Start Your Ascent?</p>
-                <p class="contact-description reveal" style="transition-delay: 0.2s;">Your competition won't wait. Neither should you. Fill out the form below or email us directly.</p>
-            </div></div>
-            <div id="anim"></div>
-            <div  class="hidden" id="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group reveal" style="transition-delay: 0.3s;">
-                        <input type="text" name="name" placeholder="Your Name" class="form-input">
+                <div id="planet-ig" class="expanding-planet bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]"><i class="fa-brands fa-instagram text-white text-5xl planet-icon"></i></div>
+                <div id="content-ig" class="service-content-wrapper">
+                    <div class="bg-white/10 backdrop-blur-2xl border border-pink-400/50 p-10 md:p-16 rounded-3xl max-w-3xl text-center shadow-[0_0_50px_rgba(220,39,67,0.3)]">
+                        <i class="fa-brands fa-instagram text-transparent bg-clip-text bg-gradient-to-tr from-[#f09433] to-[#bc1888] text-6xl mb-6"></i>
+                        <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Instagram <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400">Growth</span></h2>
+                        <p class="text-slate-100 text-lg md:text-xl leading-relaxed mb-8">Aesthetic matters. Through optimized Reels, Stories, and highly-targeted influencer demographics, we scale your engagement through the roof.</p>
+                        <button class="bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-full transition-colors flex items-center gap-2 mx-auto">Boost Profile <i data-lucide="trending-up" class="w-5 h-5"></i></button>
                     </div>
-                    <div class="form-group reveal" style="transition-delay: 0.4s;">
-                        <input type="email" name="email" placeholder="Your Emafil" class="form-input">
+                </div>
+
+                <div id="planet-fb" class="expanding-planet bg-[#1877F2]"><i class="fa-brands fa-facebook text-white text-5xl planet-icon"></i></div>
+                <div id="content-fb" class="service-content-wrapper">
+                    <div class="bg-blue-900/40 backdrop-blur-2xl border border-blue-400/50 p-10 md:p-16 rounded-3xl max-w-3xl text-center shadow-[0_0_50px_rgba(24,119,242,0.4)]">
+                        <i class="fa-brands fa-facebook text-blue-400 text-6xl mb-6 drop-shadow-lg"></i>
+                        <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Facebook <span class="text-blue-400">Lead Gen</span></h2>
+                        <p class="text-blue-100 text-lg md:text-xl leading-relaxed mb-8">Advanced pixel tracking meets killer copywriting. We build carousel and lead-gen funnels that turn cold traffic into loyal paying customers instantly.</p>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-full transition-colors flex items-center gap-2 mx-auto">Target Audience <i data-lucide="users" class="w-5 h-5"></i></button>
                     </div>
-                    <div class="form-group reveal" style="transition-delay: 0.5s;">
-                        <textarea name="message" rows="5" placeholder="Tell us about your project..." class="form-textarea"></textarea>
+                </div>
+
+                <div id="planet-gg" class="expanding-planet bg-[#ffffff]"><i class="fa-brands fa-google text-[#4285F4] text-5xl planet-icon"></i></div>
+                <div id="content-gg" class="service-content-wrapper">
+                    <div class="bg-white shadow-2xl border border-gray-200 p-10 md:p-16 rounded-3xl max-w-3xl text-center relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#4285F4] via-[#EA4335] to-[#FBBC05]"></div>
+                        <i class="fa-brands fa-google text-[#EA4335] text-6xl mb-6"></i>
+                        <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter">Google <span class="text-[#4285F4]">Search & PPC</span></h2>
+                        <p class="text-slate-600 text-lg md:text-xl leading-relaxed mb-8 font-medium">Capture high-intent buyers exactly when they search. Our algorithmic SEO & PPC strategies place you at the #1 spot on the SERP, maximizing ROI.</p>
+                        <button class="bg-[#4285F4] hover:bg-[#3367d6] text-white font-bold py-4 px-8 rounded-full transition-colors flex items-center gap-2 mx-auto">Dominate Search <i data-lucide="search" class="w-5 h-5"></i></button>
                     </div>
-                    <div class="form-button-container reveal" style="transition-delay: 0.6s;">
-                        <button type="submit" class="submit-btn">
-                            Send Mission Brief
-                        </button>
-                    </div>
-                </form>
-            
-        </div>
-    </section>
-      <!-- Chatbot trigger -->
-  <button id="chatFab" class="chat-fab" aria-label="Open chat">💬</button>
-
-  <!-- Chatbot panel -->
-  <div id="chatPanel" class="chat-panel" role="dialog" aria-label="FAQ chat">
-    <div class="chat-header">
-      <span>Help Center</span>
-      <button id="chatClose" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;">✕</button>
-    </div>
-    <div id="chatBody" class="chat-body">
-      <div class="search">
-        <input id="faqSearch" type="text" placeholder="Search Question..." />
-      </div>
-      <div id="faqList"></div>
-      <div class="footer">Tip: Click on a question to see the answer.</div>
-    </div>
-    <div class="chat-input"></div>
-  </div>
-
-  <!-- Chatbot logic -->
-  <script>
-  (() => {
-    // ========= EDIT THIS CONFIG ANYTIME =========
-    const FAQ_CONFIG = [
-      { q: 'आपके बिज़नेस आवर्स क्या हैं?', a: 'सोमवार–शुक्रवार, 9am–6pm IST. इमरजेंसी के लिए support@example.com पर ईमेल करें.' },
-      { q: 'सपोर्ट से कैसे संपर्क करें?', a: 'support@example.com पर ईमेल करें या +91-00000-00000 पर कॉल करें. हम 24 घंटे में जवाब देते हैं.' },
-      { q: 'क्या रिफंड मिलता है?', a: 'हाँ, 14 दिन के भीतर योग्य खरीद पर रिफंड. अपना ऑर्डर आईडी billing@example.com पर भेजें.' },
-      { q: 'प्राइसिंग कहाँ मिलेगी?', a: 'टॉप नेविगेशन में Pricing पेज देखें. कस्टम कोट के लिए Contact फॉर्म भरें.' }
-    ];
-    // ===========================================
-
-    const $ = (id) => document.getElementById(id);
-    const panel = $('chatPanel');
-    const fab = $('chatFab');
-    const closeBtn = $('chatClose');
-    const faqList = $('faqList');
-    const faqSearch = $('faqSearch');
-
-    function renderList(items) {
-      faqList.innerHTML = '';
-      if (!items.length) {
-        const empty = document.createElement('div');
-        empty.style.color = '#6b7280';
-        empty.textContent = 'कोई मिलते-जुलते प्रश्न नहीं मिले.';
-        faqList.appendChild(empty);
-        return;
-      }
-      items.forEach((item) => {
-        const wrap = document.createElement('div');
-        wrap.className = 'faq-item';
-        wrap.setAttribute('role', 'button');
-        wrap.setAttribute('tabindex', '0');
-        wrap.setAttribute('aria-expanded', 'false');
-
-        const q = document.createElement('div');
-        q.textContent = item.q;
-        q.style.fontWeight = '600';
-
-        const a = document.createElement('div');
-        a.className = 'answer';
-        a.style.display = 'none';
-        a.textContent = item.a;
-
-        wrap.appendChild(q);
-        wrap.appendChild(a);
-
-        const toggle = () => {
-          const open = a.style.display !== 'none';
-          a.style.display = open ? 'none' : 'block';
-          wrap.setAttribute('aria-expanded', String(!open));
-        };
-        wrap.addEventListener('click', toggle);
-        wrap.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
-
-        faqList.appendChild(wrap);
-      });
-    }
-
-    function filter(term) {
-      const t = term.trim().toLowerCase();
-      if (!t) return FAQ_CONFIG;
-      return FAQ_CONFIG.filter(x =>
-        x.q.toLowerCase().includes(t) || x.a.toLowerCase().includes(t)
-      );
-    }
-
-    faqSearch.addEventListener('input', (e) => renderList(filter(e.target.value)));
-
-    fab.addEventListener('click', () => {
-      const isOpen = panel.style.display === 'flex';
-      panel.style.display = isOpen ? 'none' : 'flex';
-      panel.style.flexDirection = 'column';
-      faqSearch.focus();
-    });
-
-    closeBtn.addEventListener('click', () => { panel.style.display = 'none'; });
-
-    // Initial render
-    renderList(FAQ_CONFIG);
-  })();
-  </script>
-    <script>
-        document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(field => {
-        field.addEventListener('blur', () => {
-            if (field.value.trim() !== '') {
-                field.style.backgroundColor = 'white';
-                field.style.color = 'black';
-            } else {
-                field.style.backgroundColor = '';
-                field.style.color = '';
-            }
-        });
-    });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const animContainer = document.getElementById('anim');
-    const contactForm = document.getElementById('contact-form');
-    const contactSection = document.getElementById('contact');
-
-    let anim; // Animation reference
-    let animationStarted = false; // Ensure it runs only once per view
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !animationStarted) {
-                animationStarted = true; // Run only once
-
-                // Lottie load
-                anim = lottie.loadAnimation({
-                    container: animContainer,
-                    renderer: 'svg',
-                    loop: false,
-                    autoplay: true,
-                    path: 'Email verification (1).json'
-                });
-
-                // After animation finishes (3.05 sec)
-                setTimeout(() => {
-                    anim.pause();
-                    contactForm.classList.remove('hidden');
-                    contactForm.classList.add('show');
-                    animContainer.style.display = 'none';
-                }, 3050);
-
-                // Form submit
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    contactForm.classList.remove('show');
-                    contactForm.classList.add('hidden');
-
-                    animContainer.style.display = 'block';
-                    anim.play();
-                    setTimeout(() => {
-                        anim.pause();
-                    }, 1350);
-                });
-            }
-        });
-    }, { threshold: 1.0 }); // 1.0 means full section visible
-
-    observer.observe(contactSection);
-});
-</script>
-
-</div>
-    
-    <footer class="footer">
-        <div class="footer-container">
-            <a href="#" class="footer-logo-link">
-                 <img src="./assets/MarkZonic Logo Icon.svg" alt="MarkZonic Logo" class="footer-logo">
-                 <p class="footer-logo-text">MARK<span>ZONIC</span></p>
-                 <p class="footer-tagline">Up to Infinity</p>
-            </a>
-            <div class="social-links">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Instagram</a>
+                </div>
+                
             </div>
-            <p class="footer-copy">&copy; 2025 MarkZonic. All Rights Reserved. Let's reach infinity together.</p>
         </div>
-    </footer>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        const videoModal = document.getElementById('videoModal');
-        const popupVideo = document.getElementById('popupVideo');
-        const popupVideoSource = popupVideo.querySelector('source');
 
-        portfolioItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const videoSrc = item.dataset.videoSrc;
-                popupVideoSource.src = videoSrc;
-                popupVideo.load();
-                videoModal.style.display = 'flex';
-                popupVideo.play();
-            });
-        });
+        <section class="min-h-screen px-6 flex flex-col justify-center relative z-40 pb-24 bg-transparent">
+            <div class="max-w-4xl mx-auto magic-card group w-full mt-24">
+                <div class="magic-card-inner p-8 md:p-16 text-center w-full !bg-slate-900/80 backdrop-blur-xl">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">
+                        Your next big idea is just <br><span class="text-cyan-400">one click away.</span>
+                    </h2>
+                    <button class="px-10 py-5 bg-white text-slate-950 font-extrabold text-lg rounded-full transition-all hover:bg-cyan-50 flex items-center justify-center gap-3 mx-auto shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:-translate-y-1">
+                        Initialize Deployment <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-        videoModal.addEventListener('click', (e) => {
-            if (e.target === videoModal) {
-                videoModal.style.display = 'none';
-                popupVideo.pause();
-                popupVideo.currentTime = 0;
-            }
-        });
-    });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        // 1. Mobile menu button ko click karne par menu ko toggle karna
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
-
-        // 2. Menu ke links par click karne par menu ko band karna
-        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active'); // 'active' class remove karke menu ko band kare
-            });
-        });
-
-        // 3. Menu ke bahar click karne par menu ko band karna
-        document.addEventListener('click', (event) => {
-            const isMenuOpen = mobileMenu.classList.contains('active');
-            const isClickInsideMenu = mobileMenu.contains(event.target);
-            const isClickOnButton = mobileMenuButton.contains(event.target);
-
-            if (isMenuOpen && !isClickInsideMenu && !isClickOnButton) {
-                mobileMenu.classList.remove('active'); // Menu ko band kare
-            }
-        });
-    });
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                revealElements.forEach(el => {
-                    const elementTop = el.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - 100) {
-                        el.classList.add('active');
-                    }
-                });
-            };
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
-
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200;
-
-            const animateCounters = () => {
-                counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const inc = Math.ceil(target / speed);
-
-                        if (count < target) {
-                            counter.innerText = count + inc;
-                            setTimeout(updateCount, 10);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    updateCount();
-                });
-            };
-            
-            const aboutSection = document.getElementById('about');
-            let hasAnimated = false;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !hasAnimated) {
-                        animateCounters();
-                        hasAnimated = true;
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            observer.observe(aboutSection);
-            
+        <footer class="relative z-50 border-t border-white/10 bg-[#010208] pt-16 pb-8 mt-auto">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
+                        <span class="text-2xl font-bold text-white tracking-tight">MarkZonic</span>
+                    </div>
+                    <p class="text-slate-500 max-w-md text-lg leading-relaxed">
+                        We architect high-impact digital infrastructure that drives measurable growth in the modern web era.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Infrastructure</h4>
+                    <ul class="space-y-3 text-slate-500 font-medium">
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Web Systems</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Digital Growth</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">VFX & Media</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Algorithmic SEO</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Command Center</h4>
+                    <ul class="space-y-3 text-slate-500 font-medium">
+                        <li>Aligarh, Uttar Pradesh</li>
+                        <li>India</li>
+                        <li class="pt-4">
+                            <a href="mailto:hello@markzonic.com" class="text-cyan-400 hover:text-cyan-300 transition-colors">
+                                hello@markzonic.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/10 text-center text-slate-600 font-medium flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© 2026 MarkZonic. All systems operational.</p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-slate-300 transition-colors">Terms</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors">Privacy</a>
+                </div>
+            </div>
+        </footer>
         
-    document.addEventListener("DOMContentLoaded", function() {
-        // --- All your other scripts can remain here (portfolio modal, menu, reveal, etc.) ---
+    </main>
 
-        // ===================================================================
-        // START: REPLACEMENT CAROUSEL SCRIPT
-        // ===================================================================
-        const carousel = document.querySelector('.services-carousel');
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
-        const serviceBoxes = document.querySelectorAll('.service-box');
-        const numBoxes = serviceBoxes.length;
-
-        if (carousel && prevButton && nextButton && serviceBoxes.length > 0) {
-            let currentIndex = 0;
-
-            // This function calculates the exact position to center the target box
-            function centerServiceBox(index) {
-                // Ensure index is within bounds (0 to last item)
-                if (index < 0) {
-                    index = 0;
-                }
-                if (index >= numBoxes) {
-                    index = numBoxes - 1;
-                }
-
-                const targetBox = serviceBoxes[index];
-                const carouselWidth = carousel.clientWidth;
-                const boxWidth = targetBox.offsetWidth;
-                const boxOffsetLeft = targetBox.offsetLeft;
-
-                // The magic calculation: find where to scroll to center the box
-                const scrollLeftPosition = boxOffsetLeft - (carouselWidth / 2) + (boxWidth / 2);
-
-                carousel.scrollTo({
-                    left: scrollLeftPosition,
-                    behavior: 'smooth'
-                });
-
-                currentIndex = index;
-            }
-
-            // Event listener for the 'next' button
-            nextButton.addEventListener('click', () => {
-                let nextIndex = currentIndex + 1;
-                // You can uncomment the line below if you want the carousel to loop
-                // if (nextIndex >= numBoxes) { nextIndex = 0; }
-                centerServiceBox(nextIndex);
-            });
-
-            // Event listener for the 'previous' button
-            prevButton.addEventListener('click', () => {
-                let prevIndex = currentIndex - 1;
-                // You can uncomment the line below if you want the carousel to loop
-                // if (prevIndex < 0) { prevIndex = numBoxes - 1; }
-                centerServiceBox(prevIndex);
-            });
-
-            // This part makes your manual drag/touch scrolling work with the buttons
-            let scrollEndTimer;
-            carousel.addEventListener('scroll', () => {
-                clearTimeout(scrollEndTimer);
-                // When scrolling stops, find which element is closest to the center
-                scrollEndTimer = setTimeout(() => {
-                    const carouselCenter = carousel.scrollLeft + carousel.clientWidth / 2;
-                    let minDistance = Infinity;
-                    let newIndex = 0;
-
-                    serviceBoxes.forEach((box, index) => {
-                        const boxCenter = box.offsetLeft + box.offsetWidth / 2;
-                        const distance = Math.abs(boxCenter - carouselCenter);
-
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            newIndex = index;
-                        }
-                    });
-                    // Update the current index based on the scroll position
-                    currentIndex = newIndex;
-                }, 150); // Wait 150ms after scroll ends to run
-            });
-
-            // The original drag-to-scroll logic remains to provide the manual scroll feature
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            carousel.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-            });
-            carousel.addEventListener('mouseleave', () => { isDown = false; });
-            carousel.addEventListener('mouseup', () => { isDown = false; });
-            carousel.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - carousel.offsetLeft;
-                const walk = (x - startX) * 2;
-                carousel.scrollLeft = scrollLeft - walk;
-            });
-            carousel.addEventListener('touchstart', (e) => {
-                isDown = true;
-                startX = e.touches[0].pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-            });
-            carousel.addEventListener('touchend', () => { isDown = false; });
-            carousel.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                const x = e.touches[0].pageX - carousel.offsetLeft;
-                const walk = (x - startX) * 2;
-                carousel.scrollLeft = scrollLeft - walk;
-            });
-        }
-        // ===================================================================
-        // END: REPLACEMENT CAROUSEL SCRIPT
-        // ===================================================================
-
-    });
-    </script>
     <script>
-        function typeEffect(elementId, text, speed = 100) {
-            let i = 0;
-            function typeChar() {
-                if (i < text.length) {
-                    document.getElementById(elementId).innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typeChar, speed);
-                }
-            }
-            typeChar();
+        lucide.createIcons();
+
+        // --- BACKGROUND UNIVERSE LOGIC ---
+        const canvas = document.getElementById('universe');
+        const ctx = canvas.getContext('2d');
+        const solarSystem = document.getElementById('solar-system');
+        const galaxyVideo = document.getElementById('galaxy-video-container');
+        
+        let width, height, centerX, centerY;
+        let frontStars = [], backStars = [];
+        let targetScrollProgress = 0, currentScrollProgress = 0;
+        const starColors = ['#ffffff', '#e0f0ff', '#fffcf0', '#c7d2fe'];
+
+        function resize() {
+            width = window.innerWidth; height = window.innerHeight;
+            canvas.width = width; canvas.height = height;
+            centerX = width / 2; centerY = height / 2;
         }
-        typeEffect("typed-text-2", "Digital Challenges");
+
+        function initUniverse() {
+            frontStars = []; backStars = [];
+            const numFrontStars = window.innerWidth < 768 ? 150 : 350; 
+            const numBackStars = window.innerWidth < 768 ? 100 : 250; 
+
+            for (let i = 0; i < numFrontStars; i++) {
+                frontStars.push({
+                    x: Math.random() * width, y: Math.random() * height, radius: Math.random() * 1.5,
+                    color: starColors[Math.floor(Math.random() * starColors.length)],
+                    speedX: (Math.random() * 0.8) + 0.2, alpha: Math.random(), alphaChange: (Math.random() * 0.02) + 0.005
+                });
+            }
+            for (let i = 0; i < numBackStars; i++) {
+                backStars.push({
+                    x: Math.random() * width, y: Math.random() * height, radius: Math.random() * 1.2,
+                    color: starColors[Math.floor(Math.random() * starColors.length)],
+                    speedX: (Math.random() * 0.1) + 0.02, alpha: Math.random(), alphaChange: (Math.random() * 0.02) + 0.005
+                });
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            if(maxScroll > 0) targetScrollProgress = window.scrollY / maxScroll;
+        });
+
+        // --- UPDATED PLANETARY SCROLL LOGIC WITH ZOOM OUT ---
+        const servicesWrapper = document.getElementById('planet-services-wrapper');
+        const planets = {
+            yt: { bg: document.getElementById('planet-yt'), content: document.getElementById('content-yt'), icon: document.querySelector('#planet-yt .planet-icon') },
+            ig: { bg: document.getElementById('planet-ig'), content: document.getElementById('content-ig'), icon: document.querySelector('#planet-ig .planet-icon') },
+            fb: { bg: document.getElementById('planet-fb'), content: document.getElementById('content-fb'), icon: document.querySelector('#planet-fb .planet-icon') },
+            gg: { bg: document.getElementById('planet-gg'), content: document.getElementById('content-gg'), icon: document.querySelector('#planet-gg .planet-icon') }
+        };
+
+        const MAX_SCALE = 50;
+
+        function applyPlanetStyle(planet, p) {
+            if (p < 0) p = 0; if (p > 1) p = 1;
+            let bgScale = Math.min(MAX_SCALE, p * 5 * MAX_SCALE);
+            planet.bg.style.transform = `scale(${bgScale})`;
+            planet.icon.style.opacity = Math.max(0, 1 - (p * 6.66));
+            let contentOpacity = 0;
+            if (p > 0.2) contentOpacity = Math.min(1, (p - 0.2) * 10);
+            
+            planet.content.style.opacity = contentOpacity;
+            if(contentOpacity > 0.5) planet.content.classList.add('active');
+            else planet.content.classList.remove('active');
+        }
+
+        function resetPlanet(planet) {
+            planet.bg.style.transform = `scale(0)`;
+            planet.icon.style.opacity = 1;
+            planet.content.style.opacity = 0;
+            planet.content.classList.remove('active');
+        }
+
+        function updatePlanetsProgress() {
+            const rect = servicesWrapper.getBoundingClientRect();
+            const scrollPx = -rect.top;
+            const maxScroll = rect.height - window.innerHeight;
+            let progress = scrollPx / maxScroll;
+
+            if (progress >= 0 && progress <= 1) {
+                
+                // 1. YT Planet
+                if (progress < 0.2) {
+                    let p = progress / 0.2; 
+                    applyPlanetStyle(planets.yt, p);
+                    resetPlanet(planets.ig); resetPlanet(planets.fb); resetPlanet(planets.gg);
+                    solarSystem.style.opacity = 0;
+                }
+                // 2. IG Planet
+                else if (progress < 0.4) {
+                    let p = (progress - 0.2) / 0.2;
+                    planets.yt.bg.style.transform = `scale(${MAX_SCALE})`; 
+                    planets.yt.content.style.opacity = Math.max(0, 1 - (p * 5));
+                    if(planets.yt.content.style.opacity < 0.5) planets.yt.content.classList.remove('active');
+                    applyPlanetStyle(planets.ig, p);
+                    resetPlanet(planets.fb); resetPlanet(planets.gg);
+                    solarSystem.style.opacity = 0;
+                }
+                // 3. FB Planet
+                else if (progress < 0.6) {
+                    let p = (progress - 0.4) / 0.2;
+                    planets.yt.bg.style.transform = `scale(${MAX_SCALE})`; planets.ig.bg.style.transform = `scale(${MAX_SCALE})`;
+                    planets.ig.content.style.opacity = Math.max(0, 1 - (p * 5));
+                    if(planets.ig.content.style.opacity < 0.5) planets.ig.content.classList.remove('active');
+                    applyPlanetStyle(planets.fb, p);
+                    resetPlanet(planets.gg);
+                    solarSystem.style.opacity = 0;
+                }
+                // 4. Google Planet
+                else if (progress < 0.8) {
+                    let p = (progress - 0.6) / 0.2;
+                    planets.yt.bg.style.transform = `scale(${MAX_SCALE})`; planets.ig.bg.style.transform = `scale(${MAX_SCALE})`; planets.fb.bg.style.transform = `scale(${MAX_SCALE})`;
+                    planets.fb.content.style.opacity = Math.max(0, 1 - (p * 5));
+                    if(planets.fb.content.style.opacity < 0.5) planets.fb.content.classList.remove('active');
+                    applyPlanetStyle(planets.gg, p);
+                    solarSystem.style.opacity = 0;
+                }
+                // 5. Shrink back (Zoom out) to Solar System
+                else {
+                    let p = 1 - ((progress - 0.8) / 0.2); // Goes from 1 down to 0
+                    resetPlanet(planets.yt); resetPlanet(planets.ig); resetPlanet(planets.fb);
+                    
+                    applyPlanetStyle(planets.gg, p);
+                    
+                    // Fade solar system back in safely behind shrinking planet
+                    solarSystem.style.opacity = 1 - p;
+                }
+            } 
+            else if (progress > 1) {
+                // When you are at CTA Section, make sure all planets are gone and Solar System is visible
+                resetPlanet(planets.yt); resetPlanet(planets.ig); resetPlanet(planets.fb); resetPlanet(planets.gg);
+                solarSystem.style.opacity = 1;
+            }
+            else if (progress < 0) {
+                resetPlanet(planets.yt); resetPlanet(planets.ig); resetPlanet(planets.fb); resetPlanet(planets.gg);
+            }
+        }
+
+        function drawUniverse() {
+            currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+            ctx.clearRect(0, 0, width, height);
+
+            const zoomMultiplier = 1 + Math.pow(currentScrollProgress * 9, 3); 
+            
+            if(galaxyVideo) {
+                galaxyVideo.style.transform = `translate(-50%, -50%) scale(${zoomMultiplier})`;
+                galaxyVideo.style.opacity = Math.max(0, 0.9 - (currentScrollProgress * 5));
+            }
+
+            canvas.style.opacity = Math.max(0, 1 - (currentScrollProgress * 5));
+
+            const backOpacity = Math.min(1, currentScrollProgress * 8);
+            if (backOpacity > 0) {
+                backStars.forEach(star => {
+                    star.alpha += star.alphaChange;
+                    if (star.alpha <= 0.1 || star.alpha >= 1) star.alphaChange *= -1;
+                    star.x -= star.speedX;
+                    if (star.x < 0) { star.x = width; star.y = Math.random() * height; }
+                    ctx.beginPath(); ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = star.color; ctx.globalAlpha = star.alpha * backOpacity; ctx.fill();
+                });
+            }
+
+            const frontOpacity = Math.max(0, 1 - (currentScrollProgress * 4));
+            if (frontOpacity > 0) {
+                frontStars.forEach(star => {
+                    star.alpha += star.alphaChange;
+                    if (star.alpha <= 0.1 || star.alpha >= 1) star.alphaChange *= -1;
+                    star.x -= star.speedX;
+                    if (star.x < 0) { star.x = width; star.y = Math.random() * height; }
+
+                    const dx = star.x - centerX; const dy = star.y - centerY;
+                    const finalX = centerX + (dx * zoomMultiplier); const finalY = centerY + (dy * zoomMultiplier);
+                    const finalRadius = star.radius * Math.max(1, Math.sqrt(zoomMultiplier) * 0.6);
+
+                    if(finalX > -10 && finalX < width + 10 && finalY > -10 && finalY < height + 10) {
+                        ctx.beginPath(); ctx.arc(finalX, finalY, finalRadius, 0, Math.PI * 2);
+                        ctx.fillStyle = star.color; ctx.globalAlpha = star.alpha * frontOpacity; ctx.fill();
+                    }
+                });
+            }
+            ctx.globalAlpha = 1.0;
+
+            if (currentScrollProgress > 0.01) {
+                let solarOpacity = (currentScrollProgress - 0.01) * 8;
+                if(solarOpacity > 1) solarOpacity = 1;
+                let solarScale = 1.5 - ((currentScrollProgress - 0.01) * 4);
+                if(solarScale < 1) solarScale = 1;
+                
+                solarSystem.style.opacity = solarOpacity;
+                solarSystem.style.transform = `scale(${solarScale})`;
+            } else {
+                solarSystem.style.opacity = 0;
+            }
+
+            updatePlanetsProgress();
+            requestAnimationFrame(drawUniverse);
+        }
+
+        window.addEventListener('resize', () => { resize(); initUniverse(); });
+        resize(); initUniverse(); drawUniverse();
     </script>
 </body>
 </html>
